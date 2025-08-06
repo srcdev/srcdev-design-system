@@ -1,0 +1,8 @@
+:root {
+  .underlined,
+  .normal,
+  .input-select-core,
+  .input-checkbox-radio-options-button {
+    --form-core-background-color-hover: light-dark(hsl(from var(--theme-form-input-border) h s 95%), hsl(from var(--theme-form-input-border) h s 25%));
+  }
+}

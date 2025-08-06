@@ -1,0 +1,13 @@
+:root {
+  --font-size: 1.6rem;
+  --line-height: calc((var(--font-size) * 2) - 1rem);
+
+  /* --font-family: futura-pt, Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif; */
+  --theme-form-font-familty: var(--font-family);
+  --theme-error-surface: var(--red-12);
+  --theme-error-text: var(--red-0);
+
+  --theme-form-button-font-size-normal: var(--form-element-font-size);
+
+  --theme-form-transition-duration: 0.2s;
+}

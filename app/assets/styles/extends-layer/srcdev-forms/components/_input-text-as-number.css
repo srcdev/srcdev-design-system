@@ -1,0 +1,22 @@
+/*
+* See _input-select.css for the base styles
+**/
+:root {
+  .input-text-wrapper {
+    &[data-inputmode='numeric'] {
+      --input-element-padding-block: 1.25rem;
+      --element-decorator-padding-inline: 0.4rem;
+
+      [data-btn-theme='input-action'] {
+        --theme-btn-bg: light-dark(hsl(from var(--theme-form-input-border) h s 75%), hsl(from var(--theme-form-input-border) h s 25%));
+        --theme-btn-text: var(--gray-00);
+        --form-input-border-radius: 0.2rem;
+
+        --theme-btn-border: hsl(from var(--theme-form-input-border) h s 40%);
+
+        --theme-btn-border-hover: transparent;
+        --theme-btn-outline-hover: hsl(from var(--theme-form-input-border) h s 75%);
+      }
+    }
+  }
+}

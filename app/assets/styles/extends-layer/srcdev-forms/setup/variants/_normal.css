@@ -1,0 +1,48 @@
+:root {
+  .normal {
+    --input-row-margin-block-start: 0;
+
+    /* --element-decorator-background-color: var(--theme-form-input-bg-normal); */
+    --element-decorator-background-color: color-mix(in srgb, currentColor 5%, transparent);
+
+    --element-decorator-margin-block-start: 0.5rem;
+    --element-decorator-padding-inline: 1rem;
+
+    --element-decorator-outline-default: 1px solid color-mix(in srgb, var(--theme-form-input-border) 5%, transparent);
+    --element-decorator-outline-active: 1px solid var(--theme-form-input-border);
+
+    /* Border styles */
+    --element-decorator-border-top-left-radius: var(--form-input-border-radius);
+    --element-decorator-border-top-right-radius: var(--form-input-border-radius);
+    --element-decorator-border-bottom-right-radius: var(--form-input-border-radius);
+    --element-decorator-border-bottom-left-radius: var(--form-input-border-radius);
+
+    --element-decorator-border-top-default: var(--form-element-border-width) solid var(--theme-form-input-border);
+    --element-decorator-border-right-default: var(--form-element-border-width) solid var(--theme-form-input-border);
+    --element-decorator-border-bottom-default: var(--form-element-border-width) solid var(--theme-form-input-border);
+    --element-decorator-border-left-default: var(--form-element-border-width) solid var(--theme-form-input-border);
+
+    --input-placeholder-color: var(--gray-5);
+    --input-placeholder-font-size: var(--step-5);
+    --input-placeholder-font-style: italic;
+    --input-placeholder-font-weight: normal;
+    --input-placeholder-line-height: 1;
+
+    /* Label vars */
+    --_label-text-color: var(--theme-form-input-text-label-color-underlined);
+    --_label-text-margin-block: 0.8rem;
+    --_label-text-size: var(--step-5);
+    --_label-text-weight: normal;
+    --_label-text-line-height: 1.5;
+
+    .error {
+      --element-decorator-border-bottom-right-radius: 0;
+      --element-decorator-border-bottom-left-radius: 0;
+
+      --element-decorator-border-top-default: var(--form-element-border-width) solid var(--theme-error-surface);
+      --element-decorator-border-right-default: var(--form-element-border-width) solid var(--theme-error-surface);
+      --element-decorator-border-bottom-default: var(--form-element-border-width) solid var(--theme-error-surface);
+      --element-decorator-border-left-default: var(--form-element-border-width) solid var(--theme-error-surface);
+    }
+  }
+}

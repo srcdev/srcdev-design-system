@@ -1,0 +1,20 @@
+:root {
+  [data-btn-theme='input-action-underlined'] {
+    --theme-btn-bg: transparent;
+    --theme-btn-border: transparent;
+    --theme-btn-outline: transparent;
+    --theme-btn-text: var(--_input-text-core-color);
+
+    --theme-btn-bg-hover: var(--blue-8);
+    --theme-btn-border-hover: var(--blue-8);
+    --theme-btn-outline-hover: var(--blue-8);
+    --theme-btn-text-hover: var(--gray-00);
+
+    --theme-btn-bg-focus: var(--blue-8);
+    --theme-btn-border-focus: var(--blue-8);
+    --theme-btn-outline-focus: var(--blue-8);
+    --theme-btn-text-focus: var(--gray-00);
+
+    --theme-form-focus-box-shadow: transparent;
+  }
+}

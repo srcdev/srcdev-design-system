@@ -1,0 +1,68 @@
+/*
+* These styles control the appearance of radio buttons.
+*/
+:root {
+  .input-checkbox-radio-wrapper {
+    &.radio {
+      --input-checkbox-radio-wrapper-transition: all var(--theme-form-transition-duration) ease-in-out;
+      --input-checkbox-radio-wrapper-border: 0.1rem solid var(--theme-form-input-border);
+      --input-checkbox-radio-wrapper-border-radius: 100%;
+      --input-checkbox-radio-wrapper-outline: 0.1rem solid hsl(from var(--theme-form-input-border) h s 95%);
+
+      --input-checkbox-radio-wrapper-box-shadow-off: none;
+
+      /* Interactive state */
+      --input-checkbox-radio-wrapper-border-on: 0.1rem solid var(--theme-form-input-border);
+      --input-checkbox-radio-wrapper-outline-on: 0.1rem solid hsl(from var(--theme-form-input-border) h s 1%);
+      --input-checkbox-radio-wrapper-box-shadow-on: 0rem 0rem 0rem 0.3rem hsl(from var(--theme-form-input-border) h s 95%);
+
+      /* Color of radio button  */
+      --input-checkbox-radio-symbol-color-default: light-dark(hsl(from var(--theme-form-input-border) h s 95%), hsl(from var(--theme-form-input-border) h s 15%));
+      --input-checkbox-radio-symbol-color-active: light-dark(hsl(from var(--theme-form-input-border) h s 25%), hsl(from var(--theme-form-input-border) h s 75%));
+
+      /* Size variants for radio buttons within a button */
+      &.x-small {
+        --form-input-checkbox-radio-button-symbol-size: var(--step-3);
+      }
+
+      &.small {
+        --form-input-checkbox-radio-button-symbol-size: var(--step-4);
+      }
+
+      &.default {
+        --form-input-checkbox-radio-button-symbol-size: var(--step-7);
+      }
+
+      &.medium {
+        --form-input-checkbox-radio-button-symbol-size: var(--step-6);
+      }
+
+      &.large {
+        --form-input-checkbox-radio-button-symbol-size: var(--step-6);
+      }
+
+      /* Size variants for default radio buttons */
+      .button {
+        &.x-small {
+          --form-input-checkbox-radio-button-symbol-size: var(--step-3);
+        }
+
+        &.small {
+          --form-input-checkbox-radio-button-symbol-size: var(--step-4);
+        }
+
+        &.default {
+          --form-input-checkbox-radio-button-symbol-size: var(--step-6);
+        }
+
+        &.medium {
+          --form-input-checkbox-radio-button-symbol-size: var(--step-6);
+        }
+
+        &.large {
+          --form-input-checkbox-radio-button-symbol-size: var(--step-6);
+        }
+      }
+    }
+  }
+}

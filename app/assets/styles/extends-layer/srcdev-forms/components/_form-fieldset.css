@@ -1,0 +1,16 @@
+:root {
+  /* Label vars */
+  .form-fieldset {
+    --form-fieldset-legend-text-color: var(--theme-form-input-text-label-color-normal);
+    --form-fieldset-legend-text-margin-block: 0.8rem;
+    --form-fieldset-legend-text-size: var(--step-5);
+    --form-fieldset-legend-text-weight: normal;
+    --form-fieldset-legend-text-line-height: 1.5;
+
+    --form-fieldset-description-font-size: 1.6rem;
+    --form-fieldset-description-margin-top: 1.2rem;
+
+    --form-fieldset-content-margin-block-start: 0;
+    --form-fieldset-content-padding-block-start: 0;
+  }
+}

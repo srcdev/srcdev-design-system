@@ -1,0 +1,11 @@
+{
+  "global": {
+    "siteName": "Nuxt Playground"
+  },
+  "pages": {
+    "index": {
+      "header": "Nuxt Playground",
+      "description": "Neighbourly connects businesses with thousands of vetted local charities, food banks and community groups across the UK and Ireland. We make it easy for companies and their employees to deliver meaningful support, through volunteering, financial donations and surplus redistribution - right into the heart of communities that need it most."
+    }
+  }
+}

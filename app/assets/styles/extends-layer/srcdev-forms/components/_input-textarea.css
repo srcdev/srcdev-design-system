@@ -1,0 +1,5 @@
+:root {
+  .input-textarea-core {
+    --input-textarea-min-height: 4em;
+  }
+}

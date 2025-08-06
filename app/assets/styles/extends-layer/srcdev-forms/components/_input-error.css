@@ -1,0 +1,55 @@
+:root {
+  --input-error-color: var(--theme-error-text);
+  /* --input-error-background-color: transparent; */
+  --input-error-background-color: var(--theme-error-surface);
+
+  --input-error-font-size: var(--form-element-font-size);
+  --input-error-line-height: var(--form-element-line-height);
+  --input-error-font-weight: var(--form-element-font-weight);
+
+  --input-error-margin-block-start: 0rem;
+
+  --input-error-border-radius: var(--form-input-border-radius);
+
+  /* Border styles */
+  --input-error-border-top-left-radius: 0;
+  --input-error-border-top-right-radius: 0;
+  --input-error-border-bottom-right-radius: 0;
+  --input-error-border-bottom-left-radius: 0;
+
+  --input-error-border-top-default: var(--form-element-border-width) solid transparent;
+  --input-error-border-right-default: var(--form-element-border-width) solid transparent;
+  --input-error-border-bottom-default: var(--form-element-border-width-underlined) solid transparent;
+  --input-error-border-left-default: var(--form-element-border-width) solid transparent;
+
+  .detached {
+    --input-error-margin-block-start: 2rem;
+
+    --input-error-border-top-left-radius: var(--input-error-border-radius);
+    --input-error-border-top-right-radius: var(--input-error-border-radius);
+    --input-error-border-bottom-right-radius: var(--input-error-border-radius);
+    --input-error-border-bottom-left-radius: var(--input-error-border-radius);
+  }
+
+  .show {
+    --input-error-background-color: var(--theme-error-surface);
+
+    --input-error-border-bottom-right-radius: var(--input-error-border-radius);
+    --input-error-border-bottom-left-radius: var(--input-error-border-radius);
+
+    --input-error-border-top-default: var(--form-element-border-width) solid var(--theme-error-surface);
+    --input-error-border-right-default: var(--form-element-border-width) solid var(--theme-error-surface);
+    --input-error-border-bottom-default: var(--form-element-border-width-underlined) solid var(--red-8);
+    --input-error-border-left-default: var(--form-element-border-width) solid var(--theme-error-surface);
+  }
+
+  .Xunderlined.show {
+    --input-error-border-bottom-right-radius: var(--input-error-border-radius);
+    --input-error-border-bottom-left-radius: var(--input-error-border-radius);
+
+    --input-error-border-top-default: var(--form-element-border-width) solid var(--theme-error-surface);
+    --input-error-border-right-default: var(--form-element-border-width) solid var(--theme-error-surface);
+    --input-error-border-bottom-default: var(--form-element-border-width-underlined) solid var(--red-8);
+    --input-error-border-left-default: var(--form-element-border-width) solid var(--theme-error-surface);
+  }
+}

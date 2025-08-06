@@ -1,0 +1,59 @@
+:root {
+  .input-checkbox-radio-options-button {
+    /* --input-checkbox-radio-options-button-background-color: hsl(from var(--theme-form-input-border) h s 95%); */
+    --input-checkbox-radio-options-button-background-color: color-mix(in srgb, currentColor 5%, transparent);
+    --input-checkbox-radio-options-button-background-color-active: light-dark(hsl(from var(--theme-form-input-border) h s 75%), hsl(from var(--theme-form-input-border) h s 25%));
+
+    --input-checkbox-radio-options-button-border: 0.1rem solid var(--theme-form-input-border);
+    --input-checkbox-radio-options-button-border-active: 0.1rem solid var(--theme-form-input-border);
+    /* --input-checkbox-radio-options-button-border-radius: var(--form-input-border-radius); */
+    --input-checkbox-radio-options-button-border-radius: 1lh;
+    --input-checkbox-radio-options-button-outline: 0.1rem solid hsl(from var(--theme-form-input-border) h s 55%);
+    --input-checkbox-radio-options-button-outline-active: 0.1rem solid hsl(from var(--theme-form-input-border) h s 5%);
+
+    /* Label styles */
+
+    --input-checkbox-radio-options-button-label-font-size: var(--form-element-font-size);
+    --input-checkbox-radio-options-button-label-min-height: var(--form-element-line-height);
+
+    --input-checkbox-radio-options-button-label-margin-block: 0.8rem;
+    --input-checkbox-radio-options-button-label-padding-inline: 0.8rem;
+
+    [data-form-theme='primary'] {
+      --input-checkbox-radio-options-button-label-text-color: light-dark(var(--gray-11), var(--gray-1));
+      --input-checkbox-radio-options-button-label-icon-color: light-dark(var(--gray-11), var(--gray-1));
+    }
+
+    /* Size variants */
+    &.x-small {
+      --input-checkbox-radio-options-padding-block: 0.2rem;
+      --input-checkbox-radio-options-padding-inline: 1.6rem;
+
+      --input-checkbox-radio-options-button-gap: 1rem;
+    }
+
+    &.small {
+      --input-checkbox-radio-options-padding-block: 0.2rem;
+      --input-checkbox-radio-options-padding-inline: 1.6rem;
+      --input-checkbox-radio-options-button-gap: 1rem;
+    }
+
+    &.default {
+      --input-checkbox-radio-options-padding-block: 0.4rem;
+      --input-checkbox-radio-options-padding-inline: 1.2rem;
+      --input-checkbox-radio-options-button-gap: 1rem;
+    }
+
+    &.medium {
+      --input-checkbox-radio-options-padding-block: 0.4rem;
+      --input-checkbox-radio-options-padding-inline: 1.2rem;
+      --input-checkbox-radio-options-button-gap: 1rem;
+    }
+
+    &.large {
+      --input-checkbox-radio-options-padding-block: 0.4rem;
+      --input-checkbox-radio-options-padding-inline: 1.2rem;
+      --input-checkbox-radio-options-button-gap: 1rem;
+    }
+  }
+}

@@ -5,7 +5,7 @@
   "pages": {
     "index": {
       "header": "Nuxt Playground",
-      "description": "Neighbourly connects businesses with thousands of vetted local charities, food banks and community groups across the UK and Ireland. We make it easy for companies and their employees to deliver meaningful support, through volunteering, financial donations and surplus redistribution - right into the heart of communities that need it most."
+      "description": "This is a playground for Nuxt.js, where you can experiment with various features and functionalities of the framework. Explore, learn, and build your next Nuxt application with ease."
     }
   }
 }

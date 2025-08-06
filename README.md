@@ -12,7 +12,12 @@ Make sure to install dependencies:
 node --version && npm --version
 ```
 
-- Ensure latest version of node v.22 [nvm-sh](https://github.com/nvm-sh/nvm/blob/master/README.md)
+- Ensure latest version of node v.22 [install--update-script](https://github.com/nvm-sh/nvm/blob/master/README.md#install--update-script)
+- use curl script at above link, example below
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+```
 
 ```bash
 # npm
@@ -21,7 +26,7 @@ npm install
 
 ## Development Server
 
-Start the development server on `http://localhost:3020`:
+Start the development server on `http://localhost:3000`:
 
 ```bash
 # npm

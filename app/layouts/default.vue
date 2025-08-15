@@ -64,11 +64,14 @@ import LocaleSwitcher from "~/components/locale-switcher/LocaleSwitcher.vue";
   }
 
   .main-content {
-    flex: 1;
-    display: flex;
-    gap: 20px;
     background-color: var(--color-background);
     padding: 20px;
+
+    @media (width >= 768px) {
+      flex: 1;
+      display: flex;
+      gap: 20px;
+    }
 
     .left-nav {
       width: 200px;

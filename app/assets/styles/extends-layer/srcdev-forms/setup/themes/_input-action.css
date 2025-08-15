@@ -1,17 +1,17 @@
 :root {
-  [data-btn-theme='input-action'] {
-    --theme-btn-bg: transparent;
-    --theme-btn-border: transparent;
+  [data-theme-old='input-action'] {
+    --theme-button-surface: transparent;
+    --theme-input-border: transparent;
     --theme-btn-outline: transparent;
     --theme-btn-text: var(--theme-form-input-text-color-normal);
 
-    --theme-btn-bg-hover: var(--blue-8);
-    --theme-btn-border-hover: var(--blue-8);
+    --theme-button-surface-hover: var(--blue-8);
+    --theme-input-border-hover: var(--blue-8);
     --theme-btn-outline-hover: var(--blue-8);
     --theme-btn-text-hover: var(--gray-00);
 
-    --theme-btn-bg-focus: var(--blue-8);
-    --theme-btn-border-focus: var(--blue-8);
+    --theme-button-surface-focus: var(--blue-8);
+    --theme-input-border-focus: var(--blue-8);
     --theme-btn-outline-focus: var(--blue-8);
     --theme-btn-text-focus: var(--gray-00);
 

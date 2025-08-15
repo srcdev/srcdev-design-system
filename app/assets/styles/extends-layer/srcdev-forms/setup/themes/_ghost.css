@@ -1,11 +1,11 @@
 :root {
-  [data-form-theme='ghost'] {
-    --theme-form-input-bg-normal: light-dark(var(--gray-1), var(--gray-4));
+  [data-theme-old='ghost'] {
+    --theme-button-surface: light-dark(var(--gray-1), var(--gray-4));
     --theme-form-input-bg-outlined: light-dark(var(--gray-1), var(--gray-4));
     --theme-form-input-bg-underlined: light-dark(var(--gray-1), var(--gray-4));
-    --theme-form-input-border: var(--gray-8);
-    --theme-form-input-border-active: var(--gray-2);
-    --theme-form-input-border-focus: var(--gray-2);
+    --theme-input-border: var(--gray-8);
+    --theme-input-border-active: var(--gray-2);
+    --theme-input-border-focus: var(--gray-2);
     --theme-form-input-outline: white;
     --theme-form-input-outline-active: var(--gray-6);
     --theme-form-input-outline-focus: var(--gray-6);
@@ -64,19 +64,19 @@
     --theme-checkbox-radio-button-label-default: light-dark(var(--gray-12), var(--gray-12));
   }
 
-  [data-btn-theme='ghost'] {
-    --theme-btn-bg: transparent;
-    --theme-btn-border: var(--gray-0);
+  [data-theme='ghost'] {
+    --theme-button-surface: transparent;
+    --theme-input-border: var(--gray-0);
     --theme-btn-outline: var(--gray-12);
     --theme-btn-text: light-dark(var(--gray-12), var(--gray-0));
 
-    --theme-btn-bg-hover: light-dark(var(--gray-2), var(--gray-8));
-    --theme-btn-border-hover: light-dark(var(--gray-12), var(--gray-0));
+    --theme-button-surface-hover: light-dark(var(--gray-2), var(--gray-8));
+    --theme-input-border-hover: light-dark(var(--gray-12), var(--gray-0));
     --theme-btn-outline-hover: light-dark(var(--gray-12), var(--gray-0));
     --theme-btn-text-hover: light-dark(var(--gray-12), var(--gray-0));
 
-    --theme-btn-bg-focus: light-dark(var(--gray-2), var(--gray-8));
-    --theme-btn-border-focus: light-dark(var(--gray-12), var(--gray-0));
+    --theme-button-surface-focus: light-dark(var(--gray-2), var(--gray-8));
+    --theme-input-border-focus: light-dark(var(--gray-12), var(--gray-0));
     --theme-btn-outline-focus: light-dark(var(--gray-12), var(--gray-0));
     --theme-btn-text-focus: light-dark(var(--gray-12), var(--gray-0));
 

@@ -1,0 +1,66 @@
+[data-theme='error'] {
+  --colour-theme-0: var(--red-0);
+  --colour-theme-1: var(--red-1);
+  --colour-theme-2: var(--red-2);
+  --colour-theme-3: var(--red-3);
+  --colour-theme-4: var(--red-4);
+  --colour-theme-5: var(--red-5);
+  --colour-theme-6: var(--red-6);
+  --colour-theme-7: var(--red-7);
+  --colour-theme-8: var(--red-8);
+  --colour-theme-9: var(--red-9);
+  --colour-theme-10: var(--red-10);
+  --colour-theme-11: var(--red-11);
+  --colour-theme-12: var(--red-12);
+
+  /* Generic */
+  --theme-box-shadow: var(--colour-theme-12);
+
+  /* Fieldset & Label */
+  --form-fieldset-legend-color: light-dark(var(--gray-12), var(--gray-1));
+  --form-label-color: light-dark(var(--gray-12), var(--gray-1));
+
+  /* Input Elements */
+  --theme-input-surface: light-dark(var(--gray-1), var(--gray-8));
+  --theme-input-surface-hover: light-dark(var(--gray-1), var(--gray-10));
+  --theme-input-surface-focus: light-dark(var(--gray-1), var(--gray-10));
+
+  --theme-input-border: var(--red-12);
+  --theme-input-border-hover: light-dark(var(--gray-10), var(--gray-5));
+  --theme-input-border-focus: light-dark(var(--gray-10), var(--gray-5));
+
+  --theme-input-outline: transparent;
+  --theme-input-outline-hover: light-dark(var(--gray-10), var(--gray-1));
+  --theme-input-outline-focus: light-dark(var(--gray-10), var(--gray-1));
+
+  --theme-input-text: var(--gray-0);
+  --theme-input-text-hover: var(--gray-0);
+  --theme-input-text-focus: var(--gray-0);
+  --theme-input-placeholder: light-dark(var(--gray-7), var(--gray-5));
+
+  /* Checkboxes & Radio buttons */
+  --theme-checkbox-label-text-color: light-dark(var(--gray-11), var(--gray-1));
+  --theme-checkbox-decorator-color: var(--red-10);
+  --theme-checkbox-symbol-surface: var(--gray-12);
+  --theme-checkbox-symbol-color: light-dark(var(--gray-11), var(--gray-1));
+
+  /* a11y */
+  --theme-focus-visible-shadow: var(--colour-theme-1);
+  --theme-focus-visible-outline: var(--colour-theme-1);
+
+  /* Buttons */
+  --theme-button-surface: light-dark(var(--red-5), var(--red-10));
+  --theme-button-surface-hover: light-dark(var(--red-6), var(--red-12));
+
+  --theme-button-border: light-dark(var(--red-9), var(--red-4));
+  --theme-button-border-hover: light-dark(var(--red-10), var(--red-5));
+  --theme-button-border-focus: light-dark(var(--red-10), var(--red-5));
+
+  --theme-button-outline: transparent;
+  --theme-button-outline-hover: light-dark(var(--red-10), var(--red-7));
+  --theme-button-outline-focus: light-dark(var(--red-10), var(--red-7));
+
+  --theme-button-text: var(--red-0);
+  --theme-button-text-hover: var(--red-0);
+  --theme-button-text-focus: var(--red-0);
+}

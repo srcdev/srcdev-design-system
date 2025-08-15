@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
+  extends: ["srcdev-nuxt-forms"],
   devtools: { enabled: true },
   devServer: {
     // port: 3020,
@@ -8,8 +9,16 @@ export default defineNuxtConfig({
   css: ["./app/assets/styles/main.css"],
   app: {
     head: {
-      // title: "Nuxt Playground",
-      // meta: [{ name: "description", content: "A playground for Nuxt.js" }],
+      htmlAttrs: {
+        lang: "en",
+        // "data-color-scheme": "auto",
+        class: "your-site-class",
+      },
+      // titleTemplate: "%s - Website name",
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+      ],
     },
   },
   modules: [
@@ -67,4 +76,20 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  typescript: {
+    includeWorkspace: true,
+    strict: true,
+    shim: true,
+    tsConfig: {
+      compilerOptions: {
+        types: ["srcdev-nuxt-forms"],
+      },
+    },
+  },
+  eslint: {
+    config: {
+      // ESLint configuration options
+      // stylistic: true, // Enable ESLint stylistic rules
+    },
+  },
 });

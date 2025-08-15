@@ -1,5 +1,5 @@
 @import './_head.css';
 @import './utility-classes';
 @import './a11y';
-@import './variables';
+@import './theming';
 @import './typography';

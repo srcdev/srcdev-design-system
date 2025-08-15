@@ -1,59 +1,76 @@
-:root {
+.your-site-class {
   .input-checkbox-radio-options-button {
-    /* --input-checkbox-radio-options-button-background-color: hsl(from var(--theme-form-input-border) h s 95%); */
-    --input-checkbox-radio-options-button-background-color: color-mix(in srgb, currentColor 5%, transparent);
-    --input-checkbox-radio-options-button-background-color-active: light-dark(hsl(from var(--theme-form-input-border) h s 75%), hsl(from var(--theme-form-input-border) h s 25%));
+    gap: 1rem;
+    border-radius: 1lh;
 
-    --input-checkbox-radio-options-button-border: 0.1rem solid var(--theme-form-input-border);
-    --input-checkbox-radio-options-button-border-active: 0.1rem solid var(--theme-form-input-border);
-    /* --input-checkbox-radio-options-button-border-radius: var(--form-input-border-radius); */
-    --input-checkbox-radio-options-button-border-radius: 1lh;
-    --input-checkbox-radio-options-button-outline: 0.1rem solid hsl(from var(--theme-form-input-border) h s 55%);
-    --input-checkbox-radio-options-button-outline-active: 0.1rem solid hsl(from var(--theme-form-input-border) h s 5%);
+    /* &.inline {} */
 
-    /* Label styles */
+    background-color: var(--theme-input-surface);
+    border: var(--form-element-border-width) solid var(--theme-input-border);
+    outline: var(--form-element-outline-width) solid var(--theme-input-outline);
 
-    --input-checkbox-radio-options-button-label-font-size: var(--form-element-font-size);
-    --input-checkbox-radio-options-button-label-min-height: var(--form-element-line-height);
+    box-shadow: 0.1rem 0.1rem 0.8rem 0.1rem transparent;
+    padding-block: var(--input-checkbox-radio-options-padding-block);
+    padding-inline: var(--input-checkbox-radio-options-padding-inline);
 
-    --input-checkbox-radio-options-button-label-margin-block: 0.8rem;
-    --input-checkbox-radio-options-button-label-padding-inline: 0.8rem;
-
-    [data-form-theme='primary'] {
-      --input-checkbox-radio-options-button-label-text-color: light-dark(var(--gray-11), var(--gray-1));
-      --input-checkbox-radio-options-button-label-icon-color: light-dark(var(--gray-11), var(--gray-1));
+    &:hover {
+      background-color: var(--theme-input-surface-hover);
+      border-color: var(--theme-input-border);
+      outline-color: var(--theme-input-outline-hover);
+      outline-offset: var(--form-element-outline-offset-focus);
     }
 
-    /* Size variants */
+    &:has(.input-checkbox-radio-core:focus-visible) {
+      background-color: var(--theme-input-surface-focus);
+      outline-color: var(--theme-input-outline-focus);
+      outline-offset: var(--form-element-outline-offset-focus);
+    }
+
+    /* Sizes */
     &.x-small {
-      --input-checkbox-radio-options-padding-block: 0.2rem;
-      --input-checkbox-radio-options-padding-inline: 1.6rem;
-
-      --input-checkbox-radio-options-button-gap: 1rem;
+      padding-block: 0.2rem;
+      padding-inline: 1.6rem;
+      gap: 1rem;
     }
-
     &.small {
-      --input-checkbox-radio-options-padding-block: 0.2rem;
-      --input-checkbox-radio-options-padding-inline: 1.6rem;
-      --input-checkbox-radio-options-button-gap: 1rem;
+      padding-block: 0.2rem;
+      padding-inline: 1.6rem;
+      gap: 1rem;
     }
-
     &.default {
-      --input-checkbox-radio-options-padding-block: 0.4rem;
-      --input-checkbox-radio-options-padding-inline: 1.2rem;
-      --input-checkbox-radio-options-button-gap: 1rem;
+      padding-block: 0.4rem;
+      padding-inline: 1.2rem;
+      gap: 1rem;
     }
-
     &.medium {
-      --input-checkbox-radio-options-padding-block: 0.4rem;
-      --input-checkbox-radio-options-padding-inline: 1.2rem;
-      --input-checkbox-radio-options-button-gap: 1rem;
+      padding-block: 0.4rem;
+      padding-inline: 1.2rem;
+      gap: 1rem;
+    }
+    &.large {
+      padding-block: 0.4rem;
+      padding-inline: 1.2rem;
+      gap: 1rem;
     }
 
-    &.large {
-      --input-checkbox-radio-options-padding-block: 0.4rem;
-      --input-checkbox-radio-options-padding-inline: 1.2rem;
-      --input-checkbox-radio-options-button-gap: 1rem;
+    .input-checkbox-radio-options-button-label {
+      color: var(--theme-checkbox-label-text-color);
+      font-size: var(--form-element-font-size);
+      min-height: var(--form-element-line-height);
+      padding-block: 0.8rem;
+      padding-inline: 0.8rem;
+
+      &:hover {
+      }
+    }
+
+    .decorator-icon {
+      color: var(--theme-checkbox-symbol-color);
+
+      .icon {
+        height: var(--theme-checkbox-decorator-icon-size);
+        width: var(--theme-checkbox-decorator-icon-size);
+      }
     }
   }
 }

@@ -24,6 +24,7 @@
     "vue-router": "4.5.1"
   },
   "devDependencies": {
-    "nuxt": "4.0.3"
+    "nuxt": "4.0.3",
+    "srcdev-nuxt-forms": "6.0.0"
   }
 }

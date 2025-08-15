@@ -1,18 +1,21 @@
-:root {
-  /* Label vars */
-  .normal {
-    --input-label-text-color: var(--theme-form-input-text-label-color-normal);
-    --input-label-text-margin-block: 0.8rem;
-    --input-label-text-size: var(--step-5);
-    --input-label-text-weight: normal;
-    --input-label-text-line-height: 1.5;
-  }
+.your-site-class {
+  .input-label {
+    &.normal {
+      color: var(--form-label-color);
+      margin-block: 0.8rem;
+      font-size: var(--step-5);
+      font-weight: normal;
+      line-height: 1.5;
+      display: block;
+    }
 
-  .underlined {
-    --input-label-text-color: var(--theme-form-input-text-label-color-normal);
-    --input-label-text-margin-block: 0.8rem;
-    --input-label-text-size: var(--step-5);
-    --input-label-text-weight: normal;
-    --input-label-text-line-height: 1.5;
+    &.underlined {
+      color: var(--form-label-color);
+      margin-block: 0.8rem;
+      font-size: var(--step-5);
+      font-weight: normal;
+      line-height: 1.5;
+      display: block;
+    }
   }
 }

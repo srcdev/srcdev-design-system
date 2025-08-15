@@ -8,7 +8,10 @@
     </header>
     <main class="main-content">
       <nav class="left-nav">
-        <span class="text">This is left nav?</span>
+        <ul>
+          <li><NuxtLink to="/">Home</NuxtLink></li>
+          <li><NuxtLink to="/contact">Contact</NuxtLink></li>
+        </ul>
       </nav>
       <div class="page">
         <slot name="layout-content">Page content goes here</slot>
@@ -29,7 +32,7 @@ import LocaleSwitcher from "~/components/locale-switcher/LocaleSwitcher.vue";
   min-height: 100svh;
 
   .header {
-    background-color: light-dark(#f0f0f0, #333);
+    /* background-color: light-dark(#f0f0f0, #333); */
     display: flex;
     gap: 24px;
     align-items: center;
@@ -69,9 +72,8 @@ import LocaleSwitcher from "~/components/locale-switcher/LocaleSwitcher.vue";
 
     .left-nav {
       width: 200px;
-      background-color: light-dark(#e0e0e0, #444);
+      /* background-color: light-dark(#e0e0e0, #444); */
       padding: 10px;
-      border-right: 1px solid black;
       min-height: 100px;
       position: relative;
 
@@ -90,7 +92,7 @@ import LocaleSwitcher from "~/components/locale-switcher/LocaleSwitcher.vue";
   .footer {
     text-align: center;
     padding: 10px;
-    background-color: light-dark(#f0f0f0, #333);
+    /* background-color: light-dark(#f0f0f0, #333); */
   }
 }
 </style>

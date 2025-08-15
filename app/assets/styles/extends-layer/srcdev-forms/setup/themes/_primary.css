@@ -1,11 +1,11 @@
 :root {
-  [data-form-theme='primary'] {
-    --theme-form-input-bg-normal: light-dark(var(--gray-1), var(--gray-4));
+  [data-theme-old='primary'] {
+    --theme-button-surface: light-dark(var(--gray-1), var(--gray-4));
     --theme-form-input-bg-outlined: light-dark(var(--gray-1), var(--gray-4));
     --theme-form-input-bg-underlined: light-dark(var(--gray-0), var(--gray-9));
-    --theme-form-input-border: var(--blue-8);
-    --theme-form-input-border-active: var(--blue-2);
-    --theme-form-input-border-focus: var(--blue-2);
+    --theme-input-border: var(--blue-8);
+    --theme-input-border-active: var(--blue-2);
+    --theme-input-border-focus: var(--blue-2);
     --theme-form-input-outline: white;
     --theme-form-input-outline-active: var(--blue-6);
     --theme-form-input-outline-focus: var(--blue-6);
@@ -71,19 +71,19 @@
     --theme-checkbox-radio-button-label-default: light-dark(var(--blue-12), var(--blue-12));
   }
 
-  [data-btn-theme='primary'] {
-    --theme-btn-bg: var(--blue-12);
-    --theme-btn-border: var(--blue-0);
+  [data-theme='primary'] {
+    --theme-button-surface: var(--blue-12);
+    --theme-input-border: var(--blue-0);
     --theme-btn-outline: var(--blue-12);
     --theme-btn-text: var(--blue-0);
 
-    --theme-btn-bg-hover: var(--blue-0);
-    --theme-btn-border-hover: var(--blue-12);
+    --theme-button-surface-hover: var(--blue-0);
+    --theme-input-border-hover: var(--blue-12);
     --theme-btn-outline-hover: var(--blue-0);
     --theme-btn-text-hover: var(--blue-12);
 
-    --theme-btn-bg-focus: var(--blue-0);
-    --theme-btn-border-focus: var(--blue-12);
+    --theme-button-surface-focus: var(--blue-0);
+    --theme-input-border-focus: var(--blue-12);
     --theme-btn-outline-focus: var(--blue-0);
     --theme-btn-text-focus: var(--blue-12);
 

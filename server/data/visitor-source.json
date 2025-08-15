@@ -1,0 +1,56 @@
+{
+  "data": [
+    {
+      "id": "google",
+      "name": "visitorsource",
+      "value": "Google",
+      "label": "Google",
+      "icon": "fa6-brands:google"
+    },
+    {
+      "id": "reddit",
+      "name": "visitorsource",
+      "value": "Reddit",
+      "label": "Reddit",
+      "icon": "fa6-brands:reddit-alien"
+    },
+    {
+      "id": "x-twitter",
+      "name": "visitorsource",
+      "value": "X/Twitter",
+      "label": "X",
+      "icon": "fa6-brands:x-twitter"
+    },
+    {
+      "id": "facebook",
+      "name": "visitorsource",
+      "value": "Facebook",
+      "label": "Facebook",
+      "icon": "fa6-brands:facebook-f"
+    },
+    {
+      "id": "instagram",
+      "name": "visitorsource",
+      "value": "Instagram",
+      "label": "Instagram",
+      "icon": "fa6-brands:instagram"
+    },
+    {
+      "id": "friends-family",
+      "name": "visitorsource",
+      "value": "Friends or family",
+      "label": "Friends or family",
+      "icon": "carbon:friendship"
+    },
+    {
+      "id": "other",
+      "name": "visitorsource",
+      "value": "Other",
+      "label": "Other",
+      "icon": "fa6-solid:question"
+    }
+  ],
+  "total": 7,
+  "skip": 0,
+  "limit": 10
+}

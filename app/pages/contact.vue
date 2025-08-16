@@ -194,7 +194,7 @@
 
 <script setup lang="ts">
 import { z } from "zod";
-import type { IFormMultipleOptions } from "../../node_modules/srcdev-nuxt-forms/shared/types/types.forms";
+import type { IFormMultipleOptions } from "srcdev-nuxt-forms/shared/types/types.forms";
 
 definePageMeta({
   layout: false,

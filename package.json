@@ -25,6 +25,6 @@
   },
   "devDependencies": {
     "nuxt": "4.0.3",
-    "srcdev-nuxt-forms": "6.0.0"
+    "srcdev-nuxt-forms": "6.0.1"
   }
 }

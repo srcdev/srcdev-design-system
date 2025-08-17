@@ -1,195 +1,201 @@
 <template>
-  <NuxtLayout name="default">
-    <template #layout-content>
-      <section>
-        <h1>Contact form</h1>
+  <div>
+    <NuxtLayout name="default">
+      <template #layout-content>
+        <section>
+          <h1>Contact form</h1>
 
-        <FormWrapper width="medium">
-          <template #default>
-            <ClientOnly>
-              <form
-                ref="formRef"
-                class="form-wrapper"
-                @submit.stop.prevent="submitForm()"
-              >
-                <div id="aria-live-message" aria-live="assertive" />
-
-                <FormField width="wide" :has-gutter="false">
-                  <template #default>
-                    <InputTextWithLabel
-                      id="givenname"
-                      v-model="state.givenname"
-                      type="text"
-                      :maxlength="fieldMaxLength('givenname')"
-                      name="givenname"
-                      placeholder="eg. Joe Bloggs"
-                      label="Your name"
-                      :error-message="formErrors?.givenname?._errors[0] ?? ''"
-                      :field-has-error="
-                        Boolean(
-                          zodFormControl.submitAttempted &&
-                            formErrors?.givenname
-                        )
-                      "
-                      :required="true"
-                      :style-class-passthrough="['style-1', 'style-2']"
-                      :theme
-                      :size
-                      :input-variant
-                    >
-                      <template #left>
-                        <Icon name="radix-icons:person" class="icon" />
-                      </template>
-                    </InputTextWithLabel>
-                  </template>
-                </FormField>
-
-                <FormField width="wide" :has-gutter="false">
-                  <template #default>
-                    <InputTextWithLabel
-                      id="emailAddress"
-                      v-model="state.emailAddress"
-                      type="email"
-                      inputmode="email"
-                      :maxlength="fieldMaxLength('email')"
-                      name="emailAddress"
-                      placeholder="eg. name@domain.com"
-                      label="Email address"
-                      :error-message="
-                        formErrors?.emailAddress?._errors[0] ?? ''
-                      "
-                      :field-has-error="
-                        Boolean(
-                          zodFormControl.submitAttempted &&
-                            formErrors?.emailAddress
-                        )
-                      "
-                      :required="true"
-                      :style-class-passthrough="['style-1', 'style-2']"
-                      :theme
-                      :size
-                      :input-variant
-                    >
-                      <template #description>
-                        <p class="body-normal">
-                          I will only use your email address to reply to you
-                        </p>
-                      </template>
-                      <template #left>
-                        <Icon name="radix-icons:envelope-closed" class="icon" />
-                      </template>
-                    </InputTextWithLabel>
-                  </template>
-                </FormField>
-
-                <FormField
-                  v-if="visitorSourceData && visitorSourceData.data !== null"
-                  width="wide"
-                  :has-gutter="false"
+          <FormWrapper width="medium">
+            <template #default>
+              <ClientOnly>
+                <form
+                  ref="formRef"
+                  class="form-wrapper"
+                  @submit.stop.prevent="submitForm()"
                 >
-                  <template #default>
-                    <InputSelectWithLabel
-                      v-model="state.visitorSource"
-                      v-model:field-data="visitorSourceData"
-                      name="visitorSource"
-                      legend="How did you hear about me?"
-                      :required="true"
-                      label="Please select a source"
-                      placeholder="Please select a source"
-                      :error-message="
-                        formErrors?.visitorSource?._errors[0] ?? ''
-                      "
-                      :field-has-error="
-                        Boolean(
-                          zodFormControl.submitAttempted &&
-                            formErrors?.visitorSource
-                        )
-                      "
-                      :theme
-                      :size
-                      :input-variant
-                    >
-                      <template #description>
-                        <p class="label-description">
-                          I'd love to know how you found about me!
-                        </p>
-                      </template>
-                    </InputSelectWithLabel>
-                  </template>
-                </FormField>
+                  <div id="aria-live-message" aria-live="assertive" />
 
-                <FormField width="wide" :has-gutter="false">
-                  <template #default>
-                    <InputTextareaWithLabel
-                      v-model="state.message"
-                      :maxlength="fieldMaxLength('message')"
-                      name="message"
-                      placeholder="Type your message here"
-                      label="Your mesage"
-                      :error-message="formErrors?.message?._errors[0] ?? ''"
-                      :field-has-error="
-                        Boolean(
-                          zodFormControl.submitAttempted && formErrors?.message
-                        )
-                      "
-                      :required="true"
-                      :style-class-passthrough="['style-1', 'style-2']"
-                      :theme
-                      :size
-                      :input-variant
-                    />
-                  </template>
-                </FormField>
+                  <FormField width="wide" :has-gutter="false">
+                    <template #default>
+                      <InputTextWithLabel
+                        id="givenname"
+                        v-model="state.givenname"
+                        type="text"
+                        :maxlength="fieldMaxLength('givenname')"
+                        name="givenname"
+                        placeholder="eg. Joe Bloggs"
+                        label="Your name"
+                        :error-message="formErrors?.givenname?._errors[0] ?? ''"
+                        :field-has-error="
+                          Boolean(
+                            zodFormControl.submitAttempted &&
+                              formErrors?.givenname
+                          )
+                        "
+                        :required="true"
+                        :style-class-passthrough="['style-1', 'style-2']"
+                        :theme
+                        :size
+                        :input-variant
+                      >
+                        <template #left>
+                          <Icon name="radix-icons:person" class="icon" />
+                        </template>
+                      </InputTextWithLabel>
+                    </template>
+                  </FormField>
 
-                <FormField width="wide" :has-gutter="false">
-                  <template #default>
-                    <SingleCheckbox
-                      v-model="state.terms"
-                      name="terms"
-                      legend="Terms and conditions"
-                      :required="true"
-                      :error-message="formErrors?.terms?._errors[0] ?? ''"
-                      :field-has-error="
-                        Boolean(
-                          zodFormControl.submitAttempted && formErrors?.terms
-                        )
-                      "
-                      :theme
-                      :size
-                    >
-                      <template #labelContent>
-                        <span class="body-normal"
-                          >You must agree to our
-                          <NuxtLink to="/" class="link-normal"
-                            >terms and conditions</NuxtLink
+                  <FormField width="wide" :has-gutter="false">
+                    <template #default>
+                      <InputTextWithLabel
+                        id="emailAddress"
+                        v-model="state.emailAddress"
+                        type="email"
+                        inputmode="email"
+                        :maxlength="fieldMaxLength('email')"
+                        name="emailAddress"
+                        placeholder="eg. name@domain.com"
+                        label="Email address"
+                        :error-message="
+                          formErrors?.emailAddress?._errors[0] ?? ''
+                        "
+                        :field-has-error="
+                          Boolean(
+                            zodFormControl.submitAttempted &&
+                              formErrors?.emailAddress
+                          )
+                        "
+                        :required="true"
+                        :style-class-passthrough="['style-1', 'style-2']"
+                        :theme
+                        :size
+                        :input-variant
+                      >
+                        <template #description>
+                          <p class="body-normal">
+                            I will only use your email address to reply to you
+                          </p>
+                        </template>
+                        <template #left>
+                          <Icon
+                            name="radix-icons:envelope-closed"
+                            class="icon"
+                          />
+                        </template>
+                      </InputTextWithLabel>
+                    </template>
+                  </FormField>
+
+                  <FormField
+                    v-if="visitorSourceData && visitorSourceData.data !== null"
+                    width="wide"
+                    :has-gutter="false"
+                  >
+                    <template #default>
+                      <InputSelectWithLabel
+                        v-model="state.visitorSource"
+                        v-model:field-data="visitorSourceData"
+                        name="visitorSource"
+                        legend="How did you hear about me?"
+                        :required="true"
+                        label="Please select a source"
+                        placeholder="Please select a source"
+                        :error-message="
+                          formErrors?.visitorSource?._errors[0] ?? ''
+                        "
+                        :field-has-error="
+                          Boolean(
+                            zodFormControl.submitAttempted &&
+                              formErrors?.visitorSource
+                          )
+                        "
+                        :theme
+                        :size
+                        :input-variant
+                      >
+                        <template #description>
+                          <p class="label-description">
+                            I'd love to know how you found about me!
+                          </p>
+                        </template>
+                      </InputSelectWithLabel>
+                    </template>
+                  </FormField>
+
+                  <FormField width="wide" :has-gutter="false">
+                    <template #default>
+                      <InputTextareaWithLabel
+                        v-model="state.message"
+                        :maxlength="fieldMaxLength('message')"
+                        name="message"
+                        placeholder="Type your message here"
+                        label="Your mesage"
+                        :error-message="formErrors?.message?._errors[0] ?? ''"
+                        :field-has-error="
+                          Boolean(
+                            zodFormControl.submitAttempted &&
+                              formErrors?.message
+                          )
+                        "
+                        :required="true"
+                        :style-class-passthrough="['style-1', 'style-2']"
+                        :theme
+                        :size
+                        :input-variant
+                      />
+                    </template>
+                  </FormField>
+
+                  <FormField width="wide" :has-gutter="false">
+                    <template #default>
+                      <SingleCheckbox
+                        v-model="state.terms"
+                        name="terms"
+                        legend="Terms and conditions"
+                        :required="true"
+                        :error-message="formErrors?.terms?._errors[0] ?? ''"
+                        :field-has-error="
+                          Boolean(
+                            zodFormControl.submitAttempted && formErrors?.terms
+                          )
+                        "
+                        :theme
+                        :size
+                      >
+                        <template #labelContent>
+                          <span class="body-normal"
+                            >You must agree to our
+                            <NuxtLink to="/" class="link-normal"
+                              >terms and conditions</NuxtLink
+                            >
+                            to continue</span
                           >
-                          to continue</span
-                        >
-                      </template>
-                    </SingleCheckbox>
-                  </template>
-                </FormField>
+                        </template>
+                      </SingleCheckbox>
+                    </template>
+                  </FormField>
 
-                <FormField width="wide" :has-gutter="false">
-                  <template #default>
-                    <InputButtonSubmit
-                      type="button"
-                      :is-pending="false"
-                      :readonly="zodFormControl.submitDisabled"
-                      button-text="Submit"
-                      :theme
-                      :size
-                      @click.stop.prevent="submitForm()"
-                    />
-                  </template>
-                </FormField>
-              </form>
-            </ClientOnly>
-          </template>
-        </FormWrapper>
-      </section>
-    </template>
-  </NuxtLayout>
+                  <FormField width="wide" :has-gutter="false">
+                    <template #default>
+                      <InputButtonSubmit
+                        type="button"
+                        :is-pending="false"
+                        :readonly="zodFormControl.submitDisabled"
+                        button-text="Submit"
+                        :theme
+                        :size
+                        @click.stop.prevent="submitForm()"
+                      />
+                    </template>
+                  </FormField>
+                </form>
+              </ClientOnly>
+            </template>
+          </FormWrapper>
+        </section>
+      </template>
+    </NuxtLayout>
+  </div>
 </template>
 
 <script setup lang="ts">

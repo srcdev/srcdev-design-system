@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
-  extends: ["srcdev-nuxt-forms"],
+  extends: ["srcdev-nuxt-forms", "srcdev-nuxt-components"],
   devtools: { enabled: true },
   devServer: {
     // port: 3020,
@@ -12,7 +12,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en",
         // "data-color-scheme": "auto",
-        class: "your-site-class",
+        class: "srcdev-forms-extended srcdev-components-extended",
       },
       // titleTemplate: "%s - Website name",
       meta: [
@@ -82,7 +82,7 @@ export default defineNuxtConfig({
     shim: true,
     tsConfig: {
       compilerOptions: {
-        types: ["srcdev-nuxt-forms"],
+        types: ["srcdev-nuxt-forms", "srcdev-nuxt-components"],
       },
     },
   },

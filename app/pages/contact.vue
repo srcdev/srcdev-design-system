@@ -8,12 +8,8 @@
           <FormWrapper width="medium">
             <template #default>
               <ClientOnly>
-                <form
-                  ref="formRef"
-                  class="form-wrapper"
-                  @submit.stop.prevent="submitForm()"
-                >
-                  <div id="aria-live-message" aria-live="assertive" />
+                <form ref="formRef" class="form-wrapper" @submit.stop.prevent="submitForm()">
+                  <div id="aria-live-message" aria-live="assertive"></div>
 
                   <FormField width="wide" :has-gutter="false">
                     <template #default>
@@ -26,12 +22,7 @@
                         placeholder="eg. Joe Bloggs"
                         label="Your name"
                         :error-message="formErrors?.givenname?._errors[0] ?? ''"
-                        :field-has-error="
-                          Boolean(
-                            zodFormControl.submitAttempted &&
-                              formErrors?.givenname
-                          )
-                        "
+                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.givenname)"
                         :required="true"
                         :style-class-passthrough="['style-1', 'style-2']"
                         :theme
@@ -56,15 +47,8 @@
                         name="emailAddress"
                         placeholder="eg. name@domain.com"
                         label="Email address"
-                        :error-message="
-                          formErrors?.emailAddress?._errors[0] ?? ''
-                        "
-                        :field-has-error="
-                          Boolean(
-                            zodFormControl.submitAttempted &&
-                              formErrors?.emailAddress
-                          )
-                        "
+                        :error-message="formErrors?.emailAddress?._errors[0] ?? ''"
+                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.emailAddress)"
                         :required="true"
                         :style-class-passthrough="['style-1', 'style-2']"
                         :theme
@@ -72,15 +56,10 @@
                         :input-variant
                       >
                         <template #description>
-                          <p class="body-normal">
-                            I will only use your email address to reply to you
-                          </p>
+                          <p class="body-normal">I will only use your email address to reply to you</p>
                         </template>
                         <template #left>
-                          <Icon
-                            name="radix-icons:envelope-closed"
-                            class="icon"
-                          />
+                          <Icon name="radix-icons:envelope-closed" class="icon" />
                         </template>
                       </InputTextWithLabel>
                     </template>
@@ -100,23 +79,14 @@
                         :required="true"
                         label="Please select a source"
                         placeholder="Please select a source"
-                        :error-message="
-                          formErrors?.visitorSource?._errors[0] ?? ''
-                        "
-                        :field-has-error="
-                          Boolean(
-                            zodFormControl.submitAttempted &&
-                              formErrors?.visitorSource
-                          )
-                        "
+                        :error-message="formErrors?.visitorSource?._errors[0] ?? ''"
+                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.visitorSource)"
                         :theme
                         :size
                         :input-variant
                       >
                         <template #description>
-                          <p class="label-description">
-                            I'd love to know how you found about me!
-                          </p>
+                          <p class="label-description">I'd love to know how you found about me!</p>
                         </template>
                       </InputSelectWithLabel>
                     </template>
@@ -131,12 +101,7 @@
                         placeholder="Type your message here"
                         label="Your mesage"
                         :error-message="formErrors?.message?._errors[0] ?? ''"
-                        :field-has-error="
-                          Boolean(
-                            zodFormControl.submitAttempted &&
-                              formErrors?.message
-                          )
-                        "
+                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.message)"
                         :required="true"
                         :style-class-passthrough="['style-1', 'style-2']"
                         :theme
@@ -154,22 +119,16 @@
                         legend="Terms and conditions"
                         :required="true"
                         :error-message="formErrors?.terms?._errors[0] ?? ''"
-                        :field-has-error="
-                          Boolean(
-                            zodFormControl.submitAttempted && formErrors?.terms
-                          )
-                        "
+                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.terms)"
                         :theme
                         :size
                       >
                         <template #labelContent>
-                          <span class="body-normal"
-                            >You must agree to our
-                            <NuxtLink to="/" class="link-normal"
-                              >terms and conditions</NuxtLink
-                            >
-                            to continue</span
-                          >
+                          <span class="body-normal">
+                            You must agree to our
+                            <NuxtLink to="/" class="link-normal">terms and conditions</NuxtLink>
+                            to continue
+                          </span>
                         </template>
                       </SingleCheckbox>
                     </template>
@@ -199,12 +158,12 @@
 </template>
 
 <script setup lang="ts">
-import { z } from "zod";
-import type { IFormMultipleOptions } from "srcdev-nuxt-forms/shared/types/types.forms";
+import { z } from "zod"
+import type { IFormMultipleOptions } from "srcdev-nuxt-forms/shared/types/types.forms"
 
 definePageMeta({
   layout: false,
-});
+})
 
 useHead({
   title: "Contact form", // You could also use: computed(() => $t("pages.index.title")) if you add this to your i18n files
@@ -212,19 +171,15 @@ useHead({
   bodyAttrs: {
     class: "nuxt-playground",
   },
-});
+})
 
-const { data: visitorSourceData } = await useFetch<IFormMultipleOptions>(
-  "/api/visitor-source"
-);
+const { data: visitorSourceData } = await useFetch<IFormMultipleOptions>("/api/visitor-source")
 /*
  * Setup forms
  */
-const theme = ref("primary");
-const inputVariant = ref("underlined");
-const size = ref<"x-small" | "small" | "default" | "medium" | "large">(
-  "default"
-);
+const theme = ref("primary")
+const inputVariant = ref("underlined")
+const size = ref<"x-small" | "small" | "default" | "medium" | "large">("default")
 
 const formSchema = reactive(
   z
@@ -234,12 +189,9 @@ const formSchema = reactive(
           required_error: "Email address is required",
         })
         .email({ message: "Invalid email address" })
-        .refine(
-          (email) => email !== zodFormControl.previousState.emailAddress.value,
-          {
-            message: "This email address has already been used",
-          }
-        ),
+        .refine((email) => email !== zodFormControl.previousState.emailAddress.value, {
+          message: "This email address has already been used",
+        }),
       givenname: z
         .string({
           required_error: "Your name is required",
@@ -248,11 +200,7 @@ const formSchema = reactive(
         .min(2, "Your name is too short")
         .max(255, "Your name is too long"),
       visitorSource: z.string().min(1, { message: "Please select an option" }),
-      message: z
-        .string()
-        .trim()
-        .min(2, "Message is too short")
-        .max(255, "Message is too long"),
+      message: z.string().trim().min(2, "Message is too short").max(255, "Message is too long"),
       terms: z.boolean().refine((val) => val === true, {
         message: "You must accept our terms",
       }),
@@ -264,12 +212,10 @@ const formSchema = reactive(
       message: true,
       terms: true,
     })
-);
+)
 
-type formSchema = z.infer<typeof formSchema>;
-const formErrors = computed<z.ZodFormattedError<formSchema> | null>(
-  () => zodErrorObj.value
-);
+type formSchema = z.infer<typeof formSchema>
+const formErrors = computed<z.ZodFormattedError<formSchema> | null>(() => zodErrorObj.value)
 
 const state = reactive({
   emailAddress: "",
@@ -277,9 +223,9 @@ const state = reactive({
   visitorSource: "",
   message: "",
   terms: false,
-});
+})
 
-const formRef = ref<HTMLFormElement | null>(null);
+const formRef = ref<HTMLFormElement | null>(null)
 
 const {
   initZodForm,
@@ -291,26 +237,26 @@ const {
   fieldMaxLength,
   scrollToFirstError,
   // scrollToFormHead,
-} = useZodValidation(formSchema, formRef);
+} = useZodValidation(formSchema, formRef)
 
-initZodForm();
+initZodForm()
 
 const submitForm = async () => {
-  zodFormControl.submitAttempted = true;
+  zodFormControl.submitAttempted = true
   if (!(await doZodValidate(state))) {
-    scrollToFirstError();
-    return;
+    scrollToFirstError()
+    return
   }
-  zodFormControl.displayLoader = true;
+  zodFormControl.displayLoader = true
   try {
-    console.log("Form valid - post it");
+    console.log("Form valid - post it")
     const data = await $fetch("/api/textFields", {
       method: "post",
       body: state,
       async onResponse({ response }) {
         if (response.status === 400) {
-          console.log("onResponse", response);
-          console.log(response.status);
+          console.log("onResponse", response)
+          console.log(response.status)
 
           // useApiErrors(response._data.data.errors);
           // for (const [key, message] of Object.entries(response._data.data.errors)) {
@@ -319,33 +265,33 @@ const submitForm = async () => {
           // }
 
           // if (error instanceof Error) {
-          await pushCustomErrors(response._data, state);
+          await pushCustomErrors(response._data, state)
           // zodFormControl.formIsValid = false;
           // }
           // zodFormControl.submitAttempted = false;
         }
         if (response.status === 200) {
-          zodFormControl.submitSuccessful = true;
+          zodFormControl.submitSuccessful = true
         }
       },
-    });
-    console.log("3: Finished data", data);
+    })
+    console.log("3: Finished data", data)
     // return data;
   } catch (error) {
-    console.warn("2: An error occured posting form data", error);
+    console.warn("2: An error occured posting form data", error)
   } finally {
-    zodFormControl.displayLoader = false;
+    zodFormControl.displayLoader = false
   }
-};
+}
 
 watch(
   () => state,
   () => {
     // console.log('Watching state');
-    doZodValidate(state);
+    doZodValidate(state)
   },
   { deep: true }
-);
+)
 </script>
 
 <style lang="css"></style>

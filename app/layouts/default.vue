@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import LocaleSwitcher from "~/components/locale-switcher/LocaleSwitcher.vue";
+import LocaleSwitcher from "~/components/locale-switcher/LocaleSwitcher.vue"
 </script>
 
 <style lang="css">

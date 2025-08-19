@@ -6,6 +6,18 @@
     "index": {
       "header": "Nuxt 游乐场",
       "description": "这是一个 Nuxt.js 的游乐场，您可以在这里尝试框架的各种功能和特性。探索、学习并轻松构建下一个 Nuxt 应用程序。"
+    },
+    "account": {
+      "login": {
+        "header": "登录到您的帐户",
+        "description": "使用您的电子邮件和密码访问您的帐户。"
+      }
+    },
+    "settings": {
+      "locale-switcher": {
+        "header": "选择语言",
+        "description": "从列表中选择您首选的语言。"
+      }
     }
   }
 }

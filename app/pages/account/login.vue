@@ -3,8 +3,12 @@
     <NuxtLayout name="default">
       <template #layout-content>
         <section>
-          <h1>Contact form</h1>
+          <h1>{{ $t("pages.account.login.header") }}</h1>
 
+          <p>{{ $t("pages.account.login.description") }}</p>
+        </section>
+
+        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
           <FormWrapper width="medium">
             <template #default>
               <ClientOnly>
@@ -14,100 +18,53 @@
                   <FormField width="wide" :has-gutter="false">
                     <template #default>
                       <InputTextWithLabel
-                        id="givenname"
-                        v-model="state.givenname"
-                        type="text"
-                        :maxlength="fieldMaxLength('givenname')"
-                        name="givenname"
-                        placeholder="eg. Joe Bloggs"
-                        label="Your name"
-                        :error-message="formErrors?.givenname?._errors[0] ?? ''"
-                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.givenname)"
-                        :required="true"
-                        :style-class-passthrough="['style-1', 'style-2']"
-                        :theme
-                        :size
-                        :input-variant
-                      >
-                        <template #left>
-                          <Icon name="radix-icons:person" class="icon" />
-                        </template>
-                      </InputTextWithLabel>
-                    </template>
-                  </FormField>
-
-                  <FormField width="wide" :has-gutter="false">
-                    <template #default>
-                      <InputTextWithLabel
-                        id="emailAddress"
                         v-model="state.emailAddress"
                         type="email"
                         inputmode="email"
                         :maxlength="fieldMaxLength('email')"
+                        id="emailAddress"
                         name="emailAddress"
                         placeholder="eg. name@domain.com"
                         label="Email address"
-                        :error-message="formErrors?.emailAddress?._errors[0] ?? ''"
-                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.emailAddress)"
+                        :errorMessage="formErrors?.emailAddress?._errors[0] ?? ''"
+                        :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.emailAddress)"
                         :required="true"
-                        :style-class-passthrough="['style-1', 'style-2']"
+                        :styleClassPassthrough="['style-1', 'style-2']"
                         :theme
                         :size
-                        :input-variant
+                        :inputVariant
                       >
-                        <template #description>
-                          <p class="body-normal">I will only use your email address to reply to you</p>
-                        </template>
                         <template #left>
+                          <Icon name="radix-icons:envelope-closed" class="icon" />
+                        </template>
+                        <template #right>
                           <Icon name="radix-icons:envelope-closed" class="icon" />
                         </template>
                       </InputTextWithLabel>
                     </template>
                   </FormField>
 
-                  <FormField
-                    v-if="visitorSourceData && visitorSourceData.data !== null"
-                    width="wide"
-                    :has-gutter="false"
-                  >
-                    <template #default>
-                      <InputSelectWithLabel
-                        v-model="state.visitorSource"
-                        v-model:field-data="visitorSourceData"
-                        name="visitorSource"
-                        legend="How did you hear about me?"
-                        :required="true"
-                        label="Please select a source"
-                        placeholder="Please select a source"
-                        :error-message="formErrors?.visitorSource?._errors[0] ?? ''"
-                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.visitorSource)"
-                        :theme
-                        :size
-                        :input-variant
-                      >
-                        <template #description>
-                          <p class="label-description">I'd love to know how you found about me!</p>
-                        </template>
-                      </InputSelectWithLabel>
-                    </template>
-                  </FormField>
-
                   <FormField width="wide" :has-gutter="false">
                     <template #default>
-                      <InputTextareaWithLabel
-                        v-model="state.message"
-                        :maxlength="fieldMaxLength('message')"
-                        name="message"
-                        placeholder="Type your message here"
-                        label="Your mesage"
-                        :error-message="formErrors?.message?._errors[0] ?? ''"
-                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.message)"
+                      <InputPasswordWithLabel
+                        v-model="state.password"
+                        :maxlength="fieldMaxLength('password')"
+                        id="password"
+                        name="password"
+                        placeholder="eg. a mixure of numbers and letters"
+                        label="Password"
+                        :errorMessage="formErrors?.password?._errors[0] ?? ''"
+                        :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.password)"
                         :required="true"
-                        :style-class-passthrough="['style-1', 'style-2']"
+                        :styleClassPassthrough="['style-1', 'style-2']"
                         :theme
                         :size
-                        :input-variant
-                      />
+                        :inputVariant
+                      >
+                        <template #right>
+                          <Icon name="radix-icons:eye-open" class="icon" />
+                        </template>
+                      </InputPasswordWithLabel>
                     </template>
                   </FormField>
 
@@ -151,7 +108,7 @@
               </ClientOnly>
             </template>
           </FormWrapper>
-        </section>
+        </LayoutRow>
       </template>
     </NuxtLayout>
   </div>
@@ -159,57 +116,51 @@
 
 <script setup lang="ts">
 import { z } from "zod"
-import type { IFormMultipleOptions } from "srcdev-nuxt-forms/shared/types/types.forms"
 
 definePageMeta({
   layout: false,
 })
 
 useHead({
-  title: "Contact form", // You could also use: computed(() => $t("pages.index.title")) if you add this to your i18n files
-  meta: [{ name: "description", content: "Desciption meta tag content" }],
+  title: "Login", // You could also use: computed(() => $t("pages.index.title")) if you add this to your i18n files
+  meta: [{ name: "description", content: "Login to your account" }],
   bodyAttrs: {
     // class: "",
   },
 })
 
-const { data: visitorSourceData } = await useFetch<IFormMultipleOptions>("/api/visitor-source")
+const inputVariant = ref("underlined") // 'normal' | 'outlined' | 'underlined'
+const theme = ref("primary")
+const size = ref<"x-small" | "small" | "default" | "medium" | "large">("default")
+
 /*
  * Setup forms
  */
-const theme = ref("primary")
-const inputVariant = ref("underlined")
-const size = ref<"x-small" | "small" | "default" | "medium" | "large">("default")
-
 const formSchema = reactive(
   z
     .object({
       emailAddress: z
         .string({
-          required_error: "Email address is required",
+          error: (issue) =>
+            issue.input === undefined ? "Email address is required" : "Email address must be a string",
         })
-        .email({ message: "Invalid email address" })
+        .email({ error: "Invalid email address" })
         .refine((email) => email !== zodFormControl.previousState.emailAddress.value, {
-          message: "This email address has already been used",
+          error: "This email address has already been used",
         }),
-      givenname: z
-        .string({
-          required_error: "Your name is required",
-        })
+      password: z
+        .string()
         .trim()
-        .min(2, "Your name is too short")
-        .max(255, "Your name is too long"),
-      visitorSource: z.string().min(1, { message: "Please select an option" }),
-      message: z.string().trim().min(2, "Message is too short").max(255, "Message is too long"),
-      terms: z.boolean().refine((val) => val === true, {
-        message: "You must accept our terms",
-      }),
+        .min(8, "Password is too short")
+        .max(25, "Password is too long")
+        .refine((email) => email !== zodFormControl.previousState.password.value, {
+          error: "You've already used this password",
+        }),
+      terms: z.boolean().refine((val) => val === true, { error: "You must accept our terms" }),
     })
     .required({
       emailAddress: true,
-      givenname: true,
-      visitorSource: true,
-      message: true,
+      password: true,
       terms: true,
     })
 )
@@ -219,9 +170,7 @@ const formErrors = computed<z.ZodFormattedError<formSchema> | null>(() => zodErr
 
 const state = reactive({
   emailAddress: "",
-  givenname: "",
-  visitorSource: "",
-  message: "",
+  password: "",
   terms: false,
 })
 
@@ -236,7 +185,7 @@ const {
   doZodValidate,
   fieldMaxLength,
   scrollToFirstError,
-  // scrollToFormHead,
+  scrollToFormHead,
 } = useZodValidation(formSchema, formRef)
 
 initZodForm()

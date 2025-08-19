@@ -54,14 +54,14 @@ const responsiveNavLinks = {
   secondNav: [
     { name: "Some other link", iconName: "material-symbols:widgets", path: "#link-description" },
     {
-      name: "Help",
-      childLinksTitle: "Find Help",
-      childLinks: [{ name: "Holding llink", path: "/" }],
+      name: "Settings",
+      childLinksTitle: "Settings",
+      childLinks: [{ name: $t("pages.settings.locale-switcher.header"), path: "/settings/locale-switcher" }],
     },
     {
       name: "Account",
       childLinksTitle: "Manage Your Account",
-      childLinks: [{ name: "Holding llink", path: "/" }],
+      childLinks: [{ name: "Login", path: "/account/login" }],
     },
   ],
 } as ResponsiveHeaderProp

@@ -141,12 +141,11 @@ const formSchema = reactive(
     .object({
       emailAddress: z
         .string({
-          error: (issue) =>
-            issue.input === undefined ? "Email address is required" : "Email address must be a string",
+          required_error: "Email address is required",
         })
-        .email({ error: "Invalid email address" })
+        .email({ message: "Invalid email address" })
         .refine((email) => email !== zodFormControl.previousState.emailAddress.value, {
-          error: "This email address has already been used",
+          message: "This email address has already been used",
         }),
       password: z
         .string()
@@ -154,9 +153,9 @@ const formSchema = reactive(
         .min(8, "Password is too short")
         .max(25, "Password is too long")
         .refine((email) => email !== zodFormControl.previousState.password.value, {
-          error: "You've already used this password",
+          message: "You've already used this password",
         }),
-      terms: z.boolean().refine((val) => val === true, { error: "You must accept our terms" }),
+      terms: z.boolean().refine((val) => val === true, { message: "You must accept our terms" }),
     })
     .required({
       emailAddress: true,

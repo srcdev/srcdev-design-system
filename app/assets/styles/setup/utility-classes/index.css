@@ -1,2 +1,6 @@
-@import './_fluid-spacing';
-@import './animations/';
+@import "./_fluid-spacing";
+@import "./animations/";
+
+.display-none {
+  display: none !important;
+}

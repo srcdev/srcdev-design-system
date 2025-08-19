@@ -6,6 +6,11 @@ export default defineNuxtConfig({
   devServer: {
     // port: 3020,
   },
+  runtimeConfig: {
+    public: {
+      canonicalHost: "srcdev-design-system.vercel.app", // Replace with your actual domain
+    },
+  },
   css: ["./app/assets/styles/main.css"],
   app: {
     head: {
@@ -15,10 +20,7 @@ export default defineNuxtConfig({
         class: "srcdev-forms-extended srcdev-components-extended",
       },
       // titleTemplate: "%s - Website name",
-      meta: [
-        { charset: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
-      ],
+      meta: [{ charset: "utf-8" }, { name: "viewport", content: "width=device-width, initial-scale=1" }],
     },
   },
   modules: [
@@ -92,4 +94,4 @@ export default defineNuxtConfig({
       // stylistic: true, // Enable ESLint stylistic rules
     },
   },
-});
+})

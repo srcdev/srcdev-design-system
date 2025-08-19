@@ -31,7 +31,21 @@ export default defineNuxtConfig({
     "@nuxt/scripts",
     "@nuxt/test-utils",
     "@nuxtjs/i18n",
+    "nuxt-security",
   ],
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        "default-src": ["'self'"],
+        "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+        "style-src": ["'self'", "'unsafe-inline'"],
+        "script-src-attr": ["'self'", "'unsafe-inline'"],
+        "img-src": ["'self'", "data:"],
+        "connect-src": ["'self'", "https://api.iconify.design"],
+        "frame-src": ["'self'"],
+      },
+    },
+  },
   i18n: {
     locales: [
       {

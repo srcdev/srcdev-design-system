@@ -72,7 +72,7 @@
                         :maxlength="fieldMaxLength('password')"
                         id="password"
                         name="password"
-                        placeholder="eg. a mixure of numbers and letters"
+                        placeholder="eg. a mixture of numbers and letters"
                         label="Password"
                         :errorMessage="formErrors?.password?._errors[0] ?? ''"
                         :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.password)"

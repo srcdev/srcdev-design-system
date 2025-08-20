@@ -27,6 +27,7 @@
     "vue-router": "4.5.1"
   },
   "dependencies": {
+    "nuxt-auth-utils": "^0.5.23",
     "nuxt-security": "^2.3.0"
   }
 }

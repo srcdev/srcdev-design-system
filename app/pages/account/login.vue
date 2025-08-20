@@ -8,6 +8,27 @@
           <p>{{ $t("pages.account.login.description") }}</p>
         </section>
 
+        <!-- GitHub OAuth Login -->
+        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
+          <FormWrapper width="medium">
+            <template #default>
+              <ClientOnly>
+                <NuxtLink
+                  to="/api/auth/github"
+                  icon="i-simple-icons-github"
+                  label="Login with GitHub"
+                  color="neutral"
+                  size="xs"
+                  external
+                >
+                  Login with GitHub
+                </NuxtLink>
+              </ClientOnly>
+            </template>
+          </FormWrapper>
+        </LayoutRow>
+
+        <!-- Traditional Login Form (when not authenticated) -->
         <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
           <FormWrapper width="medium">
             <template #default>
@@ -116,9 +137,11 @@
 
 <script setup lang="ts">
 import { z } from "zod"
+const { loggedIn, user, clear } = useUserSession()
 
 definePageMeta({
   layout: false,
+  middleware: ["auth"],
 })
 
 useHead({
@@ -127,6 +150,12 @@ useHead({
   bodyAttrs: {
     // class: "",
   },
+})
+
+watch(loggedIn, () => {
+  if (!loggedIn.value) {
+    navigateTo("/")
+  }
 })
 
 const inputVariant = ref("underlined") // 'normal' | 'outlined' | 'underlined'
@@ -242,4 +271,116 @@ watch(
 )
 </script>
 
-<style lang="css"></style>
+<style lang="css">
+.auth-options {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.github-login-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  background: #24292f;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  justify-content: center;
+}
+
+.github-login-btn:hover:not(:disabled) {
+  background: #1c2128;
+  transform: translateY(-1px);
+}
+
+.github-login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.github-login-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.divider {
+  margin: 1.5rem 0;
+  position: relative;
+  text-align: center;
+  color: var(--gray-9);
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gray-6);
+}
+
+.divider span {
+  background: var(--gray-0);
+  padding: 0 1rem;
+  position: relative;
+}
+
+.user-info {
+  text-align: center;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-6);
+  border-radius: 0.5rem;
+  background: var(--gray-1);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 2px solid var(--gray-6);
+}
+
+.welcome-text {
+  margin: 0;
+  font-weight: 600;
+  color: var(--gray-11);
+}
+
+.user-email {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.875rem;
+  color: var(--gray-9);
+}
+
+.logout-btn {
+  padding: 0.5rem 1rem;
+  background: var(--red-9);
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: var(--red-10);
+}
+</style>

@@ -61,7 +61,10 @@ const responsiveNavLinks = {
     {
       name: "Account",
       childLinksTitle: "Manage Your Account",
-      childLinks: [{ name: "Login", path: "/account/login" }],
+      childLinks: [
+        { name: "Login", path: "/account/login" },
+        { name: "Dashboard", path: "/account/dashboard" },
+      ],
     },
   ],
 } as ResponsiveHeaderProp
@@ -89,6 +92,8 @@ const responsiveNavLinks = {
       display: flex;
       align-items: center;
       text-wrap-mode: nowrap;
+      color: var(--gray-0);
+      text-decoration: none;
     }
   }
 }
@@ -119,7 +124,7 @@ const responsiveNavLinks = {
 
       .main-navigation-item {
         .main-navigation-link {
-          color: inherit;
+          color: var(--gray-0);
           text-decoration: none;
           margin-inline-start: 0;
         }
@@ -136,6 +141,7 @@ const responsiveNavLinks = {
           }
 
           .main-navigation-details-summary {
+            color: var(--gray-0);
           }
 
           .main-navigation-sub-nav {
@@ -151,7 +157,7 @@ const responsiveNavLinks = {
               gap: 12px;
 
               .main-navigation-sub-nav-item {
-                margin-bottom: 8px;
+                margin-bottom: 0;
 
                 &:last-child {
                   margin-bottom: 0;
@@ -161,7 +167,7 @@ const responsiveNavLinks = {
                   display: block;
                   text-wrap-mode: nowrap;
                   text-decoration: none;
-                  color: inherit;
+                  color: var(--gray-0);
                 }
               }
             }
@@ -178,7 +184,7 @@ const responsiveNavLinks = {
       .secondary-navigation-item {
         .secondary-navigation-link {
           font: inherit;
-          color: inherit;
+          color: var(--gray-0);
 
           .icon {
             height: 1.35em;
@@ -189,6 +195,7 @@ const responsiveNavLinks = {
     }
 
     .main-navigation-link {
+      color: var(--gray-0);
       .icon {
         height: 1.35em;
         width: 1.35em;
@@ -258,6 +265,8 @@ const responsiveNavLinks = {
 
                 &.display-details {
                   .display-details-summary {
+                    color: var(--gray-0);
+
                     .label {
                       .overflow-navigation-text {
                         text-wrap: nowrap;

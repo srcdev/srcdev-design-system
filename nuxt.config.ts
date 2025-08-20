@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   extends: ["srcdev-nuxt-forms", "srcdev-nuxt-components"],
   devtools: { enabled: true },
   devServer: {
+    https: true,
     // port: 3020,
   },
   runtimeConfig: {
@@ -32,6 +33,7 @@ export default defineNuxtConfig({
     "@nuxt/test-utils",
     "@nuxtjs/i18n",
     "nuxt-security",
+    "nuxt-auth-utils",
   ],
   security: {
     headers: {
@@ -40,9 +42,11 @@ export default defineNuxtConfig({
         "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
         "style-src": ["'self'", "'unsafe-inline'"],
         "script-src-attr": ["'self'", "'unsafe-inline'"],
-        "img-src": ["'self'", "data:"],
-        "connect-src": ["'self'", "https://api.iconify.design"],
+        "img-src": ["'self'", "data:", "https://avatars.githubusercontent.com"],
+        "connect-src": ["'self'", "https://api.iconify.design", "https://github.com"],
         "frame-src": ["'self'"],
+        "worker-src": ["'self'", "blob:"],
+        "child-src": ["'self'", "blob:"],
       },
     },
   },

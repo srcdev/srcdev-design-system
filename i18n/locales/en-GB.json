@@ -6,6 +6,18 @@
     "index": {
       "header": "Nuxt Playground",
       "description": "This is a playground for Nuxt.js, where you can experiment with various features and functionalities of the framework. Explore, learn, and build your next Nuxt application with ease."
+    },
+    "account": {
+      "login": {
+        "header": "Login to Your Account",
+        "description": "Access your account using your email and password."
+      }
+    },
+    "settings": {
+      "locale-switcher": {
+        "header": "Select Language",
+        "description": "Choose your preferred language from the list."
+      }
     }
   }
 }

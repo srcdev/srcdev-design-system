@@ -3,8 +3,33 @@
     <NuxtLayout name="default">
       <template #layout-content>
         <section>
-          <h1>Contact form</h1>
+          <h1>{{ $t("pages.account.login.header") }}</h1>
 
+          <p>{{ $t("pages.account.login.description") }}</p>
+        </section>
+
+        <!-- GitHub OAuth Login -->
+        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
+          <FormWrapper width="medium">
+            <template #default>
+              <ClientOnly>
+                <NuxtLink
+                  to="/api/auth/github"
+                  icon="i-simple-icons-github"
+                  label="Login with GitHub"
+                  color="neutral"
+                  size="xs"
+                  external
+                >
+                  Login with GitHub
+                </NuxtLink>
+              </ClientOnly>
+            </template>
+          </FormWrapper>
+        </LayoutRow>
+
+        <!-- Traditional Login Form (when not authenticated) -->
+        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
           <FormWrapper width="medium">
             <template #default>
               <ClientOnly>
@@ -14,100 +39,53 @@
                   <FormField width="wide" :has-gutter="false">
                     <template #default>
                       <InputTextWithLabel
-                        id="givenname"
-                        v-model="state.givenname"
-                        type="text"
-                        :maxlength="fieldMaxLength('givenname')"
-                        name="givenname"
-                        placeholder="eg. Joe Bloggs"
-                        label="Your name"
-                        :error-message="formErrors?.givenname?._errors[0] ?? ''"
-                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.givenname)"
-                        :required="true"
-                        :style-class-passthrough="['style-1', 'style-2']"
-                        :theme
-                        :size
-                        :input-variant
-                      >
-                        <template #left>
-                          <Icon name="radix-icons:person" class="icon" />
-                        </template>
-                      </InputTextWithLabel>
-                    </template>
-                  </FormField>
-
-                  <FormField width="wide" :has-gutter="false">
-                    <template #default>
-                      <InputTextWithLabel
-                        id="emailAddress"
                         v-model="state.emailAddress"
                         type="email"
                         inputmode="email"
                         :maxlength="fieldMaxLength('email')"
+                        id="emailAddress"
                         name="emailAddress"
                         placeholder="eg. name@domain.com"
                         label="Email address"
-                        :error-message="formErrors?.emailAddress?._errors[0] ?? ''"
-                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.emailAddress)"
+                        :errorMessage="formErrors?.emailAddress?._errors[0] ?? ''"
+                        :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.emailAddress)"
                         :required="true"
-                        :style-class-passthrough="['style-1', 'style-2']"
+                        :styleClassPassthrough="['style-1', 'style-2']"
                         :theme
                         :size
-                        :input-variant
+                        :inputVariant
                       >
-                        <template #description>
-                          <p class="body-normal">I will only use your email address to reply to you</p>
-                        </template>
                         <template #left>
+                          <Icon name="radix-icons:envelope-closed" class="icon" />
+                        </template>
+                        <template #right>
                           <Icon name="radix-icons:envelope-closed" class="icon" />
                         </template>
                       </InputTextWithLabel>
                     </template>
                   </FormField>
 
-                  <FormField
-                    v-if="visitorSourceData && visitorSourceData.data !== null"
-                    width="wide"
-                    :has-gutter="false"
-                  >
-                    <template #default>
-                      <InputSelectWithLabel
-                        v-model="state.visitorSource"
-                        v-model:field-data="visitorSourceData"
-                        name="visitorSource"
-                        legend="How did you hear about me?"
-                        :required="true"
-                        label="Please select a source"
-                        placeholder="Please select a source"
-                        :error-message="formErrors?.visitorSource?._errors[0] ?? ''"
-                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.visitorSource)"
-                        :theme
-                        :size
-                        :input-variant
-                      >
-                        <template #description>
-                          <p class="label-description">I'd love to know how you found about me!</p>
-                        </template>
-                      </InputSelectWithLabel>
-                    </template>
-                  </FormField>
-
                   <FormField width="wide" :has-gutter="false">
                     <template #default>
-                      <InputTextareaWithLabel
-                        v-model="state.message"
-                        :maxlength="fieldMaxLength('message')"
-                        name="message"
-                        placeholder="Type your message here"
-                        label="Your mesage"
-                        :error-message="formErrors?.message?._errors[0] ?? ''"
-                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.message)"
+                      <InputPasswordWithLabel
+                        v-model="state.password"
+                        :maxlength="fieldMaxLength('password')"
+                        id="password"
+                        name="password"
+                        placeholder="eg. a mixture of numbers and letters"
+                        label="Password"
+                        :errorMessage="formErrors?.password?._errors[0] ?? ''"
+                        :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.password)"
                         :required="true"
-                        :style-class-passthrough="['style-1', 'style-2']"
+                        :styleClassPassthrough="['style-1', 'style-2']"
                         :theme
                         :size
-                        :input-variant
-                      />
+                        :inputVariant
+                      >
+                        <template #right>
+                          <Icon name="radix-icons:eye-open" class="icon" />
+                        </template>
+                      </InputPasswordWithLabel>
                     </template>
                   </FormField>
 
@@ -151,7 +129,7 @@
               </ClientOnly>
             </template>
           </FormWrapper>
-        </section>
+        </LayoutRow>
       </template>
     </NuxtLayout>
   </div>
@@ -159,28 +137,28 @@
 
 <script setup lang="ts">
 import { z } from "zod"
-import type { IFormMultipleOptions } from "srcdev-nuxt-forms/shared/types/types.forms"
+const { loggedIn, user, clear } = useUserSession()
 
 definePageMeta({
   layout: false,
+  middleware: ["auth"],
 })
 
 useHead({
-  title: "Contact form", // You could also use: computed(() => $t("pages.index.title")) if you add this to your i18n files
-  meta: [{ name: "description", content: "Desciption meta tag content" }],
+  title: "Login", // You could also use: computed(() => $t("pages.index.title")) if you add this to your i18n files
+  meta: [{ name: "description", content: "Login to your account" }],
   bodyAttrs: {
     // class: "",
   },
 })
 
-const { data: visitorSourceData } = await useFetch<IFormMultipleOptions>("/api/visitor-source")
+const inputVariant = ref("underlined") // 'normal' | 'outlined' | 'underlined'
+const theme = ref("primary")
+const size = ref<"x-small" | "small" | "default" | "medium" | "large">("default")
+
 /*
  * Setup forms
  */
-const theme = ref("primary")
-const inputVariant = ref("underlined")
-const size = ref<"x-small" | "small" | "default" | "medium" | "large">("default")
-
 const formSchema = reactive(
   z
     .object({
@@ -192,24 +170,19 @@ const formSchema = reactive(
         .refine((email) => email !== zodFormControl.previousState.emailAddress.value, {
           message: "This email address has already been used",
         }),
-      givenname: z
-        .string({
-          required_error: "Your name is required",
-        })
+      password: z
+        .string()
         .trim()
-        .min(2, "Your name is too short")
-        .max(255, "Your name is too long"),
-      visitorSource: z.string().min(1, { message: "Please select an option" }),
-      message: z.string().trim().min(2, "Message is too short").max(255, "Message is too long"),
-      terms: z.boolean().refine((val) => val === true, {
-        message: "You must accept our terms",
-      }),
+        .min(8, "Password is too short")
+        .max(25, "Password is too long")
+        .refine((email) => email !== zodFormControl.previousState.password.value, {
+          message: "You've already used this password",
+        }),
+      terms: z.boolean().refine((val) => val === true, { message: "You must accept our terms" }),
     })
     .required({
       emailAddress: true,
-      givenname: true,
-      visitorSource: true,
-      message: true,
+      password: true,
       terms: true,
     })
 )
@@ -219,9 +192,7 @@ const formErrors = computed<z.ZodFormattedError<formSchema> | null>(() => zodErr
 
 const state = reactive({
   emailAddress: "",
-  givenname: "",
-  visitorSource: "",
-  message: "",
+  password: "",
   terms: false,
 })
 
@@ -236,7 +207,7 @@ const {
   doZodValidate,
   fieldMaxLength,
   scrollToFirstError,
-  // scrollToFormHead,
+  scrollToFormHead,
 } = useZodValidation(formSchema, formRef)
 
 initZodForm()
@@ -294,4 +265,116 @@ watch(
 )
 </script>
 
-<style lang="css"></style>
+<style lang="css">
+.auth-options {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.github-login-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  background: #24292f;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  justify-content: center;
+}
+
+.github-login-btn:hover:not(:disabled) {
+  background: #1c2128;
+  transform: translateY(-1px);
+}
+
+.github-login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.github-login-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.divider {
+  margin: 1.5rem 0;
+  position: relative;
+  text-align: center;
+  color: var(--gray-9);
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gray-6);
+}
+
+.divider span {
+  background: var(--gray-0);
+  padding: 0 1rem;
+  position: relative;
+}
+
+.user-info {
+  text-align: center;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-6);
+  border-radius: 0.5rem;
+  background: var(--gray-1);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 2px solid var(--gray-6);
+}
+
+.welcome-text {
+  margin: 0;
+  font-weight: 600;
+  color: var(--gray-11);
+}
+
+.user-email {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.875rem;
+  color: var(--gray-9);
+}
+
+.logout-btn {
+  padding: 0.5rem 1rem;
+  background: var(--red-9);
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: var(--red-10);
+}
+</style>

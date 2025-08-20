@@ -152,12 +152,6 @@ useHead({
   },
 })
 
-watch(loggedIn, () => {
-  if (!loggedIn.value) {
-    navigateTo("/")
-  }
-})
-
 const inputVariant = ref("underlined") // 'normal' | 'outlined' | 'underlined'
 const theme = ref("primary")
 const size = ref<"x-small" | "small" | "default" | "medium" | "large">("default")

@@ -5,14 +5,15 @@
     <LayoutRow tag="main" variant="full-width" :style-class-passthrough="['main-content']">
       <slot name="layout-content">Page content goes here</slot>
     </LayoutRow>
-
-    <footer class="footer">Footer</footer>
+    <footer class="footer">&copy; {{ year }} Footer</footer>
   </div>
 </template>
 
 <script setup lang="ts">
 // Set up canonical URL for all pages
 useCanonicalUrl()
+
+const year = computed(() => new Date().getFullYear())
 </script>
 
 <style lang="css">

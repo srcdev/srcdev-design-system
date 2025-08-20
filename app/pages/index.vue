@@ -9,10 +9,6 @@
         </section>
 
         <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20', 'display-none']">
-          <LocaleSwitcher />
-        </LayoutRow>
-
-        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
           <DisplayPromptCore
             theme="error"
             :dismissible="true"

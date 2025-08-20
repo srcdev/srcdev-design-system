@@ -1,11 +1,11 @@
 {
   "global": {
-    "siteName": "ملعب Nuxt"
+    "siteName": "SRCDEV Design System"
   },
   "pages": {
     "index": {
-      "header": "ملعب Nuxt",
-      "description": "هذا ملعب لـ Nuxt.js، حيث يمكنك تجربة ميزات وإمكانيات مختلفة من الإطار. استكشف، وتعلم، وابنِ تطبيق Nuxt التالي بسهولة."
+      "header": "SRCDEV Design System",
+      "description": "نماذج بصرية للخطوط والتخطيط والمكونات."
     },
     "account": {
       "login": {

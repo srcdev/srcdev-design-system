@@ -1,11 +1,11 @@
 {
   "global": {
-    "siteName": "Nuxt Playground"
+    "siteName": "SRCDEV Design System"
   },
   "pages": {
     "index": {
-      "header": "Nuxt Playground",
-      "description": "This is a playground for Nuxt.js, where you can experiment with various features and functionalities of the framework. Explore, learn, and build your next Nuxt application with ease."
+      "header": "SRCDEV Design System",
+      "description": "Visual demos of typography, layout, and components."
     },
     "account": {
       "login": {

@@ -1,11 +1,11 @@
 {
   "global": {
-    "siteName": "Nuxt 游乐场"
+    "siteName": "SRCDEV Design System"
   },
   "pages": {
     "index": {
-      "header": "Nuxt 游乐场",
-      "description": "这是一个 Nuxt.js 的游乐场，您可以在这里尝试框架的各种功能和特性。探索、学习并轻松构建下一个 Nuxt 应用程序。"
+      "header": "SRCDEV Design System",
+      "description": "视觉演示排版、布局和组件。"
     },
     "account": {
       "login": {

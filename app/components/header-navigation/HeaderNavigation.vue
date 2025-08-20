@@ -8,7 +8,7 @@
       </SkipLinks>
     </nav>
     <ResponsiveHeader
-      :responsive-nav-links
+      :responsive-nav-links="responsiveNavLinks"
       :gap-between-first-and-second-nav="12"
       :style-class-passthrough="['srcdev-design-system-nav']"
       :overflow-details-summary-icons="{
@@ -23,7 +23,7 @@
           <li class="secondary-navigation-item">
             <NuxtLink class="secondary-navigation-link" to="/">
               <Icon name="material-symbols:settings-outline-rounded" class="icon" aria-hidden="true" />
-              <span class="sr-only">Settings</span>
+              <span class="sr-only">{{ t("navigation.screenReader.settings") }}</span>
             </NuxtLink>
           </li>
         </ul>
@@ -35,39 +35,41 @@
 <script setup lang="ts">
 import type { ResponsiveHeaderProp } from "srcdev-nuxt-components/app/types/responsiveHeader"
 
-const responsiveNavLinks = {
+const { t } = useI18n()
+
+const responsiveNavLinks = computed(() => ({
   firstNav: [
     {
-      name: "Components",
+      name: t("navigation.components"),
       iconName: "material-symbols:widgets",
-      childLinksTitle: "UI Components",
-      childLinks: [{ name: "Holding llink", path: "/" }],
+      childLinksTitle: t("navigation.childLinksTitle.uiComponents"),
+      childLinks: [{ name: t("navigation.placeholderLink"), path: "/" }],
     },
     {
-      name: "Layouts",
+      name: t("navigation.layouts"),
       iconName: "material-symbols:responsive-layout",
-      childLinksTitle: "UI Layouts",
-      childLinks: [{ name: "Holding llink", path: "/" }],
+      childLinksTitle: t("navigation.childLinksTitle.uiLayouts"),
+      childLinks: [{ name: t("navigation.placeholderLink"), path: "/" }],
     },
-    { name: "About", path: "/" },
+    { name: t("navigation.about"), path: "/" },
   ],
   secondNav: [
-    { name: "Some other link", iconName: "material-symbols:widgets", path: "#link-description" },
+    { name: t("navigation.someOtherLink"), iconName: "material-symbols:widgets", path: "#link-description" },
     {
-      name: "Settings",
-      childLinksTitle: "Settings",
-      childLinks: [{ name: $t("pages.settings.locale-switcher.header"), path: "/settings/locale-switcher" }],
+      name: t("navigation.settings"),
+      childLinksTitle: t("navigation.childLinksTitle.settings"),
+      childLinks: [{ name: t("pages.settings.locale-switcher.header"), path: "/settings/locale-switcher" }],
     },
     {
-      name: "Account",
-      childLinksTitle: "Manage Your Account",
+      name: t("navigation.account"),
+      childLinksTitle: t("navigation.childLinksTitle.manageAccount"),
       childLinks: [
-        { name: "Login", path: "/account/login" },
-        { name: "Dashboard", path: "/account/dashboard" },
+        { name: t("navigation.login"), path: "/account/login" },
+        { name: t("navigation.dashboard"), path: "/account/dashboard" },
       ],
     },
   ],
-} as ResponsiveHeaderProp
+})) as ComputedRef<ResponsiveHeaderProp>
 </script>
 
 <style lang="css">
@@ -134,10 +136,6 @@ const responsiveNavLinks = {
 
           .has-toggle-icon {
             gap: 6px;
-
-            .icon {
-              /* color: red; */
-            }
           }
 
           .main-navigation-details-summary {

@@ -1,12 +1,5 @@
 <template>
   <header class="header responsive-header">
-    <nav class="home-navigation" aria-label="Home Navigation">
-      <SkipLinks>
-        <template #homeLink>
-          <NuxtLink to="/" class="home-link">Logo</NuxtLink>
-        </template>
-      </SkipLinks>
-    </nav>
     <ResponsiveHeader
       :responsive-nav-links="responsiveNavLinks"
       :gap-between-first-and-second-nav="12"
@@ -15,20 +8,9 @@
         more: 'gravity-ui:ellipsis',
         burger: 'gravity-ui:bars',
       }"
-      :collapse-at-main-nav-intersection="true"
+      :collapse-at-main-nav-intersection="false"
       :allow-expand-on-gesture="false"
-    >
-      <template #secondaryNavigation>
-        <ul class="secondary-navigation-list">
-          <li class="secondary-navigation-item">
-            <NuxtLink class="secondary-navigation-link" to="/">
-              <Icon name="material-symbols:settings-outline-rounded" class="icon" aria-hidden="true" />
-              <span class="sr-only">{{ t("navigation.screenReader.settings") }}</span>
-            </NuxtLink>
-          </li>
-        </ul>
-      </template>
-    </ResponsiveHeader>
+    />
   </header>
 </template>
 
@@ -38,6 +20,14 @@ import type { ResponsiveHeaderProp } from "srcdev-nuxt-components/app/types/resp
 const { t } = useI18n()
 
 const responsiveNavLinks = computed(() => ({
+  firstNav: [
+    { name: t("navigation.home"), path: "/" },
+    { name: t("navigation.login"), path: "/account/login" },
+    { name: t("navigation.dashboard"), path: "/account/dashboard" },
+  ],
+})) as ComputedRef<ResponsiveHeaderProp>
+
+const responsiveNavLinksOld = computed(() => ({
   firstNav: [
     {
       name: t("navigation.components"),

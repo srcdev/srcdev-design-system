@@ -9,7 +9,7 @@
             <template #default>
               <ClientOnly>
                 <form ref="formRef" class="form-wrapper" @submit.stop.prevent="submitForm()">
-                  <div id="aria-live-message" aria-live="assertive"></div>
+                  <div id="aria-live-message" aria-live="polite"></div>
 
                   <FormField width="wide" :has-gutter="false">
                     <template #default>
@@ -29,6 +29,9 @@
                         :size
                         :input-variant
                       >
+                        <template #description>
+                          <p class="body-normal">We don't store this for any reason</p>
+                        </template>
                         <template #left>
                           <Icon name="radix-icons:person" class="icon" />
                         </template>

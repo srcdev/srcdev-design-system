@@ -1,92 +1,41 @@
-:root {
-  [data-theme-old='primary'] {
-    --theme-button-surface: light-dark(var(--gray-1), var(--gray-4));
-    --theme-form-input-bg-outlined: light-dark(var(--gray-1), var(--gray-4));
-    --theme-form-input-bg-underlined: light-dark(var(--gray-0), var(--gray-9));
-    --theme-input-border: var(--blue-8);
-    --theme-input-border-active: var(--blue-2);
-    --theme-input-border-focus: var(--blue-2);
-    --theme-form-input-outline: white;
-    --theme-form-input-outline-active: var(--blue-6);
-    --theme-form-input-outline-focus: var(--blue-6);
-    --theme-form-input-text-color-normal: light-dark(var(--gray-11), var(--gray-11));
-    --theme-form-input-text-color-outlined: light-dark(var(--gray-10), var(--gray-11));
-    --theme-form-input-text-color-underlined: light-dark(var(--gray-11), var(--gray-1));
+[data-theme='primary'] {
+  --colour-theme-0: var(--blue-0);
+  --colour-theme-1: var(--blue-1);
+  --colour-theme-2: var(--blue-2);
+  --colour-theme-3: var(--blue-3);
+  --colour-theme-4: var(--blue-4);
+  --colour-theme-5: var(--blue-5);
+  --colour-theme-6: var(--blue-6);
+  --colour-theme-7: var(--blue-7);
+  --colour-theme-8: var(--blue-8);
+  --colour-theme-9: var(--blue-9);
+  --colour-theme-10: var(--blue-10);
+  --colour-theme-11: var(--blue-11);
+  --colour-theme-12: var(--blue-12);
 
-    --theme-form-input-text-label-color-normal: light-dark(var(--gray-11), var(--gray-1));
-    --theme-form-input-text-label-color-outlined: light-dark(var(--gray-10), var(--gray-11));
-    --theme-form-input-text-label-color-underlined: light-dark(var(--gray-11), var(--gray-1));
+  /* Buttons */
+  --theme-button-surface: light-dark(var(--blue-9), var(--blue-11));
+  --theme-button-surface-hover: light-dark(var(--blue-6), var(--blue-12));
 
-    /* --theme-form-focus-box-shadow: light-dark(var(--blue-12), var(--blue-2)); */
-    --theme-form-focus-box-shadow: light-dark(red, yellowgreen);
+  --theme-button-border: light-dark(var(--blue-9), var(--blue-2));
+  --theme-button-border-hover: light-dark(var(--blue-10), var(--blue-1));
+  --theme-button-border-focus: light-dark(var(--blue-10), var(--blue-5));
 
-    --theme-form-checkbox-bg: light-dark(var(--gray-1), var(--gray-4));
-    --theme-form-checkbox-border: light-dark(var(--blue-12), var(--blue-12));
-    --theme-form-checkbox-outline: light-dark(var(--blue-1), var(--blue-1));
-    --theme-form-checkbox-shadow: transparent;
-    --theme-form-checkbox-shadow-focus: var(--blue-6);
-    --theme-form-checkbox-symbol: var(--blue-12);
+  --theme-button-outline: transparent;
+  --theme-button-outline-hover: light-dark(var(--blue-10), var(--blue-1));
+  --theme-button-outline-focus: light-dark(var(--blue-10), var(--blue-1));
 
-    --theme-form-radio-bg: light-dark(var(--gray-1), var(--gray-4));
-    --theme-form-radio-border: light-dark(var(--blue-12), var(--blue-12));
-    --theme-form-radio-outline: light-dark(var(--blue-1), var(--blue-1));
-    --theme-form-radio-shadow: transparent;
-    --theme-form-radio-shadow-focus: var(--blue-6);
-    --theme-form-radio-symbol: var(--blue-12);
+  --theme-button-text: var(--blue-0);
+  --theme-button-text-hover: var(--blue-0);
+  --theme-button-text-focus: var(--blue-0);
 
-    --theme-form-range-accent-color: light-dark(var(--blue-12), var(--blue-1));
-
-    /*
-    * ToggleSwitch
-    **/
-    --theme-form-toggle-bg-off: light-dark(var(--gray-1), var(--gray-4));
-    --theme-form-toggle-bg-on: light-dark(var(--gray-1), var(--gray-6));
-
-    --theme-form-toggle-border-color: light-dark(var(--blue-12), var(--blue-1));
-    --theme-form-toggle-border-width: 0.2rem;
-    --theme-form-toggle-border: var(--form-element-border-width) solid light-dark(var(--blue-12), var(--blue-1));
-
-    --theme-form-toggle-outline: var(--form-element-outline-width) solid light-dark(var(--blue-1), var(--blue-1));
-    --theme-form-toggle-symbol-off: var(--blue-7);
-    --theme-form-toggle-symbol-on: var(--gray-12);
-    --theme-form-toggle-icon-stroke-colour-off: var(--gray-1);
-    --theme-form-toggle-icon-stroke-colour-on: var(--gray-1);
-
-    /*
-    * Checkbox as button
-    **/
-
-    --theme-checkbox-radio-button-bg-default: light-dark(var(--gray-1), var(--gray-4));
-
-    --theme-checkbox-radio-button-border-default: light-dark(var(--blue-12), var(--blue-12));
-    --theme-checkbox-radio-button-border-width: 0.1rem;
-
-    --theme-checkbox-radio-button-outline-default: light-dark(var(--blue-5), var(--blue-5));
-    --theme-checkbox-radio-button-outline-focus: light-dark(var(--blue-12), var(--blue-12));
-    --theme-checkbox-radio-button-outline-width: 0.1rem;
-
-    --theme-checkbox-radio-button-shadow: transparent;
-    --theme-checkbox-radio-button-shadow-focus: light-dark(var(--blue-6), var(--blue-1));
-
-    --theme-checkbox-radio-button-label-default: light-dark(var(--blue-12), var(--blue-12));
-  }
-
-  [data-theme='primary'] {
-    --theme-button-surface: var(--blue-12);
-    --theme-input-border: var(--blue-0);
-    --theme-btn-outline: var(--blue-12);
-    --theme-btn-text: var(--blue-0);
-
-    --theme-button-surface-hover: var(--blue-0);
-    --theme-input-border-hover: var(--blue-12);
-    --theme-btn-outline-hover: var(--blue-0);
-    --theme-btn-text-hover: var(--blue-12);
-
-    --theme-button-surface-focus: var(--blue-0);
-    --theme-input-border-focus: var(--blue-12);
-    --theme-btn-outline-focus: var(--blue-0);
-    --theme-btn-text-focus: var(--blue-12);
-
-    --theme-form-focus-box-shadow: light-dark(var(--blue-12), var(--blue-2));
-  }
+  /* Input Elements */
+  --theme-input-surface: light-dark(var(--gray-1), var(--gray-8));
+  --theme-input-surface-hover: light-dark(var(--blue-1), var(--blue-7));
+  --theme-input-border: light-dark(var(--blue-9), var(--blue-4));
+  --theme-input-border-hover: light-dark(var(--blue-10), var(--blue-5));
+  --theme-input-border-focus: light-dark(var(--blue-10), var(--blue-5));
+  --theme-input-text: var(--blue-0);
+  --theme-input-text-hover: var(--blue-0);
+  --theme-input-text-focus: var(--blue-0);
 }

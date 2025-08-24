@@ -109,7 +109,7 @@ const responsiveNavLinks = computed(() => ({
     grid-template-columns: auto 1fr;
     gap: 24px;
     align-items: center;
-    padding-block: 12px;
+    padding-block: 0;
     padding-inline: 24px;
     background-color: #000;
 
@@ -137,6 +137,7 @@ const responsiveNavLinks = computed(() => ({
   padding-block: 1rem;
   padding-inline: 1.2rem;
   inline-size: 100%;
+  max-height: 6.4rem;
 
   /* max-block-size: 4.2rem; */
 
@@ -250,11 +251,16 @@ const responsiveNavLinks = computed(() => ({
         &:hover,
         &:focus-visible {
           --_icon-zoom: 1.2;
-          outline: var(--_outline-width) solid #ffffff;
+          outline: 2px solid var(--green-8);
+          outline-offset: 0.3rem;
+
+          .icon {
+            scale: 0.9;
+          }
         }
 
         .icon {
-          scale: var(--_icon-zoom);
+          /* scale: var(--_icon-zoom); */
           width: 2.6rem;
           height: 2.6rem;
         }
@@ -269,8 +275,6 @@ const responsiveNavLinks = computed(() => ({
         padding-block: 0;
         margin-block-end: -0.1rem;
         gap: 0.8rem;
-
-        /* Override for NavigationItems START */
 
         .overflow-navigation-wrapper {
           --overflow-nav-padding-inline: 0.8rem;
@@ -303,7 +307,7 @@ const responsiveNavLinks = computed(() => ({
                 padding-block: var(--overflow-nav-items-padding-block);
                 padding-inline: var(--overflow-nav-padding-inline);
                 display: flex;
-                /* background-color: red; */
+                color: var(--gray-0);
                 border-bottom: 0.1rem solid #efefef75;
               }
 
@@ -316,7 +320,7 @@ const responsiveNavLinks = computed(() => ({
                       padding-block: var(--overflow-nav-items-padding-block);
                       padding-inline: var(--overflow-nav-padding-inline);
                       gap: 1rem;
-                      /* background-color: red; */
+                      color: var(--gray-0);
                       border-bottom: 0.1rem solid #efefef75;
 
                       .label-wrapper {
@@ -361,10 +365,10 @@ const responsiveNavLinks = computed(() => ({
                           .overflow-navigation-sub-nav-item {
                             padding-block: var(--overflow-nav-items-padding-block);
                             padding-inline: var(--overflow-nav-padding-inline);
+                            color: var(--gray-0);
 
                             .overflow-navigation-sub-nav-link {
                               text-decoration: none;
-                              color: inherit;
                             }
                           }
                         }
@@ -376,7 +380,6 @@ const responsiveNavLinks = computed(() => ({
             }
           }
         }
-        /* Override for NavigationItems END */
       }
     }
   }

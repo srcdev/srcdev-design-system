@@ -1,5 +1,12 @@
 <template>
   <header class="header responsive-header">
+    <nav class="home-navigation" aria-label="Home Navigation">
+      <SkipLinks>
+        <template #homeLink>
+          <NuxtLink to="/" class="home-link">Logo</NuxtLink>
+        </template>
+      </SkipLinks>
+    </nav>
     <ResponsiveHeader
       :responsive-nav-links="responsiveNavLinks"
       :gap-between-first-and-second-nav="12"
@@ -8,9 +15,20 @@
         more: 'gravity-ui:ellipsis',
         burger: 'gravity-ui:bars',
       }"
-      :collapse-at-main-nav-intersection="false"
+      :collapse-at-main-nav-intersection="true"
       :allow-expand-on-gesture="false"
-    />
+    >
+      <template #secondaryNavigation>
+        <ul class="secondary-navigation-list">
+          <li class="secondary-navigation-item">
+            <NuxtLink class="secondary-navigation-link" to="/">
+              <Icon name="material-symbols:settings-outline-rounded" class="icon" aria-hidden="true" />
+              <span class="sr-only">{{ t("navigation.screenReader.settings") }}</span>
+            </NuxtLink>
+          </li>
+        </ul>
+      </template>
+    </ResponsiveHeader>
   </header>
 </template>
 
@@ -19,7 +37,7 @@ import type { ResponsiveHeaderProp } from "srcdev-nuxt-components/app/types/resp
 
 const { t } = useI18n()
 
-const responsiveNavLinks = computed(() => ({
+const responsiveNavLinksSimple = computed(() => ({
   firstNav: [
     { name: t("navigation.home"), path: "/" },
     { name: t("navigation.login"), path: "/account/login" },
@@ -27,19 +45,39 @@ const responsiveNavLinks = computed(() => ({
   ],
 })) as ComputedRef<ResponsiveHeaderProp>
 
-const responsiveNavLinksOld = computed(() => ({
+const responsiveNavLinks = computed(() => ({
   firstNav: [
     {
       name: t("navigation.components"),
       iconName: "material-symbols:widgets",
       childLinksTitle: t("navigation.childLinksTitle.uiComponents"),
-      childLinks: [{ name: t("navigation.placeholderLink"), path: "/" }],
+      childLinks: [
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+      ],
     },
     {
       name: t("navigation.layouts"),
       iconName: "material-symbols:responsive-layout",
       childLinksTitle: t("navigation.childLinksTitle.uiLayouts"),
-      childLinks: [{ name: t("navigation.placeholderLink"), path: "/" }],
+      childLinks: [
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: t("navigation.placeholderLink"), path: "/" },
+      ],
     },
     { name: t("navigation.about"), path: "/" },
   ],
@@ -206,6 +244,9 @@ const responsiveNavLinksOld = computed(() => ({
         outline: var(--_outline-width) solid #ffffff10;
         background-color: Canvas;
 
+        width: 3rem;
+        height: 3rem;
+
         &:hover,
         &:focus-visible {
           --_icon-zoom: 1.2;
@@ -214,6 +255,8 @@ const responsiveNavLinksOld = computed(() => ({
 
         .icon {
           scale: var(--_icon-zoom);
+          width: 2.6rem;
+          height: 2.6rem;
         }
       }
 
@@ -221,61 +264,107 @@ const responsiveNavLinksOld = computed(() => ({
         top: 135%;
         right: 0;
         background-color: #000;
-        border: 1px solid #ffffff90;
+        border: 0.1rem solid #ffffff90;
         border-radius: 8px;
-        padding: 12px;
-        margin: 0;
-        gap: 8px;
+        padding-block: 0;
+        margin-block-end: -0.1rem;
+        gap: 0.8rem;
 
         /* Override for NavigationItems START */
 
         .overflow-navigation-wrapper {
-          gap: 12px;
+          --overflow-nav-padding-inline: 0.8rem;
+          --overflow-nav-items-gap: 0px;
+          --overflow-nav-items-padding-block: 0.8rem;
+          display: flex;
+          flex-direction: column;
+          gap: var(--overflow-nav-items-gap);
 
           .overflow-navigation-list {
+            display: none;
+
             &.visible {
+              display: flex;
               flex-direction: column;
-              gap: 12px;
+              gap: var(--overflow-nav-items-gap);
+              min-width: var(--_overflow-navigation-list-min-width, auto);
             }
 
             .overflow-navigation-item {
+              display: none;
+
+              &.visible {
+                display: block;
+              }
+
               .overflow-navigation-link {
                 text-decoration: none;
                 color: inherit;
+                padding-block: var(--overflow-nav-items-padding-block);
+                padding-inline: var(--overflow-nav-padding-inline);
+                display: flex;
+                /* background-color: red; */
+                border-bottom: 0.1rem solid #efefef75;
               }
 
               .overflow-navigation-details {
-                --_overflow-navigation-sub-nav-list-margin-block-start: 0;
+                &.expanding-panel {
+                  margin-block-end: 0;
 
-                &[open] {
-                  --_overflow-navigation-sub-nav-list-margin-block-start: 12px;
-                }
+                  .expanding-panel-details {
+                    .expanding-panel-summary {
+                      padding-block: var(--overflow-nav-items-padding-block);
+                      padding-inline: var(--overflow-nav-padding-inline);
+                      gap: 1rem;
+                      /* background-color: red; */
+                      border-bottom: 0.1rem solid #efefef75;
 
-                &.display-details {
-                  .display-details-summary {
-                    color: var(--gray-0);
-
-                    .label {
-                      .overflow-navigation-text {
-                        text-wrap: nowrap;
+                      .label-wrapper {
+                        .overflow-navigation-text {
+                          text-wrap: nowrap;
+                        }
+                      }
+                      .icon-wrapper {
+                        padding: 0;
                       }
                     }
 
-                    /* .icon {} */
+                    &[open] {
+                      .expanding-panel-summary {
+                        border-bottom: 0.1rem solid transparent;
+                      }
+                      + .expanding-panel-content {
+                        border-bottom: 0.1rem solid #efefef75;
+                        .inner {
+                          .overflow-navigation-sub-nav-inner {
+                            margin-top: var(--overflow-nav-items-gap);
+                          }
+                        }
+                      }
+                    }
                   }
 
-                  .display-details-content {
-                    .overflow-navigation-sub-nav-inner {
-                      .overflow-navigation-sub-nav-list {
-                        gap: 12px;
+                  .expanding-panel-content {
+                    border-bottom: 0.1rem solid transparent;
 
-                        .overflow-navigation-sub-nav-item {
-                          .overflow-navigation-sub-nav-link {
-                            text-decoration: none;
-                            color: inherit;
+                    .inner {
+                      margin-top: 0;
 
-                            .overflow-navigation-sub-nav-text {
-                              color: green;
+                      .overflow-navigation-sub-nav-inner {
+                        margin-top: 0;
+
+                        .overflow-navigation-sub-nav-list {
+                          display: flex;
+                          flex-direction: column;
+                          gap: 2px;
+
+                          .overflow-navigation-sub-nav-item {
+                            padding-block: var(--overflow-nav-items-padding-block);
+                            padding-inline: var(--overflow-nav-padding-inline);
+
+                            .overflow-navigation-sub-nav-link {
+                              text-decoration: none;
+                              color: inherit;
                             }
                           }
                         }

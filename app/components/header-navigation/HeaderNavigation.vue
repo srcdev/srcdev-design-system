@@ -3,7 +3,10 @@
     <nav class="home-navigation" aria-label="Home Navigation">
       <SkipLinks>
         <template #homeLink>
-          <NuxtLink to="/" class="home-link">Logo</NuxtLink>
+          <NuxtLink to="/" class="home-link">
+            SRCDEV
+            <span>design system</span>
+          </NuxtLink>
         </template>
       </SkipLinks>
     </nav>
@@ -120,10 +123,23 @@ const responsiveNavLinks = computed(() => ({
 
     .home-link {
       display: flex;
-      align-items: center;
+      flex-direction: column;
       text-wrap-mode: nowrap;
+      font-size: var(--step-5);
+      letter-spacing: 0.2em;
       color: var(--gray-0);
       text-decoration: none;
+
+      span {
+        font-size: var(--step-3);
+        letter-spacing: initial;
+      }
+
+      &:hover {
+        border-radius: 0.4rem;
+        outline: 2px solid var(--green-8);
+        outline-offset: 0.4rem;
+      }
     }
   }
 }
@@ -243,7 +259,7 @@ const responsiveNavLinks = computed(() => ({
         border-radius: 4px;
         border: var(--_border-width) solid #ffffff90;
         outline: var(--_outline-width) solid #ffffff10;
-        background-color: Canvas;
+        background-color: var(--gray-8);
 
         width: 3rem;
         height: 3rem;
@@ -308,7 +324,12 @@ const responsiveNavLinks = computed(() => ({
                 padding-inline: var(--overflow-nav-padding-inline);
                 display: flex;
                 color: var(--gray-0);
-                border-bottom: 0.1rem solid #efefef75;
+                border-bottom: 0.2rem solid #efefef75;
+
+                &:hover {
+                  background-color: var(--gray-7);
+                  border-color: var(--green-8);
+                }
               }
 
               .overflow-navigation-details {
@@ -321,7 +342,12 @@ const responsiveNavLinks = computed(() => ({
                       padding-inline: var(--overflow-nav-padding-inline);
                       gap: 1rem;
                       color: var(--gray-0);
-                      border-bottom: 0.1rem solid #efefef75;
+                      border-bottom: 0.2rem solid #efefef75;
+
+                      &:hover {
+                        background-color: var(--gray-7);
+                        border-color: var(--green-8);
+                      }
 
                       .label-wrapper {
                         .overflow-navigation-text {
@@ -335,10 +361,15 @@ const responsiveNavLinks = computed(() => ({
 
                     &[open] {
                       .expanding-panel-summary {
-                        border-bottom: 0.1rem solid transparent;
+                        border-color: transparent;
+
+                        &:hover {
+                          background-color: var(--gray-7);
+                          border-color: var(--green-8);
+                        }
                       }
                       + .expanding-panel-content {
-                        border-bottom: 0.1rem solid #efefef75;
+                        border-bottom: 0.2rem solid #efefef75;
                         .inner {
                           .overflow-navigation-sub-nav-inner {
                             margin-top: var(--overflow-nav-items-gap);
@@ -349,7 +380,7 @@ const responsiveNavLinks = computed(() => ({
                   }
 
                   .expanding-panel-content {
-                    border-bottom: 0.1rem solid transparent;
+                    border-bottom: 0.2rem solid transparent;
 
                     .inner {
                       margin-top: 0;
@@ -365,8 +396,13 @@ const responsiveNavLinks = computed(() => ({
                           .overflow-navigation-sub-nav-item {
                             padding-block: var(--overflow-nav-items-padding-block);
                             padding-inline: var(--overflow-nav-padding-inline);
+                            font-size: var(--step-4);
                             color: var(--gray-0);
 
+                            &:hover {
+                              background-color: var(--gray-7);
+                              border-color: var(--green-8);
+                            }
                             .overflow-navigation-sub-nav-link {
                               text-decoration: none;
                             }

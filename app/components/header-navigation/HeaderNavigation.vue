@@ -67,19 +67,13 @@ const responsiveNavLinks = computed(() => ({
       ],
     },
     {
-      name: t("navigation.layouts"),
-      iconName: "material-symbols:responsive-layout",
-      childLinksTitle: t("navigation.childLinksTitle.uiLayouts"),
+      name: "Typography",
+      iconName: "material-symbols:custom-typography",
+      childLinksTitle: "Typography",
       childLinks: [
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: "Page Headings", path: "/playground/typography/page-heading" },
+        { name: "Page Body", path: "/playground/typography/page-body" },
+        { name: "Page Links", path: "/playground/typography/page-link" },
       ],
     },
     { name: t("navigation.about"), path: "/" },
@@ -276,7 +270,7 @@ const responsiveNavLinks = computed(() => ({
         }
 
         .icon {
-          /* scale: var(--_icon-zoom); */
+          color: var(--gray-0);
           width: 2.6rem;
           height: 2.6rem;
         }

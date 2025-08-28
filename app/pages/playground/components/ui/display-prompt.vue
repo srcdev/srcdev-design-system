@@ -32,7 +32,21 @@
               <Icon name="akar-icons:info" class="icon" />
             </template>
             <template #title>Success Prompt Title with content (Dismissable)</template>
-            <template #layout-content>This is prompt content, it can contain html or plain text.</template>
+            <template #layout-content>Dark variant.</template>
+            <template #customCloseIcon>
+              <Icon name="material-symbols:close-small" class="icon" />
+            </template>
+            <template #customTitle>Dismiss</template>
+          </DisplayPromptCore>
+        </LayoutRow>
+
+        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20', 'display-none']">
+          <DisplayPromptCore :theme="selectedTheme" :dismissible="true" :style-class-passthrough="['dark', 'outlined']">
+            <template #customDecoratorIcon>
+              <Icon name="akar-icons:info" class="icon" />
+            </template>
+            <template #title>Success Prompt Title with content (Dismissable)</template>
+            <template #layout-content>Dark + Outlined variant.</template>
             <template #customCloseIcon>
               <Icon name="material-symbols:close-small" class="icon" />
             </template>

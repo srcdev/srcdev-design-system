@@ -12,6 +12,11 @@
         background-color: var(--gray-12);
         border: 1px solid var(--gray-12);
         border-inline-start: 8px solid var(--colour-theme-8);
+
+        &.outlined {
+          border: 1px solid var(--colour-theme-8);
+          border-inline-start: 8px solid var(--colour-theme-8);
+        }
       }
 
       .display-prompt-inner {

@@ -55,7 +55,7 @@ const responsiveNavLinks = computed(() => ({
       iconName: "material-symbols:widgets",
       childLinksTitle: t("navigation.childLinksTitle.uiComponents"),
       childLinks: [
-        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: "Display Prompt Component", path: "/playground/components/ui/display-prompt" },
         { name: t("navigation.placeholderLink"), path: "/" },
         { name: t("navigation.placeholderLink"), path: "/" },
         { name: t("navigation.placeholderLink"), path: "/" },

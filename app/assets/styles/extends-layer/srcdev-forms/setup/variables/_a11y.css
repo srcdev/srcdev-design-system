@@ -1,7 +1,0 @@
-:root {
-  --theme-focus-visible-outline: 1px solid var(--theme-focus-visible-outline);
-
-  --theme-focus-visible-shadow-soft: 0 1px 2px rgba(var(--theme-focus-visible-shadow-soft), 0.05);
-  --theme-focus-visible-shadow-medium: 0 3px 6px rgba(var(--theme-focus-visible-shadow-medium), 0.1);
-  --theme-focus-visible-shadow-strong: 0 6px 12px rgba(var(--theme-focus-visible-shadow-strong), 0.15);
-}

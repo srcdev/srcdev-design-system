@@ -1,4 +1,4 @@
-[data-theme='primary'] {
+[data-theme="primary"] {
   --colour-theme-0: var(--blue-0);
   --colour-theme-1: var(--blue-1);
   --colour-theme-2: var(--blue-2);
@@ -12,30 +12,4 @@
   --colour-theme-10: var(--blue-10);
   --colour-theme-11: var(--blue-11);
   --colour-theme-12: var(--blue-12);
-
-  /* Buttons */
-  --theme-button-surface: light-dark(var(--blue-9), var(--blue-11));
-  --theme-button-surface-hover: light-dark(var(--blue-6), var(--blue-12));
-
-  --theme-button-border: light-dark(var(--blue-9), var(--blue-2));
-  --theme-button-border-hover: light-dark(var(--blue-10), var(--blue-1));
-  --theme-button-border-focus: light-dark(var(--blue-10), var(--blue-5));
-
-  --theme-button-outline: transparent;
-  --theme-button-outline-hover: light-dark(var(--blue-10), var(--blue-1));
-  --theme-button-outline-focus: light-dark(var(--blue-10), var(--blue-1));
-
-  --theme-button-text: var(--blue-0);
-  --theme-button-text-hover: var(--blue-0);
-  --theme-button-text-focus: var(--blue-0);
-
-  /* Input Elements */
-  --theme-input-surface: light-dark(var(--gray-1), var(--gray-8));
-  --theme-input-surface-hover: light-dark(var(--blue-1), var(--blue-7));
-  --theme-input-border: light-dark(var(--blue-9), var(--blue-4));
-  --theme-input-border-hover: light-dark(var(--blue-10), var(--blue-5));
-  --theme-input-border-focus: light-dark(var(--blue-10), var(--blue-5));
-  --theme-input-text: var(--blue-0);
-  --theme-input-text-hover: var(--blue-0);
-  --theme-input-text-focus: var(--blue-0);
 }

@@ -21,6 +21,9 @@
   --form-fieldset-legend-color: light-dark(var(--gray-12), var(--gray-1));
   --form-label-color: light-dark(var(--gray-12), var(--gray-1));
 
+  /* Description */
+  --form-description-color: light-dark(var(--gray-12), var(--gray-1));
+
   /* Input Elements */
   --theme-input-surface: light-dark(var(--gray-1), var(--gray-8));
   --theme-input-surface-hover: light-dark(var(--gray-1), var(--gray-5));

@@ -48,10 +48,10 @@
       border-bottom-left-radius: var(--form-input-border-radius-underlined);
       border-bottom-right-radius: var(--form-input-border-radius-underlined);
 
-      border-top: var(--form-element-border-width) solid transparent;
-      border-right: var(--form-element-border-width) solid transparent;
+      border-top: none;
+      border-right: none;
       border-bottom: var(--form-element-border-width-underlined) solid var(--theme-input-border);
-      border-left: var(--form-element-border-width) solid transparent;
+      border-left: none;
 
       &.error {
         outline-color: var(--theme-error-surface);
@@ -85,7 +85,8 @@
       }
 
       &::picker(select) {
-        transition: display allow-discrete var(--theme-form-transition-duration), opacity var(--theme-form-transition-duration), overlay var(--theme-form-transition-duration) allow-discrete;
+        transition: display allow-discrete var(--theme-form-transition-duration),
+          opacity var(--theme-form-transition-duration), overlay var(--theme-form-transition-duration) allow-discrete;
       }
 
       &:not(:open)::picker(select) {

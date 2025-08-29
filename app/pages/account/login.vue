@@ -28,6 +28,10 @@
           </FormWrapper>
         </LayoutRow>
 
+        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20', 'display-none']">
+          <ThemeSwitcher v-model="selectedTheme" />
+        </LayoutRow>
+
         <!-- Traditional Login Form (when not authenticated) -->
         <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
           <FormWrapper width="medium">
@@ -51,7 +55,7 @@
                         :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.emailAddress)"
                         :required="true"
                         :styleClassPassthrough="['style-1', 'style-2']"
-                        :theme
+                        :theme="selectedTheme"
                         :size
                         :inputVariant
                       >
@@ -78,7 +82,7 @@
                         :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.password)"
                         :required="true"
                         :styleClassPassthrough="['style-1', 'style-2']"
-                        :theme
+                        :theme="selectedTheme"
                         :size
                         :inputVariant
                       >
@@ -98,7 +102,7 @@
                         :required="true"
                         :error-message="formErrors?.terms?._errors[0] ?? ''"
                         :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.terms)"
-                        :theme
+                        :theme="selectedTheme"
                         :size
                       >
                         <template #labelContent>
@@ -119,7 +123,6 @@
                         :is-pending="false"
                         :readonly="zodFormControl.submitDisabled"
                         button-text="Submit"
-                        :theme
                         :size
                         @click.stop.prevent="submitForm()"
                       />
@@ -153,7 +156,7 @@ useHead({
 })
 
 const inputVariant = ref("underlined") // 'normal' | 'outlined' | 'underlined'
-const theme = ref("primary")
+const selectedTheme = ref("primary")
 const size = ref<"x-small" | "small" | "default" | "medium" | "large">("default")
 
 /*

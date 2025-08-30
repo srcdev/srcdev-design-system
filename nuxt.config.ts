@@ -84,10 +84,23 @@ export default defineNuxtConfig({
   },
   fonts: {
     families: [
+      // {
+      //   name: "Poppins",
+      //   weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+      //   styles: ["normal", "italic"],
+      //   provider: "bunny",
+      // },
       {
-        name: "Poppins",
+        name: "Quicksand",
         weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+        styles: ["normal", "italic"],
+        provider: "bunny",
       },
+      // {
+      //   name: "Inter Variable",
+      //   styles: ["normal", "italic"],
+      //   provider: "fontsource",
+      // },
     ],
   },
   components: [

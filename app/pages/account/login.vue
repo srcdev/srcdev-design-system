@@ -3,9 +3,9 @@
     <NuxtLayout name="default">
       <template #layout-content>
         <section>
-          <h1>{{ $t("pages.account.login.header") }}</h1>
+          <h1 class="page-heading-2">{{ $t("pages.account.login.header") }}</h1>
 
-          <p>{{ $t("pages.account.login.description") }}</p>
+          <p class="page-body-normal">{{ $t("pages.account.login.description") }}</p>
         </section>
 
         <!-- GitHub OAuth Login -->

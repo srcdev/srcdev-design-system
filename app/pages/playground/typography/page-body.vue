@@ -54,18 +54,6 @@
           </div>
 
           <div class="demo-row">
-            <strong>page-body-medium-semibold</strong>
-            <div class="class-demo page-body-medium-semibold">
-              Lorum ipsum dolor sit amet, consectetur adipiscing elit.
-            </div>
-          </div>
-
-          <div class="demo-row">
-            <strong>page-body-medium-bold</strong>
-            <div class="class-demo page-body-medium-bold">Lorum ipsum dolor sit amet, consectetur adipiscing elit.</div>
-          </div>
-
-          <div class="demo-row">
             <strong>page-body-normal-light</strong>
             <div class="class-demo page-body-normal-light">
               Lorum ipsum dolor sit amet, consectetur adipiscing elit.

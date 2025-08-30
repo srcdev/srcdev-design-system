@@ -31,7 +31,7 @@
     /* Checkboxes & Radio buttons */
     --theme-checkbox-label-text-color: light-dark(var(--gray-11), var(--gray-1));
     --theme-checkbox-decorator-color: var(--red-10);
-    --theme-checkbox-symbol-surface: var(--gray-12);
+    /* --theme-checkbox-symbol-surface: light-dark(var(--red-2), var(--red-1)); */
     --theme-checkbox-symbol-color: light-dark(var(--gray-11), var(--gray-1));
 
     /* a11y */

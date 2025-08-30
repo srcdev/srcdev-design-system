@@ -23,8 +23,8 @@
     "nuxt": "4.0.3",
     "nuxt-security": "2.4.0",
     "srcdev-nuxt-components": "6.1.6",
-    "srcdev-nuxt-forms": "6.1.4",
-    "vue": "3.5.19",
+    "srcdev-nuxt-forms": "6.1.5",
+    "vue": "3.5.20",
     "vue-router": "4.5.1"
   },
   "dependencies": {

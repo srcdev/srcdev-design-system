@@ -38,6 +38,14 @@
       border-radius: 50%;
     }
 
+    &:has(.input-checkbox-radio-core:checked) {
+      .input-checked-icon-slot {
+        .input-checked-icon-checked {
+          color: var(--theme-checkbox-symbol-color);
+        }
+      }
+    }
+
     /* focus-visible */
     &:not(.button):focus-within {
       background-color: var(--theme-input-surface-focus);
@@ -45,7 +53,7 @@
       outline-offset: var(--form-element-outline-offset-focus);
     }
 
-    .input-checked-icon {
+    .input-checked-icon-checked {
       color: var(--theme-checkbox-symbol-color);
       box-shadow: var(--_box-shadow);
     }

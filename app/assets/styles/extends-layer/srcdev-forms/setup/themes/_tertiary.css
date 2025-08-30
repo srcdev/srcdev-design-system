@@ -1,5 +1,11 @@
 :root {
   [data-theme="tertiary"] {
-    /* See default styles */
+    /* Buttons */
+    --theme-button-surface: var(--gray-0);
+    --theme-button-surface-hover: var(--gray-1);
+
+    --theme-button-text: var(--gray-10);
+    --theme-button-text-hover: var(--gray-10);
+    --theme-button-text-focus: var(--gray-10);
   }
 }

@@ -7,4 +7,5 @@
 @import "./_input-checkbox-radio-core";
 @import "./_input-button";
 @import "./_input-checkbox-radio-options-button";
+@import "./_input-toggle-switch";
 @import "./_form-fieldset";

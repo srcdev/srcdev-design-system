@@ -164,6 +164,7 @@ const responsiveNavLinks = computed(() => ({
       }
 
       .main-navigation-item {
+        width: initial;
         .main-navigation-link {
           color: var(--gray-0);
           text-decoration: none;

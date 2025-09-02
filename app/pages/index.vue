@@ -3,9 +3,11 @@
     <NuxtLayout name="default">
       <template #layout-content>
         <section>
-          <h1 class="page-heading-1">{{ $t("pages.index.header") }}</h1>
+          <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20', 'display-none']">
+            <h1 class="page-heading-1">{{ $t("pages.index.header") }}</h1>
 
-          <p>{{ $t("pages.index.description") }}</p>
+            <p>{{ $t("pages.index.description") }}</p>
+          </LayoutRow>
         </section>
       </template>
     </NuxtLayout>

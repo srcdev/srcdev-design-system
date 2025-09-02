@@ -22,8 +22,8 @@ definePageMeta({
 })
 
 useHead({
-  title: "Home page", // You could also use: computed(() => $t("pages.index.title")) if you add this to your i18n files
-  meta: [{ name: "description", content: "Desciption meta tag content" }],
+  title: "Locale Switcher", // You could also use: computed(() => $t("pages.index.title")) if you add this to your i18n files
+  meta: [{ name: "description", content: "Description meta tag content" }],
   bodyAttrs: {
     // class: "",
   },

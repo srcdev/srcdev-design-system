@@ -83,7 +83,10 @@ const responsiveNavLinks = computed(() => ({
     {
       name: t("navigation.settings"),
       childLinksTitle: t("navigation.childLinksTitle.settings"),
-      childLinks: [{ name: t("pages.settings.locale-switcher.header"), path: "/settings/locale-switcher" }],
+      childLinks: [
+        { name: t("pages.settings.locale-switcher.header"), path: "/settings/locale-switcher" },
+        { name: "Color mode switcher", path: "/settings/colour-mode-switcher" },
+      ],
     },
     {
       name: t("navigation.account"),

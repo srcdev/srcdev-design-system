@@ -22,7 +22,7 @@
     "@nuxt/test-utils": "3.19.2",
     "@nuxtjs/i18n": "10.0.6",
     "@unhead/vue": "2.0.14",
-    "concurrently": "^9.0.1",
+    "concurrently": "9.0.1",
     "eslint": "9.34.0",
     "nuxt": "4.0.3",
     "nuxt-security": "2.4.0",

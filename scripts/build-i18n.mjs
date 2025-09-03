@@ -212,7 +212,8 @@ async function watchAndBuild() {
     }
 
     // Keep the process alive
-    await new Promise(() => {})
+    // await new Promise(() => { })
+    process.stdin.resume()
   } catch (error) {
     if (error.code !== "ABORT_ERR") {
       console.error("❌ Watch error:", error)

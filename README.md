@@ -53,7 +53,7 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 ## Internationalization (i18n)
 
-This project implements multi-language support using the `@nuxtjs/i18n` module. The application supports three languages:
+This project implements a modern, scalable multi-language support system using `@nuxtjs/i18n` with component-scoped translations. The application supports three languages with both global and component-specific translation files.
 
 ### Supported Languages
 
@@ -65,29 +65,128 @@ This project implements multi-language support using the `@nuxtjs/i18n` module. 
 
 The i18n configuration is set up in `nuxt.config.ts` with:
 
-- Default locale set to English (`en`)
+- Default locale set to English (`en-GB`)
 - Browser language detection enabled
 - Cookie-based locale persistence
 - Automatic redirection on root path
 
-### Translation Files
+### Translation File Structure
 
-Translation files are located in `i18n/locales/`:
+The project uses a modular translation system with two main sources:
 
-- `en-GB.json` - English translations
-- `zh-CN.json` - Chinese translations
-- `ar-YE.json` - Arabic translations
+#### 1. Global Translations (`i18n-source/locales/`)
+
+```text
+i18n-source/locales/
+├── components/
+│   └── footer/
+│       ├── en-GB.json
+│       ├── zh-CN.json
+│       └── ar-YE.json
+├── global/
+│   ├── en-GB.json
+│   ├── zh-CN.json
+│   └── ar-YE.json
+└── pages/
+    ├── account/login/
+    ├── index/
+    └── settings/locale-switcher/
+```
+
+#### 2. Component-Scoped Translations (`app/components/*/locales/`)
+
+```text
+app/components/
+└── header-navigation/
+    └── locales/
+        ├── en-GB.json
+        ├── zh-CN.json
+        └── ar-YE.json
+```
+
+#### 3. Generated Output (`i18n/locales/`)
+
+The build system automatically merges all translation sources into TypeScript files:
+
+```typescript
+// i18n/locales/en-GB.ts
+export default {
+  components: {
+    footer: {
+      /* from i18n-source */
+    },
+    navigation: {
+      /* from component */
+    },
+  },
+  global: {
+    /* from i18n-source */
+  },
+  pages: {
+    /* from i18n-source */
+  },
+} as const
+```
+
+### Build System
+
+#### Manual Build
+
+```bash
+npm run build:i18n
+```
+
+#### Development with Watch Mode
+
+```bash
+npm run dev  # Includes automatic i18n watching and rebuilding
+```
+
+The build system:
+
+- ✅ Automatically discovers component locale directories
+- ✅ Deep merges translations with proper namespacing
+- ✅ Watches for changes in both global and component translations
+- ✅ Regenerates TypeScript files with type safety
+- ✅ Provides clear logging of discovered directories and changes
 
 ### Usage
 
 #### In Templates
 
-Use the `$t()` function to access translations:
+Use the `$t()` function with namespaced keys:
 
 ```vue
+<!-- Global translations -->
 <h1>{{ $t("pages.index.header") }}</h1>
-<p>{{ $t("pages.index.description") }}</p>
+<p>{{ $t("global.siteName") }}</p>
+
+<!-- Component translations -->
+<span>{{ $t("components.navigation.home") }}</span>
+<button>{{ $t("components.footer.settings") }}</button>
 ```
+
+#### Adding Component Translations
+
+To add translations for a new component:
+
+1. Create a `locales/` directory in your component folder
+2. Add JSON files for each supported locale (`en-GB.json`, `zh-CN.json`, `ar-YE.json`)
+3. Structure translations under a "components" namespace:
+
+   ```json
+   {
+     "components": {
+       "yourComponent": {
+         "title": "Your Title",
+         "description": "Your Description"
+       }
+     }
+   }
+   ```
+
+4. Use in your component: `{{ $t("components.yourComponent.title") }}`
+5. The build system will automatically detect and include your translations
 
 #### Language Switching
 

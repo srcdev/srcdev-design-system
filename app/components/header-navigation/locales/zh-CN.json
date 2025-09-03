@@ -1,0 +1,25 @@
+{
+  "components": {
+    "navigation": {
+      "home": "首页",
+      "components": "组件",
+      "layouts": "布局",
+      "about": "关于",
+      "settings": "设置",
+      "account": "账户",
+      "login": "登录",
+      "dashboard": "仪表板",
+      "someOtherLink": "其他链接",
+      "childLinksTitle": {
+        "uiComponents": "用户界面组件",
+        "uiLayouts": "用户界面布局",
+        "settings": "设置",
+        "manageAccount": "管理您的账户"
+      },
+      "placeholderLink": "占位链接",
+      "screenReader": {
+        "settings": "设置"
+      }
+    }
+  }
+}

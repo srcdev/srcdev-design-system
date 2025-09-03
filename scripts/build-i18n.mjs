@@ -7,6 +7,7 @@ import { fileURLToPath } from "url"
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const sourceDir = join(__dirname, "../i18n-source/locales")
 const outputDir = join(__dirname, "../i18n/locales")
+const componentsDir = join(__dirname, "../app/components")
 
 // Read locales from nuxt.config.ts
 async function getLocalesFromConfig() {
@@ -51,9 +52,43 @@ function deepMerge(target, source) {
   return result
 }
 
+// Function to find component locale directories
+async function findComponentLocaleDirs() {
+  const componentLocaleDirs = []
+
+  try {
+    const componentEntries = await readdir(componentsDir, { withFileTypes: true })
+
+    for (const entry of componentEntries) {
+      if (entry.isDirectory()) {
+        const componentPath = join(componentsDir, entry.name)
+        const localesPath = join(componentPath, "locales")
+
+        try {
+          // Check if locales directory exists
+          const localesEntries = await readdir(localesPath, { withFileTypes: true })
+          if (localesEntries.length > 0) {
+            componentLocaleDirs.push(localesPath)
+          }
+        } catch {
+          // locales directory doesn't exist, skip
+        }
+      }
+    }
+  } catch (error) {
+    console.warn("⚠️ Could not scan components directory:", error.message)
+  }
+
+  return componentLocaleDirs
+}
+
 // Function to recursively find JSON files for a locale
-async function findLocaleFiles(dir, locale) {
+async function findLocaleFiles(locale) {
   const files = []
+
+  // Get component locale directories
+  const componentLocaleDirs = await findComponentLocaleDirs()
+  const allDirs = [sourceDir, ...componentLocaleDirs]
 
   async function searchDir(currentDir) {
     try {
@@ -73,13 +108,16 @@ async function findLocaleFiles(dir, locale) {
     }
   }
 
-  await searchDir(dir)
+  for (const dir of allDirs) {
+    await searchDir(dir)
+  }
+
   return files
 }
 
 // Function to generate a merged locale file
 async function generateMergedLocale(locale) {
-  const files = await findLocaleFiles(sourceDir, locale)
+  const files = await findLocaleFiles(locale)
   let mergedTranslations = {}
 
   for (const filePath of files) {
@@ -106,6 +144,16 @@ export default ${JSON.stringify(translations, null, 2)} as const`
 
 async function generateLocaleFiles() {
   console.log("🌍 Generating i18n locale files...")
+
+  // Get component locale directories and log them
+  const componentLocaleDirs = await findComponentLocaleDirs()
+  if (componentLocaleDirs.length > 0) {
+    console.log(`📁 Found component locale directories:`)
+    componentLocaleDirs.forEach((dir) => {
+      const relativePath = dir.replace(join(__dirname, ".."), "")
+      console.log(`   ${relativePath}`)
+    })
+  }
 
   // Get locales from nuxt.config.ts
   const locales = await getLocalesFromConfig()
@@ -134,15 +182,37 @@ async function watchAndBuild() {
   // Generate initial files
   await generateLocaleFiles()
 
-  try {
-    const watcher = watch(sourceDir, { recursive: true })
+  // Get component locale directories for watching
+  const componentLocaleDirs = await findComponentLocaleDirs()
+  const allWatchDirs = [sourceDir, ...componentLocaleDirs]
 
-    for await (const event of watcher) {
+  try {
+    // Create watchers for all directories
+    const watchers = allWatchDirs.map((dir) => watch(dir, { recursive: true }))
+
+    // Handle changes from any watcher
+    const handleChange = async (event) => {
       if (event.filename && event.filename.endsWith(".json")) {
         console.log(`\n📝 Detected change in ${event.filename}`)
         await generateLocaleFiles()
       }
     }
+
+    // Listen to all watchers
+    for (const watcher of watchers) {
+      ;(async () => {
+        for await (const event of watcher) {
+          await handleChange(event)
+        }
+      })().catch((error) => {
+        if (error.code !== "ABORT_ERR") {
+          console.error("❌ Watch error:", error)
+        }
+      })
+    }
+
+    // Keep the process alive
+    await new Promise(() => {})
   } catch (error) {
     if (error.code !== "ABORT_ERR") {
       console.error("❌ Watch error:", error)

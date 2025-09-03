@@ -5,8 +5,8 @@ import { join, dirname } from "path"
 import { fileURLToPath } from "url"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const localesDir = join(__dirname, "../i18n/locales")
-const outputDir = join(__dirname, "../i18n/i18n/locales")
+const sourceDir = join(__dirname, "../i18n-source/locales")
+const outputDir = join(__dirname, "../i18n/locales")
 
 // Supported locales
 const locales = ["en-GB", "zh-CN", "ar-YE"]
@@ -57,7 +57,7 @@ async function findLocaleFiles(dir, locale) {
 
 // Function to generate a merged locale file
 async function generateMergedLocale(locale) {
-  const files = await findLocaleFiles(localesDir, locale)
+  const files = await findLocaleFiles(sourceDir, locale)
   let mergedTranslations = {}
 
   for (const filePath of files) {
@@ -110,7 +110,7 @@ async function watchAndBuild() {
   await generateLocaleFiles()
 
   try {
-    const watcher = watch(localesDir, { recursive: true })
+    const watcher = watch(sourceDir, { recursive: true })
 
     for await (const event of watcher) {
       if (event.filename && event.filename.endsWith(".json")) {

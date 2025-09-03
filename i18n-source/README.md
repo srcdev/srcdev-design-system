@@ -7,27 +7,27 @@ This project uses a modern, maintainable approach to internationalization (i18n)
 ## Structure
 
 ````text
+i18n-source/
+│   └── locales/                 # Source JSON files (organized by feature)
+│       ├── components/          # Component-specific translations
+│       │   └── navigation/
+│       │   ├── en-GB.json
+│       │   ├── zh-CN.json
+│       │   └── ar-YE.json
+│       ├── global/              # Global/site-wide translations
+│       │   ├── en-GB.json
+│       │   ├── zh-CN.json
+│       │   └── ar-YE.json
+│       └── pages/               # Page-specific translations
+│           ├── index/
+│           ├── account/
+│           └── settings/
 i18n/
-├── locales/                 # Source JSON files (organized by feature)
-│   ├── components/          # Component-specific translations
-│   │   └── navigation/
-│   │       ├── en-GB.json
-│   │       ├── zh-CN.json
-│   │       └── ar-YE.json
-│   ├── global/              # Global/site-wide translations
-│   │   ├── en-GB.json
-│   │   ├── zh-CN.json
-│   │   └── ar-YE.json
-│   └── pages/               # Page-specific translations
-│       ├── index/
-│       ├── account/
-│       └── settings/
-├── i18n/
-│   └── locales/             # Auto-generated merged files (working location)
+│   └── locales/                 # Auto-generated merged files (working location)
 │       ├── en-GB.ts
 │       ├── zh-CN.ts
 │       └── ar-YE.ts
-└── README.md               # This documentation
+└── README.md                    # This documentation
 ```## How It Works
 
 1. **Modular JSON Files**: Translations are organized in small, focused JSON files by feature/component/page in `i18n/locales/`

@@ -35,7 +35,7 @@ export default {
       }
     },
     "index": {
-      "header": "SRCDEV Design System",
+      "header": "SRCDEV Design System Homepage updated",
       "description": "Visual demos of typography, layout, and components."
     },
     "settings": {

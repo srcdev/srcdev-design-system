@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   extends: ["srcdev-nuxt-forms", "srcdev-nuxt-components"],
   devtools: { enabled: true },
   devServer: {
-    // https: true,
+    https: true,
     // port: 3020,
   },
   runtimeConfig: {
@@ -94,7 +94,7 @@ export default defineNuxtConfig({
         name: "Quicksand",
         weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
         styles: ["normal", "italic"],
-        provider: "bunny",
+        // provider: "bunny",
       },
       // {
       //   name: "Inter Variable",

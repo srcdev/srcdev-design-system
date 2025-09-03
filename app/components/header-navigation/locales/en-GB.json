@@ -1,0 +1,25 @@
+{
+  "components": {
+    "navigation": {
+      "home": "Home",
+      "components": "Components",
+      "layouts": "Layouts",
+      "about": "About",
+      "settings": "Settings",
+      "account": "Account",
+      "login": "Login",
+      "dashboard": "Dashboard",
+      "someOtherLink": "Some other link",
+      "childLinksTitle": {
+        "uiComponents": "UI Components",
+        "uiLayouts": "UI Layouts",
+        "settings": "Settings",
+        "manageAccount": "Manage Your Account"
+      },
+      "placeholderLink": "Holding link",
+      "screenReader": {
+        "settings": "Settings"
+      }
+    }
+  }
+}

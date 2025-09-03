@@ -1,0 +1,10 @@
+{
+  "pages": {
+    "settings": {
+      "locale-switcher": {
+        "header": "选择语言",
+        "description": "从列表中选择您首选的语言。"
+      }
+    }
+  }
+}

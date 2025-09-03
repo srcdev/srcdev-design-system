@@ -1,0 +1,10 @@
+{
+  "pages": {
+    "account": {
+      "forgotten-password": {
+        "header": "忘记密码",
+        "description": "使用您的电子邮件重置密码。"
+      }
+    }
+  }
+}

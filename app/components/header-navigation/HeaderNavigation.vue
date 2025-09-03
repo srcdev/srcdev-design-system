@@ -26,7 +26,7 @@
           <li class="secondary-navigation-item">
             <NuxtLink class="secondary-navigation-link" to="/">
               <Icon name="material-symbols:settings-outline-rounded" class="icon" aria-hidden="true" />
-              <span class="sr-only">{{ t("navigation.screenReader.settings") }}</span>
+              <span class="sr-only">{{ t("components.navigation.screenReader.settings") }}</span>
             </NuxtLink>
           </li>
         </ul>
@@ -42,28 +42,28 @@ const { t } = useI18n()
 
 const responsiveNavLinksSimple = computed(() => ({
   firstNav: [
-    { name: t("navigation.home"), path: "/" },
-    { name: t("navigation.login"), path: "/account/login" },
-    { name: t("navigation.dashboard"), path: "/account/dashboard" },
+    { name: t("components.navigation.home"), path: "/" },
+    { name: t("components.navigation.login"), path: "/account/login" },
+    { name: t("components.navigation.dashboard"), path: "/account/dashboard" },
   ],
 })) as ComputedRef<ResponsiveHeaderProp>
 
 const responsiveNavLinks = computed(() => ({
   firstNav: [
     {
-      name: t("navigation.components"),
+      name: t("components.navigation.components"),
       iconName: "material-symbols:widgets",
-      childLinksTitle: t("navigation.childLinksTitle.uiComponents"),
+      childLinksTitle: t("components.navigation.childLinksTitle.uiComponents"),
       childLinks: [
         { name: "Display Prompt Component", path: "/playground/components/ui/display-prompt" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
-        { name: t("navigation.placeholderLink"), path: "/" },
+        { name: `${t("components.navigation.placeholderLink")} 1`, path: "/" },
+        { name: `${t("components.navigation.placeholderLink")} 2`, path: "/" },
+        { name: `${t("components.navigation.placeholderLink")} 3`, path: "/" },
+        { name: `${t("components.navigation.placeholderLink")} 4`, path: "/" },
+        { name: `${t("components.navigation.placeholderLink")} 5`, path: "/" },
+        { name: `${t("components.navigation.placeholderLink")} 6`, path: "/" },
+        { name: `${t("components.navigation.placeholderLink")} 7`, path: "/" },
+        { name: `${t("components.navigation.placeholderLink")} 8`, path: "/" },
       ],
     },
     {
@@ -76,24 +76,24 @@ const responsiveNavLinks = computed(() => ({
         { name: "Page Links", path: "/playground/typography/page-link" },
       ],
     },
-    { name: t("navigation.about"), path: "/" },
+    { name: t("components.navigation.about"), path: "/" },
   ],
   secondNav: [
-    { name: t("navigation.someOtherLink"), iconName: "material-symbols:widgets", path: "#link-description" },
+    { name: t("components.navigation.someOtherLink"), iconName: "material-symbols:widgets", path: "#link-description" },
     {
-      name: t("navigation.settings"),
-      childLinksTitle: t("navigation.childLinksTitle.settings"),
+      name: t("components.navigation.settings"),
+      childLinksTitle: t("components.navigation.childLinksTitle.settings"),
       childLinks: [
         { name: t("pages.settings.locale-switcher.header"), path: "/settings/locale-switcher" },
         { name: "Color mode switcher", path: "/settings/colour-mode-switcher" },
       ],
     },
     {
-      name: t("navigation.account"),
-      childLinksTitle: t("navigation.childLinksTitle.manageAccount"),
+      name: t("components.navigation.account"),
+      childLinksTitle: t("components.navigation.childLinksTitle.manageAccount"),
       childLinks: [
-        { name: t("navigation.login"), path: "/account/login" },
-        { name: t("navigation.dashboard"), path: "/account/dashboard" },
+        { name: t("components.navigation.login"), path: "/account/login" },
+        { name: t("components.navigation.dashboard"), path: "/account/dashboard" },
       ],
     },
   ],
@@ -142,7 +142,7 @@ const responsiveNavLinks = computed(() => ({
 }
 
 /* Modifiers for ResposiveHeader  */
-.navigation.srcdev-design-system-nav {
+.components.navigation.srcdev-design-system-nav {
   margin: 1.2rem;
   border-radius: 0.8rem;
   background-color: #efefef05;

@@ -4,9 +4,12 @@
   "type": "module",
   "scripts": {
     "cleanup": "rm -rf node_modules package-lock.json .nuxt dist",
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "build": "npm run build:i18n && nuxt build",
+    "build:i18n": "node scripts/build-i18n.mjs",
+    "build:i18n:watch": "node scripts/build-i18n.mjs --watch",
+    "dev": "concurrently \"npm run build:i18n:watch\" \"nuxt dev\" --names \"i18n,nuxt\" --prefix-colors \"cyan,green\"",
+    "dev:nuxt-only": "nuxt dev",
+    "generate": "npm run build:i18n && nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
@@ -19,6 +22,7 @@
     "@nuxt/test-utils": "3.19.2",
     "@nuxtjs/i18n": "10.0.6",
     "@unhead/vue": "2.0.14",
+    "concurrently": "^9.0.1",
     "eslint": "9.34.0",
     "nuxt": "4.0.3",
     "nuxt-security": "2.4.0",

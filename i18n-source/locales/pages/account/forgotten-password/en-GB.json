@@ -1,0 +1,10 @@
+{
+  "pages": {
+    "account": {
+      "forgotten-password": {
+        "header": "Forgotten Password",
+        "description": "Reset your password using your email."
+      }
+    }
+  }
+}

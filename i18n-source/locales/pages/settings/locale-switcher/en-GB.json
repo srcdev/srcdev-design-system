@@ -1,0 +1,10 @@
+{
+  "pages": {
+    "settings": {
+      "locale-switcher": {
+        "header": "Select Language",
+        "description": "Choose your preferred language from the list."
+      }
+    }
+  }
+}

@@ -142,7 +142,7 @@ const responsiveNavLinks = computed(() => ({
 }
 
 /* Modifiers for ResposiveHeader  */
-.navigation.srcdev-design-system-nav {
+.components.navigation.srcdev-design-system-nav {
   margin: 1.2rem;
   border-radius: 0.8rem;
   background-color: #efefef05;

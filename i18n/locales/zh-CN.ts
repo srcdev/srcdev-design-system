@@ -52,6 +52,10 @@ export default {
   },
   "pages": {
     "account": {
+      "forgotten-password": {
+        "header": "忘记密码",
+        "description": "使用您的电子邮件重置密码。"
+      },
       "login": {
         "header": "登录到您的帐户",
         "description": "使用您的电子邮件和密码访问您的帐户。"

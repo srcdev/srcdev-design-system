@@ -52,13 +52,17 @@ export default {
   },
   "pages": {
     "account": {
+      "forgotten-password": {
+        "header": "Forgotten Password",
+        "description": "Reset your password using your email."
+      },
       "login": {
         "header": "Login to Your Account",
         "description": "Access your account using your email and password."
       }
     },
     "index": {
-      "header": "SRCDEV Design System Homepage test update",
+      "header": "SRCDEV Design System Homepage with updates",
       "description": "Visual demos of typography, layout, and components."
     },
     "settings": {

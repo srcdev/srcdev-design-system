@@ -11,9 +11,6 @@ const outputDir = join(__dirname, "../i18n/locales")
 // Supported locales
 const locales = ["en-GB", "zh-CN", "ar-YE"]
 
-// Flag to track if we're in watch mode
-let isWatching = false
-
 // Helper function to deep merge objects
 function deepMerge(target, source) {
   const result = { ...target }
@@ -104,7 +101,6 @@ async function generateLocaleFiles() {
 // Watch mode function
 async function watchAndBuild() {
   console.log("👀 Watching i18n files for changes...")
-  isWatching = true
 
   // Generate initial files
   await generateLocaleFiles()

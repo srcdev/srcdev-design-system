@@ -4,9 +4,10 @@
   "type": "module",
   "scripts": {
     "cleanup": "rm -rf node_modules package-lock.json .nuxt dist",
-    "build": "nuxt build",
+    "build": "npm run build:i18n && nuxt build",
+    "build:i18n": "node scripts/build-i18n.mjs",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "generate": "npm run build:i18n && nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },

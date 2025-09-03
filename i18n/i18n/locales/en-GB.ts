@@ -30,7 +30,7 @@ export default {
   "pages": {
     "account": {
       "login": {
-        "header": "Login to Your Account i18n",
+        "header": "Login to Your Account",
         "description": "Access your account using your email and password."
       }
     },

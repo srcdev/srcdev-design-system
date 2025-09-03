@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readdir, readFile, writeFile } from "fs/promises"
+import { readdir, readFile, writeFile, watch } from "fs/promises"
 import { join, dirname } from "path"
 import { fileURLToPath } from "url"
 
@@ -10,6 +10,9 @@ const outputDir = join(__dirname, "../i18n/i18n/locales")
 
 // Supported locales
 const locales = ["en-GB", "zh-CN", "ar-YE"]
+
+// Flag to track if we're in watch mode
+let isWatching = false
 
 // Helper function to deep merge objects
 function deepMerge(target, source) {
@@ -98,9 +101,41 @@ async function generateLocaleFiles() {
   console.log("🎉 i18n locale files generated successfully!")
 }
 
+// Watch mode function
+async function watchAndBuild() {
+  console.log("👀 Watching i18n files for changes...")
+  isWatching = true
+
+  // Generate initial files
+  await generateLocaleFiles()
+
+  try {
+    const watcher = watch(localesDir, { recursive: true })
+
+    for await (const event of watcher) {
+      if (event.filename && event.filename.endsWith(".json")) {
+        console.log(`\n📝 Detected change in ${event.filename}`)
+        await generateLocaleFiles()
+      }
+    }
+  } catch (error) {
+    if (error.code !== "ABORT_ERR") {
+      console.error("❌ Watch error:", error)
+    }
+  }
+}
+
+// Parse command line arguments
+const args = process.argv.slice(2)
+const watchMode = args.includes("--watch") || args.includes("-w")
+
 // Run if this file is executed directly
 if (import.meta.url === `file://${process.argv[1]}`) {
-  generateLocaleFiles().catch(console.error)
+  if (watchMode) {
+    watchAndBuild().catch(console.error)
+  } else {
+    generateLocaleFiles().catch(console.error)
+  }
 }
 
 export { generateLocaleFiles }

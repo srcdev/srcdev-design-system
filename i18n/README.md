@@ -66,9 +66,36 @@ i18n/
 
 ## Commands
 
-- `npm run build:i18n` - Regenerate locale files from JSON sources
-- `npm run dev` - Start development (may need to run build:i18n first)
+- `npm run build:i18n` - Regenerate locale files from JSON sources (one-time)
+- `npm run build:i18n:watch` - Watch JSON files and regenerate locale files on changes
+- `npm run dev` - Start development with automatic i18n file watching
+- `npm run dev:nuxt-only` - Start development without i18n watching (if needed)
 - `npm run build` - Build for production (includes i18n build)
+
+## Development Experience
+
+### Automatic File Watching 🎉
+
+When you run `npm run dev`, the development server now automatically:
+
+1. **Generates i18n files on startup** - Ensures all translations are up to date
+2. **Watches for JSON changes** - Any modification to `.json` files in `i18n/locales/` triggers regeneration
+3. **Hot reloads translations** - Changes appear immediately in your browser
+4. **Runs in parallel** - Both i18n watcher and Nuxt dev server run simultaneously with clear, colored output
+
+### Workflow
+
+1. Start development: `npm run dev`
+2. Edit any JSON translation file in `i18n/locales/`
+3. Save the file - watch will automatically regenerate merged files
+4. Your browser hot reloads with the new translations ✨
+
+### Manual Control
+
+If you need to build i18n files manually:
+
+- `npm run build:i18n` - One-time build
+- `npm run build:i18n:watch` - Watch mode only (without Nuxt dev server)
 
 ## Benefits
 

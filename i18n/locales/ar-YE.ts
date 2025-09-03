@@ -66,6 +66,10 @@ export default {
       "description": "نماذج بصرية للخطوط والتخطيط والمكونات."
     },
     "settings": {
+      "colour-mode-switcher": {
+        "header": "تبديل وضع الألوان",
+        "description": "اختر وضع الألوان المفضل لديك، أو اضبطه على \"تلقائي\" لاتباع إعدادات النظام"
+      },
       "locale-switcher": {
         "header": "اختر اللغة",
         "description": "اختر لغتك المفضلة من القائمة."

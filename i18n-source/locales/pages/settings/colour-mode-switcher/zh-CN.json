@@ -1,0 +1,10 @@
+{
+  "pages": {
+    "settings": {
+      "colour-mode-switcher": {
+        "header": "切换颜色模式",
+        "description": "选择您偏好的颜色模式，或设置为\"自动\"以跟随系统设置"
+      }
+    }
+  }
+}

@@ -66,6 +66,10 @@ export default {
       "description": "视觉演示排版、布局和组件。"
     },
     "settings": {
+      "colour-mode-switcher": {
+        "header": "切换颜色模式",
+        "description": "选择您偏好的颜色模式，或设置为\"自动\"以跟随系统设置"
+      },
       "locale-switcher": {
         "header": "选择语言",
         "description": "从列表中选择您首选的语言。"

@@ -62,10 +62,14 @@ export default {
       }
     },
     "index": {
-      "header": "SRCDEV Design System Homepage with updates",
+      "header": "SRCDEV Design System Homepage",
       "description": "Visual demos of typography, layout, and components."
     },
     "settings": {
+      "colour-mode-switcher": {
+        "header": "Switch Colour Mode",
+        "description": "Choose your preferred colour, or set 'auto' for system setting"
+      },
       "locale-switcher": {
         "header": "Select Language",
         "description": "Choose your preferred language from the list."

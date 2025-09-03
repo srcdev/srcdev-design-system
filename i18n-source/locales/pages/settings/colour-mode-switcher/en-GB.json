@@ -1,0 +1,10 @@
+{
+  "pages": {
+    "settings": {
+      "colour-mode-switcher": {
+        "header": "Switch Colour Mode",
+        "description": "Choose your preferred colour, or set 'auto' for system setting"
+      }
+    }
+  }
+}

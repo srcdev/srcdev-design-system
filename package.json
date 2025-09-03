@@ -27,7 +27,7 @@
     "nuxt": "4.1.0",
     "nuxt-security": "2.4.0",
     "srcdev-nuxt-components": "6.1.6",
-    "srcdev-nuxt-forms": "6.1.12",
+    "srcdev-nuxt-forms": "^6.1.13",
     "vue": "3.5.21",
     "vue-router": "4.5.1"
   },

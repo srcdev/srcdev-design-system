@@ -8,8 +8,33 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const sourceDir = join(__dirname, "../i18n-source/locales")
 const outputDir = join(__dirname, "../i18n/locales")
 
-// Supported locales
-const locales = ["en-GB", "zh-CN", "ar-YE"]
+// Read locales from nuxt.config.ts
+async function getLocalesFromConfig() {
+  try {
+    const configPath = join(__dirname, "../nuxt.config.ts")
+    const configContent = await readFile(configPath, "utf8")
+
+    // Extract locales from the i18n config using regex
+    const localesMatch = configContent.match(/locales:\s*\[([\s\S]*?)\]/)
+    if (!localesMatch) {
+      throw new Error("Could not find locales in nuxt.config.ts")
+    }
+
+    // Extract language codes from the locale objects
+    const languageMatches = localesMatch[1].matchAll(/language:\s*"([^"]+)"/g)
+    const locales = Array.from(languageMatches, (match) => match[1])
+
+    if (locales.length === 0) {
+      throw new Error("No locales found in nuxt.config.ts")
+    }
+
+    return locales
+  } catch (error) {
+    console.warn("⚠️ Could not read locales from nuxt.config.ts:", error.message)
+    console.warn("📋 Falling back to default locales")
+    return ["en-GB", "zh-CN", "ar-YE"] // Fallback
+  }
+}
 
 // Helper function to deep merge objects
 function deepMerge(target, source) {
@@ -81,6 +106,10 @@ export default ${JSON.stringify(translations, null, 2)} as const`
 
 async function generateLocaleFiles() {
   console.log("🌍 Generating i18n locale files...")
+
+  // Get locales from nuxt.config.ts
+  const locales = await getLocalesFromConfig()
+  console.log(`📋 Found locales: ${locales.join(", ")}`)
 
   for (const locale of locales) {
     try {

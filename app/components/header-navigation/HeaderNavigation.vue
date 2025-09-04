@@ -183,6 +183,7 @@ const responsiveNavLinks = computed(() => ({
 
           .main-navigation-details-summary {
             color: var(--gray-0);
+            white-space: nowrap;
           }
 
           .main-navigation-sub-nav {

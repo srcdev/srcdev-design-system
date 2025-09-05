@@ -51,29 +51,6 @@ export default defineNuxtConfig({
     },
   },
   i18n: {
-    locales: [
-      {
-        code: "en",
-        language: "en-GB",
-        name: "English",
-        file: "en-GB.ts",
-        dir: "ltr",
-      },
-      {
-        code: "cn",
-        language: "zh-CN",
-        name: "简体中文",
-        file: "zh-CN.ts",
-        dir: "ltr",
-      },
-      {
-        code: "ary",
-        language: "ar-YE",
-        name: "العربية",
-        file: "ar-YE.ts",
-        dir: "rtl",
-      },
-    ],
     defaultLocale: "en",
     langDir: "locales",
     detectBrowserLanguage: {
@@ -81,6 +58,29 @@ export default defineNuxtConfig({
       cookieKey: "i18n_redirected",
       redirectOn: "root",
     },
+    locales: [
+      {
+        code: "en",
+        language: "en-GB",
+        name: "English",
+        file: "en-GB.json",
+        dir: "ltr",
+      },
+      {
+        code: "cn",
+        language: "zh-CN",
+        name: "简体中文",
+        file: "zh-CN.json",
+        dir: "ltr",
+      },
+      {
+        code: "ary",
+        language: "ar-YE",
+        name: "العربية",
+        file: "ar-YE.json",
+        dir: "rtl",
+      },
+    ],
   },
   fonts: {
     families: [

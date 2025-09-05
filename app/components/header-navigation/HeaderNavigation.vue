@@ -3,7 +3,7 @@
     <nav class="home-navigation" aria-label="Home Navigation">
       <SkipLinks>
         <template #homeLink>
-          <NuxtLink to="/" class="home-link">
+          <NuxtLink :to="localePath('index')" class="home-link">
             SRCDEV
             <span>design system</span>
           </NuxtLink>
@@ -39,6 +39,7 @@
 import type { ResponsiveHeaderProp } from "srcdev-nuxt-components/app/types/responsiveHeader"
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 const responsiveNavLinksSimple = computed(() => ({
   firstNav: [

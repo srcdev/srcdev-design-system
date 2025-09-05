@@ -2,7 +2,26 @@
   "pages": {
     "index": {
       "header": "SRCDEV Design System",
-      "description": "نماذج بصرية للخطوط والتخطيط والمكونات."
+      "description": "نماذج بصرية للخطوط والتخطيط والمكونات.",
+      "exampleI18nTitle": "بيانات مثال من i18n",
+      "exampleI18nArray": [
+        {
+          "key": "example.value",
+          "value": "مثال على القيمة"
+        },
+        {
+          "key": "example.value2",
+          "value": "مثال على القيمة 2"
+        },
+        {
+          "key": "example.value3",
+          "value": "مثال على القيمة 3"
+        },
+        {
+          "key": "example.value4",
+          "value": "مثال على القيمة 4"
+        }
+      ]
     }
   }
 }

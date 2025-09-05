@@ -2,7 +2,26 @@
   "pages": {
     "index": {
       "header": "SRCDEV Design System Homepage",
-      "description": "Visual demos of typography, layout, and components."
+      "description": "Visual demos of typography, layout, and components.",
+      "exampleI18nTitle": "Example data from i18n",
+      "exampleI18nArray": [
+        {
+          "key": "example.value",
+          "value": "Example Value"
+        },
+        {
+          "key": "example.value2",
+          "value": "Example Value 2"
+        },
+        {
+          "key": "example.value3",
+          "value": "Example Value 3"
+        },
+        {
+          "key": "example.value4",
+          "value": "Example Value 4"
+        }
+      ]
     }
   }
 }

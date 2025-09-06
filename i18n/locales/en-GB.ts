@@ -64,22 +64,27 @@ export default {
     "index": {
       "header": "SRCDEV Design System Homepage",
       "description": "Visual demos of typography, layout, and components.",
+      "exampleI18nTitle": "Example data from i18n",
       "exampleI18nArray": [
         {
-          "key": "example.value",
-          "value": "Example Value"
+          "id": "exampleValue",
+          "name": "Example Value",
+          "count": 3
         },
         {
-          "key": "example.value2",
-          "value": "Example Value 2"
+          "id": "exampleValue2",
+          "name": "Example Value 2",
+          "count": 5
         },
         {
-          "key": "example.value3",
-          "value": "Example Value 3"
+          "id": "exampleValue3",
+          "name": "Example Value 3",
+          "count": 2
         },
         {
-          "key": "example.value4",
-          "value": "Example Value 4"
+          "id": "exampleValue4",
+          "name": "Example Value 4",
+          "count": 0
         }
       ]
     },

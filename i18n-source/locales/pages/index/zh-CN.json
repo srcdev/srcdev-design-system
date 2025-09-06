@@ -6,20 +6,24 @@
       "exampleI18nTitle": "来自 i18n 的示例数据",
       "exampleI18nArray": [
         {
-          "key": "example.value",
-          "value": "示例值"
+          "id": "exampleValue",
+          "name": "示例值",
+          "count": 3
         },
         {
-          "key": "example.value2",
-          "value": "示例值 2"
+          "id": "exampleValue2",
+          "name": "示例值 2",
+          "count": 5
         },
         {
-          "key": "example.value3",
-          "value": "示例值 3"
+          "id": "exampleValue3",
+          "name": "示例值 3",
+          "count": 2
         },
         {
-          "key": "example.value4",
-          "value": "示例值 4"
+          "id": "exampleValue4",
+          "name": "示例值 4",
+          "count": 0
         }
       ]
     }

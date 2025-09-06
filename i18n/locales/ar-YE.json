@@ -63,20 +63,24 @@
       "exampleI18nTitle": "بيانات مثال من i18n",
       "exampleI18nArray": [
         {
-          "key": "example.value",
-          "value": "مثال على القيمة"
+          "id": "exampleValue",
+          "name": "مثال على القيمة",
+          "count": 3
         },
         {
-          "key": "example.value2",
-          "value": "مثال على القيمة 2"
+          "id": "exampleValue2",
+          "name": "مثال على القيمة 2",
+          "count": 5
         },
         {
-          "key": "example.value3",
-          "value": "مثال على القيمة 3"
+          "id": "exampleValue3",
+          "name": "مثال على القيمة 3",
+          "count": 2
         },
         {
-          "key": "example.value4",
-          "value": "مثال على القيمة 4"
+          "id": "exampleValue4",
+          "name": "مثال على القيمة 4",
+          "count": 0
         }
       ]
     },

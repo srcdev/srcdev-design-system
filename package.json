@@ -9,7 +9,7 @@
     "build:i18n-json": "node scripts/build-i18n-json.mjs",
     "build:i18n:watch": "node scripts/build-i18n.mjs --watch",
     "build:i18n-json:watch": "node scripts/build-i18n-json.mjs --watch",
-    "dev": "concurrently \"npm run build:i18n-json:watch\" \"nuxt dev\" --names \"i18n,nuxt\" --prefix-colors \"cyan,green\"",
+    "dev": "concurrently \"npm run build:i18n:watch\" \"nuxt dev\" --names \"i18n,nuxt\" --prefix-colors \"cyan,green\"",
     "dev:nuxt-only": "nuxt dev",
     "generate": "npm run build:i18n && nuxt generate",
     "preview": "nuxt preview",

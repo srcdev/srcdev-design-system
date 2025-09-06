@@ -34,6 +34,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "nuxt-security",
     "nuxt-auth-utils",
+    "@nuxtjs/storybook",
   ],
   security: {
     headers: {

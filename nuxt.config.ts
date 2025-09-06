@@ -52,6 +52,13 @@ export default defineNuxtConfig({
     },
   },
   i18n: {
+    defaultLocale: "en",
+    langDir: "locales",
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+      redirectOn: "root",
+    },
     locales: [
       {
         code: "en",
@@ -75,13 +82,6 @@ export default defineNuxtConfig({
         dir: "rtl",
       },
     ],
-    defaultLocale: "en",
-    langDir: "locales",
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: "i18n_redirected",
-      redirectOn: "root",
-    },
   },
   fonts: {
     families: [

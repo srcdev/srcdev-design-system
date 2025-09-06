@@ -1,23 +1,23 @@
 <template>
   <div class="locale-switcher">
     <button
-      v-for="localeItem in locales"
-      :key="localeItem.code"
-      :class="{ active: locale === localeItem.code }"
-      @click="switchLocale(localeItem.code)"
+      v-for="locale in locales"
+      :key="locale.code"
+      :class="{ active: locale === locale.code }"
+      @click="switchLocale(locale.code)"
     >
-      {{ localeItem.name }}
+      {{ locale.name }}
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
-const { locales, locale, setLocale } = useI18n();
+const { locales, locale, setLocale } = useI18n()
 
 // Function to handle locale switching
 const switchLocale = async (localeCode: string) => {
-  await setLocale(localeCode as typeof locale.value);
-};
+  await setLocale(localeCode as typeof locale.value)
+}
 </script>
 
 <style lang="css">

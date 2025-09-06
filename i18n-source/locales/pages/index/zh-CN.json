@@ -2,7 +2,30 @@
   "pages": {
     "index": {
       "header": "SRCDEV Design System",
-      "description": "视觉演示排版、布局和组件。"
+      "description": "视觉演示排版、布局和组件。",
+      "exampleI18nTitle": "来自 i18n 的示例数据",
+      "exampleI18nArray": [
+        {
+          "id": "exampleValue",
+          "name": "示例值",
+          "count": 3
+        },
+        {
+          "id": "exampleValue2",
+          "name": "示例值 2",
+          "count": 5
+        },
+        {
+          "id": "exampleValue3",
+          "name": "示例值 3",
+          "count": 2
+        },
+        {
+          "id": "exampleValue4",
+          "name": "示例值 4",
+          "count": 0
+        }
+      ]
     }
   }
 }

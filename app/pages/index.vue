@@ -7,6 +7,14 @@
             <h1 class="page-heading-1">{{ $t("pages.index.header") }}</h1>
 
             <p>{{ $t("pages.index.description") }}</p>
+
+            <h2 class="page-heading-2">{{ $t("pages.index.exampleI18nTitle") }}</h2>
+
+            <hr />
+
+            <pre>{{ exampleDataFromI18n }}</pre>
+
+            <hr />
           </LayoutRow>
         </section>
       </template>
@@ -26,6 +34,14 @@ useHead({
     // class: "",
   },
 })
+
+interface ExampleData {
+  id: string
+  name: string
+  count: number
+}
+
+const exampleDataFromI18n = useRawLocaleData<ExampleData[]>("pages.index.exampleI18nArray", [])
 </script>
 
 <style lang="css"></style>

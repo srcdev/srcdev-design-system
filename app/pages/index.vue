@@ -41,7 +41,7 @@ interface ExampleData {
   count: number
 }
 
-const exampleDataFromI18n = useRawLocaleData<ExampleData[]>("pages.index.exampleI18nArray")
+const exampleDataFromI18n = useRawLocaleData<ExampleData[]>("pages.index.exampleI18nArray", [])
 </script>
 
 <style lang="css"></style>

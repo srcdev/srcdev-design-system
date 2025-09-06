@@ -1,53 +1,79 @@
 import { useI18n } from "vue-i18n"
 
-export function useRawLocaleData<T = unknown>(path: string): T | null {
-  const { locale, getLocaleMessage } = useI18n()
+/**
+ * Fetch raw locale data and normalize it into pure JSON.
+ * Supports fallback to defaultValue for safer usage.
+ *
+ * @param path - Dot notation path to the message key (e.g., "pages.homepage.sections.logos")
+ * @param defaultValue - Optional fallback value if key is not found
+ * @returns Normalized value as type T
+ */
+export function useRawLocaleData<T>(path: string, defaultValue?: T): T {
+  const { locale, getLocaleMessage, tm } = useI18n()
 
-  // 1. Try to get the raw message object
+  let data: unknown = null
+
+  // 1. Try from raw locale messages
   const rawMessages = getLocaleMessage(locale.value)
-
-  if (!rawMessages || Object.keys(rawMessages).length === 0) {
-    console.warn(`[useRawLocaleData] No locale messages found for ${locale.value}`)
-    return null
+  if (rawMessages && Object.keys(rawMessages).length > 0) {
+    data = resolvePath(rawMessages as Record<string, unknown>, path)
   }
 
-  // 2. Resolve deep path
-  const segments = path.split(".")
-  let current: any = rawMessages
-
-  for (const key of segments) {
-    if (current[key] === undefined) {
-      console.warn(`[useRawLocaleData] Path not found: ${path}`)
-      return null
-    }
-    current = current[key]
+  // 2. Fallback to tm() if nothing found
+  if (data == null) {
+    const fallback = tm(path)
+    if (fallback !== undefined) data = fallback
   }
 
-  // 3. If it's an AST node (with .body or .static), normalize
-  if (Array.isArray(current)) {
-    return current.map((item) => normalizeNode(item)) as T
-  }
+  // 3. Normalize AST
+  const normalized = normalizeNode<T>(data)
 
-  return normalizeNode(current) as T
+  // 4. Return normalized or default
+  return normalized ?? (defaultValue as T)
 }
 
-function normalizeNode(node: any): any {
-  if (node == null) return node
+function resolvePath(obj: Record<string, unknown>, path: string): unknown {
+  const segments = path.split(".")
+  let current: unknown = obj
 
-  // If plain string, return it
-  if (typeof node === "string") return node
-
-  // If it's an AST object (vue-i18n compiled)
-  if (node.body?.static) return node.body.static
-
-  // If object with nested AST properties, normalize recursively
-  if (typeof node === "object") {
-    const result: any = {}
-    for (const key in node) {
-      result[key] = normalizeNode(node[key])
+  for (const key of segments) {
+    if (typeof current === "object" && current !== null && key in current) {
+      current = (current as Record<string, unknown>)[key]
+    } else {
+      return null
     }
-    return result
   }
 
-  return node
+  return current
+}
+
+function normalizeNode<T>(node: unknown): T | null {
+  if (node == null) return null
+
+  if (typeof node === "string" || typeof node === "number" || typeof node === "boolean") {
+    return node as T
+  }
+
+  if (
+    typeof node === "object" &&
+    "body" in (node as Record<string, unknown>) &&
+    (node as Record<string, unknown>).body &&
+    typeof (node as Record<string, { static?: string }>).body?.static === "string"
+  ) {
+    return (node as { body: { static: string } }).body.static as unknown as T
+  }
+
+  if (Array.isArray(node)) {
+    return node.map((item) => normalizeNode<unknown>(item)) as unknown as T
+  }
+
+  if (typeof node === "object") {
+    const result: Record<string, unknown> = {}
+    for (const key in node as Record<string, unknown>) {
+      result[key] = normalizeNode<unknown>((node as Record<string, unknown>)[key])
+    }
+    return result as unknown as T
+  }
+
+  return null
 }

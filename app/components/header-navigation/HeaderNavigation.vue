@@ -56,7 +56,7 @@ const responsiveNavLinks = computed(() => ({
       iconName: "material-symbols:widgets",
       childLinksTitle: t("components.navigation.childLinksTitle.uiComponents"),
       childLinks: [
-        { name: "Display Prompt Component", path: "/playground/components/ui/display-prompt" },
+        { name: "Display Prompt Component", path: localePath("/playground/components/ui/display-prompt") },
         { name: `${t("components.navigation.placeholderLink")} 1`, path: "/" },
         { name: `${t("components.navigation.placeholderLink")} 2`, path: "/" },
         { name: `${t("components.navigation.placeholderLink")} 3`, path: "/" },
@@ -72,12 +72,12 @@ const responsiveNavLinks = computed(() => ({
       iconName: "material-symbols:custom-typography",
       childLinksTitle: "Typography",
       childLinks: [
-        { name: "Page Headings", path: "/playground/typography/page-heading" },
-        { name: "Page Body", path: "/playground/typography/page-body" },
-        { name: "Page Links", path: "/playground/typography/page-link" },
+        { name: "Page Headings", path: localePath("/playground/typography/page-heading") },
+        { name: "Page Body", path: localePath("/playground/typography/page-body") },
+        { name: "Page Links", path: localePath("/playground/typography/page-link") },
       ],
     },
-    { name: t("components.navigation.about"), path: "/" },
+    { name: t("components.navigation.about"), path: localePath("/") },
   ],
   secondNav: [
     { name: t("components.navigation.someOtherLink"), iconName: "material-symbols:widgets", path: "#link-description" },
@@ -85,16 +85,16 @@ const responsiveNavLinks = computed(() => ({
       name: t("components.navigation.settings"),
       childLinksTitle: t("components.navigation.childLinksTitle.settings"),
       childLinks: [
-        { name: t("pages.settings.locale-switcher.header"), path: "/settings/locale-switcher" },
-        { name: "Color mode switcher", path: "/settings/colour-mode-switcher" },
+        { name: t("pages.settings.locale-switcher.header"), path: localePath("/settings/locale-switcher") },
+        { name: "Color mode switcher", path: localePath("/settings/colour-mode-switcher") },
       ],
     },
     {
       name: t("components.navigation.account"),
       childLinksTitle: t("components.navigation.childLinksTitle.manageAccount"),
       childLinks: [
-        { name: t("components.navigation.login"), path: "/account/login" },
-        { name: t("components.navigation.dashboard"), path: "/account/dashboard" },
+        { name: t("components.navigation.login"), path: localePath("/account/login") },
+        { name: t("components.navigation.dashboard"), path: localePath("/account/dashboard") },
       ],
     },
   ],

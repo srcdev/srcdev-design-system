@@ -1,9 +1,13 @@
-import type { Meta, StoryFn } from "@storybook/vue3"
+import type { Meta, StoryObj } from "@storybook/vue3"
+
 import StoryBookComponent from "../TestStorybook.vue"
 
-export default {
+// More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
+
+const meta = {
   title: "Components/TestStorybook/TestStorybook",
   component: StoryBookComponent,
+  // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
   argTypes: {
     layoutTag: {
       options: ["div", "header", "footer", "section"],
@@ -37,22 +41,16 @@ export default {
     layoutVariant: "full",
     titleSlot: "Title Slot Content",
   },
-} as Meta<typeof StoryBookComponent>
+} satisfies Meta<typeof StoryBookComponent>
 
-const Template: StoryFn<typeof StoryBookComponent> = (args) => ({
-  components: { StoryBookComponent },
-  setup() {
-    return { args }
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  args: {
+    styleClassPassthrough: ["test-storybook"],
+    layoutTag: "div",
+    layoutVariant: "full",
+    titleSlot: "Title Slot Content",
   },
-  template: `
-    <StoryBookComponent v-bind="args">
-      <template v-if="${"titleSlot" in args}" v-slot:titleSlot>${args.titleSlot}</template>
-    </StoryBookComponent>
-  `,
-})
-
-export const Default = Template.bind({})
-// Default.args = {
-//   styleClassPassthrough: ["test-storybook--title-only-dismissable"],
-//   titleSlot: "Title Slot Content",
-// }
+}

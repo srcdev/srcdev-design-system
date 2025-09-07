@@ -1,4 +1,15 @@
-# Nuxt Minimal Starter
+# SrcDev Design System
+
+A modern, comprehensive design system built with Nuxt 4, featuring Storybook integration, internationalization support, and modular component architecture.
+
+## 🚀 Features
+
+- **🎨 Component Design System**: Built with Vue 3 and Nuxt 4
+- **📚 Storybook Integration**: Interactive component documentation and testing
+- **🌍 Multi-language Support**: Full i18n with 3 languages (English, Chinese, Arabic)
+- **🎯 TypeScript**: Full type safety throughout the project
+- **🧪 Testing Suite**: Comprehensive testing with Vitest and Playwright
+- **🔧 Developer Experience**: Hot reload, ESLint, and modern tooling
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
@@ -6,50 +17,84 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 
 Make sure to install dependencies:
 
-- Check Node version
+### Prerequisites
+
+- Check Node version (requires Node.js v22+)
 
 ```bash
 node --version && npm --version
 ```
 
-- Ensure latest version of node v.22 [install--update-script](https://github.com/nvm-sh/nvm/blob/master/README.md#install--update-script)
-- use curl script at above link, example below
+- Ensure latest version of Node v22+ using [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md#install--update-script)
 
 ```bash
+# Install/update nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+# Install and use Node 22
+nvm install 22
+nvm use 22
 ```
 
+### Installation
+
 ```bash
-# npm
+# Install dependencies
 npm install
 ```
 
-## Development Server
+## Development
 
-Start the development server on `http://localhost:3000`:
+### Start Development Server
+
+Start the Nuxt development server on `http://localhost:3000`:
 
 ```bash
-# npm
 npm run dev
 ```
 
-## Production
+This command automatically:
 
-Build the application for production:
+- Builds and watches i18n translations
+- Starts the Nuxt development server
+- Enables hot reload for all file changes
+
+### Storybook Development
+
+Launch Storybook for component development and documentation:
 
 ```bash
-# npm
-npm run build
+npm run storybook
 ```
 
-Locally preview production build:
+Storybook will be available at `http://localhost:6006/` and includes:
+
+- Interactive component playground
+- Automatic documentation generation
+- Accessibility testing tools
+- Visual regression testing capabilities
+
+### Available Scripts
 
 ```bash
-# npm
-npm run preview
-```
+# Development
+npm run dev              # Start Nuxt with i18n watching
+npm run dev:nuxt-only   # Start Nuxt without i18n watching
+npm run storybook       # Start Storybook server
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+# Building
+npm run build           # Build for production
+npm run build:i18n      # Build i18n translations only
+npm run build-storybook # Build Storybook for deployment
+
+# Internationalization
+npm run build:i18n:watch      # Watch and rebuild i18n
+npm run build:i18n-json:watch # Watch and rebuild i18n JSON
+
+# Utilities
+npm run cleanup         # Remove node_modules, .nuxt, dist
+npm run preview         # Preview production build
+```
 
 ## Internationalization (i18n)
 
@@ -197,3 +242,141 @@ The `LocaleSwitcher` component (located in `app/components/locale-switcher/`) pr
 - Switch to a different locale
 
 The language switcher is integrated into the default layout header and automatically updates the page content when a new language is selected.
+
+## 📚 Storybook Configuration
+
+This project includes a fully configured Storybook setup for component development and documentation.
+
+### Current Setup
+
+- **Framework**: `@storybook-vue/nuxt` (via `@nuxtjs/storybook`)
+- **Version**: Storybook 9.1.5 with Nuxt 4.1.1 compatibility
+- **Addons**:
+  - `@storybook/addon-docs` - Automatic documentation
+  - `@storybook/addon-a11y` - Accessibility testing
+  - `@storybook/addon-vitest` - Testing integration
+  - `@chromatic-com/storybook` - Visual testing
+
+### Stories Location
+
+Stories are located alongside components:
+
+```text
+app/components/
+├── test-storybook/
+│   ├── TestStorybook.vue
+│   └── stories/
+│       ├── TestStorybook.stories.ts
+│       └── TestStorybook.mdx
+└── components/
+    └── MyNuxtWelcome.stories.ts
+```
+
+### Story Pattern
+
+Stories follow the modern Storybook 7+ pattern:
+
+```typescript
+import type { Meta, StoryObj } from "@storybook/vue3"
+import MyComponent from "./MyComponent.vue"
+
+const meta = {
+  title: "Components/MyComponent",
+  component: MyComponent,
+  tags: ["autodocs"],
+  argTypes: {
+    // Control definitions
+  },
+  args: {
+    // Default args
+  },
+} satisfies Meta<typeof MyComponent>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  args: {
+    // Story-specific args
+  },
+}
+```
+
+## 🛠️ Troubleshooting
+
+### Storybook Issues
+
+If you encounter Storybook configuration errors:
+
+1. **"Could not evaluate @storybook-vue/nuxt" Error**:
+
+   ```bash
+   # Clean install dependencies
+   npm run cleanup
+   npm install
+   ```
+
+2. **Version Compatibility Warnings**:
+
+   - The project uses package overrides to ensure compatibility between Storybook 9.1.5 and Nuxt 4.1.1
+   - Warnings are expected but don't affect functionality
+
+3. **Missing Types**: Ensure both `@nuxtjs/storybook` and `@storybook-vue/nuxt` are installed:
+
+   ```bash
+   npm install --save-dev @nuxtjs/storybook @storybook-vue/nuxt
+   ```
+
+### Development Issues
+
+- **i18n Build Errors**: Run `npm run build:i18n` manually if translations aren't updating
+- **Port Conflicts**: Nuxt uses port 3000, Storybook uses port 6006
+- **Node Version**: Ensure you're using Node.js v22+ for best compatibility
+
+## 📁 Project Structure
+
+```text
+srcdev-design-system/
+├── .storybook/                 # Storybook configuration
+├── app/                        # Nuxt application
+│   ├── components/            # Vue components with stories
+│   ├── composables/           # Vue composables
+│   ├── layouts/               # Nuxt layouts
+│   ├── middleware/            # Route middleware
+│   ├── pages/                 # Application pages
+│   └── stores/                # Pinia stores
+├── components/                # Legacy components (to be migrated)
+├── i18n/                      # Generated i18n files
+├── i18n-source/               # Source i18n translations
+├── public/                    # Static assets
+├── scripts/                   # Build scripts
+├── server/                    # Server-side code
+└── types/                     # TypeScript definitions
+```
+
+## 🤝 Contributing
+
+1. **Component Development**: Add new components in `app/components/` with corresponding stories
+2. **Internationalization**: Add translations in component `locales/` directories
+3. **Testing**: Write tests for all new components and functionality
+4. **Documentation**: Update Storybook stories and README when adding features
+
+## 📝 Deployment
+
+Build the application for production:
+
+```bash
+npm run build
+```
+
+Preview production build locally:
+
+```bash
+npm run preview
+```
+
+Check out the [Nuxt deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+---
+
+Built with ❤️ using Nuxt 4, Vue 3, and Storybook

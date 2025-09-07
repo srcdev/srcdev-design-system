@@ -30,8 +30,9 @@
     "@nuxt/test-utils": "3.19.2",
     "@nuxtjs/i18n": "10.0.6",
     "@nuxtjs/storybook": "9.0.1",
+    "@storybook-vue/nuxt": "^9.0.1",
     "@storybook/addon-a11y": "9.1.5",
-    "@storybook/addon-docs": "9.1.3",
+    "@storybook/addon-docs": "9.1.5",
     "@storybook/addon-vitest": "9.1.5",
     "@unhead/vue": "2.0.14",
     "@vue/test-utils": "2.4.6",
@@ -57,11 +58,11 @@
   "overrides": {
     "@nuxtjs/storybook": {
       "storybook": "9.1.5",
-      "nuxt": "4.1.0"
+      "nuxt": "4.1.1"
     },
     "@storybook-vue/nuxt": {
       "storybook": "9.1.5",
-      "nuxt": "4.1.0"
+      "nuxt": "4.1.1"
     }
   }
 }

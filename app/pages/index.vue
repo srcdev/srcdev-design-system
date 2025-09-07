@@ -35,10 +35,16 @@ useHead({
   },
 })
 
+interface Items {
+  id: string
+  name: string
+}
+
 interface ExampleData {
   id: string
   name: string
   count: number
+  items?: Items[]
 }
 
 const exampleDataFromI18n = useRawLocaleData<ExampleData[]>("pages.index.exampleI18nArray", [])

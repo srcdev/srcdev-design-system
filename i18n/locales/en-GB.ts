@@ -69,22 +69,57 @@ export default {
         {
           "id": "exampleValue",
           "name": "Example Value",
-          "count": 3
+          "count": 3,
+          "items": [
+            {
+              "id": "item1",
+              "name": "Item 1"
+            },
+            {
+              "id": "item2",
+              "name": "Item 2"
+            },
+            {
+              "id": "item3",
+              "name": "Item 3"
+            }
+          ]
         },
         {
           "id": "exampleValue2",
           "name": "Example Value 2",
-          "count": 5
+          "count": 5,
+          "items": [
+            {
+              "id": "item4",
+              "name": "Item 4"
+            },
+            {
+              "id": "item5",
+              "name": "Item 5"
+            }
+          ]
         },
         {
           "id": "exampleValue3",
           "name": "Example Value 3",
-          "count": 2
+          "count": 2,
+          "items": [
+            {
+              "id": "item6",
+              "name": "Item 6"
+            },
+            {
+              "id": "item7",
+              "name": "Item 7"
+            }
+          ]
         },
         {
           "id": "exampleValue4",
           "name": "Example Value 4",
-          "count": 0
+          "count": 0,
+          "items": []
         }
       ]
     },

@@ -4,7 +4,8 @@ export default defineNuxtConfig({
   extends: ["srcdev-nuxt-forms", "srcdev-nuxt-components"],
   devtools: { enabled: true },
   devServer: {
-    // https: true,
+    // https true for production, false for local dev
+    https: process.env.NODE_ENV === "production",
     // port: 3020,
   },
   runtimeConfig: {

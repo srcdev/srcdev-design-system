@@ -350,6 +350,96 @@ npm run dev
 
 The error occurs because VPNs can interfere with the Bunny CDN font provider requests, causing HTML error pages to be returned instead of expected JSON responses.
 
+## 🎨 Styling Architecture
+
+The project uses a modular CSS architecture located in `/app/assets/styles/` with two distinct organizational layers:
+
+### Overview
+
+The styling system is organized into two main categories:
+
+- **`setup/`** - Core styles for the current application
+- **`extends-layer/`** - Layer-specific components and utilities
+
+### Setup Folder (`/app/assets/styles/setup/`)
+
+The setup folder contains all foundational styles for the current application:
+
+#### Core Foundation
+
+- **`_basic-resets.css`** - Basic CSS resets
+- **`_head.css`** - Head-specific styles
+- **`_normalise.css`** - CSS normalization
+- **`index.css`** - Main setup entry point
+
+#### Theming System (`setup/theming/`)
+
+- **`colors/`** - Color palette definitions
+  - `_blue.css`, `_gray.css`, `_green.css`, `_orange.css`, `_red.css`, `_yellow.css`
+- **`themes/`** - Semantic theme variants
+  - `_default.css`, `_primary.css`, `_secondary.css`, `_tertiary.css`
+  - `_error.css`, `_success.css`, `_warning.css`, `_info.css`, `_ghost.css`
+
+#### Typography (`setup/typography/`)
+
+- **`vars/`** - Typography variables and scales
+- **`utility-classes/`** - Typography utility classes
+- **`index.css`** - Typography system entry point
+
+#### Utility Classes (`setup/utility-classes/`)
+
+- **`_fluid-spacing.css`** - Responsive spacing utilities
+- **`_margin.css`** - Margin utility classes
+- **`_padding.css`** - Padding utility classes
+- **`animations/`** - Animation utilities
+
+#### Accessibility (`setup/a11y/`)
+
+- **`_utils.css`** - Accessibility utility classes
+- **`_variables.css`** - A11y-focused CSS variables
+- **`index.css`** - Accessibility system entry point
+
+### Extends Layer (`/app/assets/styles/extends-layer/`)
+
+The extends-layer folder contains styles specific to layer-based components and external design systems:
+
+#### Component Layers
+
+- **`srcdev-components/`** - Components from the srcdev layer
+  - `components/` - Individual component styles
+  - `index.css` - Layer entry point
+- **`srcdev-forms/`** - Form components from the srcdev layer
+  - `setup/` - Form-specific setup and configuration
+  - `components/` - Individual form component styles
+  - `index.css` - Form layer entry point
+
+### Import Structure
+
+The main stylesheet (`main.css`) imports in this order:
+
+```css
+@import "./setup"; /* Core app styles */
+@import "./extends-layer/srcdev-forms"; /* Form layer */
+@import "./extends-layer/srcdev-components"; /* Component layer */
+```
+
+### Usage Guidelines
+
+#### For Application Styles
+
+- Add new core styles to the appropriate `setup/` subdirectory
+- Use `setup/theming/` for color and theme definitions
+- Add utility classes to `setup/utility-classes/`
+- Include accessibility considerations in `setup/a11y/`
+
+#### For Layer-Specific Styles
+
+- Add component layer styles to `extends-layer/srcdev-components/`
+- Add form-specific styles to `extends-layer/srcdev-forms/`
+- Create new layer directories in `extends-layer/` for additional design systems
+
+This architecture ensures clear separation between application-specific styles and reusable layer components, making the design system modular and maintainable.
+
 ## 📁 Project Structure
 
 ```text

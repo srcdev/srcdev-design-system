@@ -89,7 +89,6 @@ watch(colorModeVal, (val) => {
     --_select-scheme-group-background-image: none;
     --_select-scheme-group-padding: 0.5rem;
     --_scheme-icon-font-size: 2rem;
-    --_scheme-icon-colour: black;
 
     &:has(input[value="auto"]:checked) {
       --_select-scheme-group-background-color: transparent;
@@ -161,7 +160,29 @@ watch(colorModeVal, (val) => {
           }
 
           .option-icon {
-            color: light-dark(var(--gray-12), var(--gray-0));
+            &.auto {
+              color: light-dark(var(--gray-12), var(--gray-3));
+
+              &.active {
+                color: var(--gray-0);
+              }
+            }
+
+            &.light {
+              color: light-dark(var(--gray-12), var(--gray-3));
+
+              &.active {
+                color: var(--gray-0);
+              }
+            }
+
+            &.dark {
+              color: light-dark(var(--gray-12), var(--gray-3));
+
+              &.active {
+                color: var(--gray-0);
+              }
+            }
           }
         }
       }

@@ -333,6 +333,23 @@ If you encounter Storybook configuration errors:
 - **Port Conflicts**: Nuxt uses port 3000, Storybook uses port 6006
 - **Node Version**: Ensure you're using Node.js v22+ for best compatibility
 
+### Font Provider Errors
+
+If you encounter this error when running `npm run dev`:
+
+```text
+ERROR  Could not initialize provider bunny. unifont will not be able to process fonts provided by this provider. Unexpected token '<', "<html><hea"... is not valid JSON
+```
+
+**Solution**: This error is typically caused by VPN interference with font provider requests. Try turning off your VPN (e.g., Surfshark) and restarting the development server:
+
+```bash
+# Turn off VPN, then restart
+npm run dev
+```
+
+The error occurs because VPNs can interfere with the Bunny CDN font provider requests, causing HTML error pages to be returned instead of expected JSON responses.
+
 ## 📁 Project Structure
 
 ```text

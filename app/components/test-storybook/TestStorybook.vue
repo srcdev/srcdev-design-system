@@ -1,8 +1,8 @@
 <template>
   <div class="test-storybook" :class="[elementClasses]" :data-testid="props.dataTestid">
-    <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
-      <h1>Test Storybook Component</h1>
-      <slot v-if="titleSlot" name="titleSlot">{{ titleSlot }}</slot>
+    <LayoutRow :tag="layoutTag" :variant="layoutVariant" :style-class-passthrough="['mbe-20']">
+      <h1 class="page-heading-1">Test Storybook Component</h1>
+      <slot v-if="slots.titleSlot" name="titleSlot"></slot>
       <div class="test-storybook__content">
         <p>
           <code>&lt;Icon name="mdi:star"&gt;</code>
@@ -19,6 +19,14 @@ const props = defineProps({
   dataTestid: {
     type: String,
     default: "test-storybook",
+  },
+  layoutVariant: {
+    type: String,
+    default: "full-width",
+  },
+  layoutTag: {
+    type: String,
+    default: "div",
   },
   styleClassPassthrough: {
     type: Array as PropType<string[]>,

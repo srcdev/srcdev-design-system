@@ -84,6 +84,10 @@ export default defineNuxtConfig({
     ],
   },
   fonts: {
+    assets: {
+      // The baseURL where font files are served.
+      prefix: "/public/_fonts/",
+    },
     families: [
       // {
       //   name: "Poppins",
@@ -93,9 +97,9 @@ export default defineNuxtConfig({
       // },
       {
         name: "Quicksand",
-        weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
-        styles: ["normal", "italic"],
-        // provider: "bunny",
+        weights: [300, 400, 500, 600, 700],
+        styles: ["normal"],
+        provider: "local",
       },
       // {
       //   name: "Inter Variable",
@@ -117,6 +121,7 @@ export default defineNuxtConfig({
     tsConfig: {
       compilerOptions: {
         types: ["srcdev-nuxt-forms", "srcdev-nuxt-components"],
+        skipLibCheck: true,
       },
     },
   },

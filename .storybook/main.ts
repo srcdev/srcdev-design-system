@@ -7,6 +7,11 @@ const config: StorybookConfig = {
     name: "@storybook-vue/nuxt",
     options: {},
   },
+  // https://storybook.js.org/docs/configure/integration/images-and-assets?renderer=vue&ref=configure#serving-static-files-via-storybook-configuration
+  staticDirs: [
+    "../public",
+    // { from: '../my-custom-assets/images', to: '/assets' }
+  ],
   async viteFinal(config) {
     const { mergeConfig } = await import("vite")
 

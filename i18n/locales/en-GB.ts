@@ -123,6 +123,52 @@ export default {
         }
       ]
     },
+    "legal": {
+      "terms": {
+        "meta": {
+          "title": "Terms and Conditions",
+          "description": "Legal information regarding the use of the SRCDEV Design System."
+        },
+        "header": "Terms and Conditions",
+        "subheader": "Welcome to the SRCDEV Design System",
+        "pageContent": {
+          "title": "Contents"
+        },
+        "sections": [
+          {
+            "title": "Introduction",
+            "link": "introduction",
+            "section": [
+              {
+                "title": "What is the SRCDEV Design System?",
+                "content": [
+                  "The SRCDEV Design System is a comprehensive collection of design principles, components, and guidelines developed to ensure consistency and efficiency in creating user interfaces across various platforms. It serves as a single source of truth for designers and developers, promoting best practices and enhancing collaboration within the SRCDEV community.",
+                  "By adhering to the SRCDEV Design System, teams can streamline their workflows, reduce redundancy, and deliver high-quality digital experiences that align with SRCDEV's brand identity and user expectations."
+                ]
+              },
+              {
+                "title": "Acceptance of Terms",
+                "content": [
+                  "By accessing and using the SRCDEV Design System, you agree to comply with and be bound by these Terms and Conditions. If you do not agree to these terms, please do not use the SRCDEV Design System.",
+                  [
+                    "These Terms and Conditions may be updated from time to time. It is your responsibility to review them periodically for any changes. Your continued use of the SRCDEV Design System after any modifications constitutes your acceptance of the updated terms.",
+                    "We recommend bookmarking this page to stay informed about any changes to our terms.",
+                    "If you have any questions or concerns about these Terms and Conditions, please contact us at [support{'@'}srcdev.com](mailto:support{'@'}srcdev.com).",
+                    "Example with markdown and a link to [Google](https://www.google.com)."
+                  ]
+                ]
+              },
+              {
+                "title": "Changes to Terms",
+                "content": [
+                  "We reserve the right to modify or update these Terms and Conditions at any time without prior notice. It is your responsibility to review these terms periodically for any changes. Your continued use of the SRCDEV Design System after any modifications constitutes your acceptance of the updated terms."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
     "settings": {
       "colour-mode-switcher": {
         "header": "Switch Colour Mode",

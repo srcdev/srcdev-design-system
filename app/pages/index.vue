@@ -3,18 +3,10 @@
     <NuxtLayout name="default">
       <template #layout-content>
         <section>
-          <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20', 'display-none']">
+          <LayoutRow tag="div" variant="full" :style-class-passthrough="['mbe-20', 'display-none']">
             <h1 class="page-heading-1">{{ $t("pages.index.header") }}</h1>
 
             <p>{{ $t("pages.index.description") }}</p>
-
-            <h2 class="page-heading-2">{{ $t("pages.index.exampleI18nTitle") }}</h2>
-
-            <hr />
-
-            <pre>{{ exampleDataFromI18n }}</pre>
-
-            <hr />
           </LayoutRow>
         </section>
       </template>
@@ -34,20 +26,6 @@ useHead({
     // class: "",
   },
 })
-
-interface Items {
-  id: string
-  name: string
-}
-
-interface ExampleData {
-  id: string
-  name: string
-  count: number
-  items?: Items[]
-}
-
-const exampleDataFromI18n = useRawLocaleData<ExampleData[]>("pages.index.exampleI18nArray", [])
 </script>
 
 <style lang="css"></style>

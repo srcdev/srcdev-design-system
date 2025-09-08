@@ -1,4 +1,17 @@
-# useRawLocaleData Composable
+# Composables Documentation
+
+This directory contains custom Vue 3 composables for the SRCDEV Design System. Each composable provides specific functionality to enhance development experience and solve common challenges in Nuxt.js applications.
+
+## 📦 Available Composables
+
+- [`useRawLocaleData`](#userawlocaledata) - Safe i18n locale data retrieval with AST normalization
+- [`useCanonicalUrl`](#usecanonicalurl) - Automatic canonical URL generation and SEO meta tags
+- [`useMarkdown`](#usemarkdown) - Markdown rendering utilities with safety features
+- [`useStyleClassPassthrough`](#usestyleclasspassthrough) - Dynamic CSS class management for components
+
+---
+
+## useRawLocaleData
 
 A Vue 3 composable that safely retrieves and normalizes i18n locale data, converting Vue I18n AST (Abstract Syntax Tree) nodes back to raw JSON data. This solves the common hydration mismatch issue between server-side rendering and client-side rendering in Nuxt.js applications.
 
@@ -339,4 +352,251 @@ Part of the SRCDEV Design System - Internal use composable.
 
 ---
 
-**Need help?** Check the implementation in `app/composables/useRawLocaleData.ts` or see the example usage in `app/pages/index.vue`.
+## useCanonicalUrl
+
+A composable that automatically generates canonical URLs and sets appropriate SEO meta tags for pages. This helps with SEO optimization and prevents duplicate content issues.
+
+### 🚀 Features
+
+- **Automatic canonical URL generation**: Creates proper canonical URLs based on current route
+- **SEO optimization**: Automatically sets canonical link in document head
+- **Configuration driven**: Uses runtime config for domain settings
+- **SSR compatible**: Works seamlessly with server-side rendering
+
+### 🔧 Usage
+
+```typescript
+<script setup lang="ts">
+  // Simple usage - automatically sets canonical URL for current page const {canonicalUrl} = useCanonicalUrl() // The
+  canonical URL is automatically added to the page head //{" "}
+  <link rel="canonical" href="https://yourdomain.com/current-path" />
+</script>
+```
+
+### ⚙️ Configuration
+
+Ensure your `nuxt.config.ts` has the canonical host configured:
+
+```typescript
+// nuxt.config.ts
+export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      canonicalHost: "yourdomain.com",
+    },
+  },
+})
+```
+
+### 📚 API Reference
+
+#### `useCanonicalUrl(): { canonicalUrl: string }`
+
+**Returns:**
+
+- `canonicalUrl` (string): The complete canonical URL for the current page
+
+---
+
+## useMarkdown
+
+A composable that provides safe markdown rendering capabilities using MarkdownIt. Configured with security in mind while supporting common markdown features.
+
+### 🚀 Features
+
+- **Safe HTML rendering**: Raw HTML disabled for security
+- **Auto-linking**: Automatically converts URLs to links
+- **Line break support**: Converts line breaks to `<br>` tags
+- **Inline rendering**: Optimized for single-line markdown content
+- **TypeScript support**: Full type safety
+
+### 🔧 Usage
+
+```typescript
+<script setup lang="ts">
+  const {renderMarkdown} = useMarkdown() // Render inline markdown (no block elements) const formattedText =
+  renderMarkdown('This is **bold** and *italic* text with a [link](https://example.com)') // Output: 'This is{" "}
+  <strong>bold</strong> and <em>italic</em> text with a <a href="https://example.com">link</a>' // Auto-linking URLs
+  const autoLinked = renderMarkdown('Visit https://github.com for more info') // Output: 'Visit{" "}
+  <a href="https://github.com">https://github.com</a> for more info'
+</script>
+```
+
+### Template Usage
+
+```vue
+<template>
+  <div>
+    <!-- Render markdown content safely -->
+    <p v-html="renderMarkdown(userContent)"></p>
+
+    <!-- Example with reactive content -->
+    <div v-for="comment in comments" :key="comment.id">
+      <div v-html="renderMarkdown(comment.text)"></div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+interface Comment {
+  id: string
+  text: string
+}
+
+const comments = ref<Comment[]>([
+  { id: "1", text: "Great **article**! Thanks for sharing." },
+  { id: "2", text: "Check out this link: https://vue.js.org" },
+])
+
+const { renderMarkdown } = useMarkdown()
+</script>
+```
+
+### 📚 API Reference
+
+#### `useMarkdown(): { renderMarkdown: (text: string) => string }`
+
+**Methods:**
+
+- `renderMarkdown(text: string): string` - Renders markdown text to safe HTML
+
+**MarkdownIt Configuration:**
+
+- `html: false` - Raw HTML disabled for security
+- `linkify: true` - Auto-detect and convert URLs to links
+- `breaks: true` - Convert line breaks to `<br>` tags
+
+---
+
+## useStyleClassPassthrough
+
+A composable for dynamic CSS class management in components. Provides utilities to manage, update, and reset CSS classes reactively.
+
+### 🚀 Features
+
+- **Dynamic class management**: Add, remove, and toggle CSS classes
+- **Reactive updates**: Automatically updates when classes change
+- **Array and string support**: Accepts both string and array inputs
+- **Class persistence**: Maintains class state across component lifecycle
+- **Reset functionality**: Easy way to reset to original classes
+
+### 🔧 Usage
+
+```typescript
+<script setup lang="ts">
+  // Initialize with default classes const initialClasses = ['btn', 'btn-primary'] const{" "}
+  {(elementClasses, updateElementClasses, resetElementClasses, styleClassPassthroughRef)} =
+  useStyleClassPassthrough(initialClasses) // elementClasses is a computed property with joined classes //
+  elementClasses.value = 'btn btn-primary' // Add a single class updateElementClasses('active') // elementClasses.value
+  = 'btn btn-primary active' // Remove a class (toggle behavior) updateElementClasses('btn-primary') //
+  elementClasses.value = 'btn active' // Add multiple classes updateElementClasses(['loading', 'disabled']) //
+  elementClasses.value = 'btn active loading disabled' // Reset to original classes resetElementClasses(['btn',
+  'btn-secondary']) // elementClasses.value = 'btn btn-secondary'
+</script>
+```
+
+### Component Example
+
+```vue
+<template>
+  <button
+    :class="elementClasses"
+    @click="handleClick"
+    @mouseenter="updateElementClasses('hover')"
+    @mouseleave="updateElementClasses('hover')"
+  >
+    {{ label }}
+  </button>
+</template>
+
+<script setup lang="ts">
+interface Props {
+  label: string
+  variant?: "primary" | "secondary" | "danger"
+  size?: "sm" | "md" | "lg"
+  disabled?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  variant: "primary",
+  size: "md",
+  disabled: false,
+})
+
+// Build initial classes from props
+const initialClasses = computed(() => [
+  "btn",
+  `btn-${props.variant}`,
+  `btn-${props.size}`,
+  ...(props.disabled ? ["btn-disabled"] : []),
+])
+
+const { elementClasses, updateElementClasses, resetElementClasses } = useStyleClassPassthrough(initialClasses.value)
+
+// Update classes when props change
+watch(
+  initialClasses,
+  (newClasses) => {
+    resetElementClasses(newClasses)
+  },
+  { deep: true }
+)
+
+const handleClick = () => {
+  if (!props.disabled) {
+    updateElementClasses("active")
+    // Remove active class after animation
+    setTimeout(() => updateElementClasses("active"), 200)
+  }
+}
+</script>
+```
+
+### Advanced Usage with Conditional Classes
+
+```typescript
+<script setup lang="ts">
+const { elementClasses, updateElementClasses } = useStyleClassPassthrough(['card'])
+
+// Conditional class management
+const isLoading = ref(false)
+const hasError = ref(false)
+const isSelected = ref(false)
+
+watch(isLoading, (loading) => {
+  updateElementClasses('loading')
+})
+
+watch(hasError, (error) => {
+  updateElementClasses('error')
+})
+
+watch(isSelected, (selected) => {
+  updateElementClasses('selected')
+})
+</script>
+```
+
+### 📚 API Reference
+
+#### `useStyleClassPassthrough(initialClasses: string[])`
+
+**Parameters:**
+
+- `initialClasses` (string[]): Array of initial CSS class names
+
+**Returns:**
+
+- `elementClasses` (ComputedRef<string>): Computed property with space-separated class string
+- `updateElementClasses(cssClass: string | string[])`: Add/remove classes (toggle behavior)
+- `resetElementClasses(newClasses: string[])`: Reset to new set of classes
+- `styleClassPassthroughRef` (Ref<string[]>): Direct access to the reactive class array
+
+**Methods:**
+
+- `updateElementClasses(cssClass)`: Toggles classes - adds if not present, removes if present
+- `resetElementClasses(propsClasses)`: Completely replaces current classes with new ones
+
+---
+
+**Need help?** Check the individual implementation files in `app/composables/` or see example usage throughout the application.

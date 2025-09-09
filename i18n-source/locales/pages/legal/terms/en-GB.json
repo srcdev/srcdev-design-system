@@ -42,6 +42,101 @@
                 ]
               }
             ]
+          },
+          {
+            "title": "Use of the SRCDEV Design System",
+            "link": "use-of-the-srcdev-design-system",
+            "section": [
+              {
+                "title": "Permitted Use",
+                "content": [
+                  "You are granted a non-exclusive, non-transferable, revocable license to access and use the SRCDEV Design System for personal or internal business purposes, subject to these Terms and Conditions.",
+                  "You may not use the SRCDEV Design System for any unlawful or unauthorized purpose. You agree to comply with all applicable laws and regulations while using the SRCDEV Design System."
+                ]
+              },
+              {
+                "title": "Prohibited Use",
+                "content": [
+                  "You may not:",
+                  [
+                    "Modify, copy, distribute, transmit, display, perform, reproduce, publish, license, create derivative works from, transfer, or sell any information, software, products, or services obtained from the SRCDEV Design System without prior written consent from SRCDEV.",
+                    "Use the SRCDEV Design System in any manner that could damage, disable, overburden, or impair its functionality or interfere with other users' access to it.",
+                    "Attempt to gain unauthorized access to any portion of the SRCDEV Design System or any other systems or networks connected to it."
+                  ]
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Intellectual Property",
+            "link": "intellectual-property",
+            "section": [
+              {
+                "title": "Ownership",
+                "content": [
+                  "All content and materials available on the SRCDEV Design System, including but not limited to text, graphics, logos, icons, images, audio clips, video clips, data compilations, and software, are the property of SRCDEV or its licensors and are protected by international copyright laws.",
+                  "The compilation of all content on the SRCDEV Design System is the exclusive property of SRCDEV and is protected by international copyright laws."
+                ]
+              },
+              {
+                "title": "Trademarks",
+                "content": [
+                  "SRCDEV and all related logos and product names are trademarks of SRCDEV. All other trademarks not owned by SRCDEV that appear on the SRCDEV Design System are the property of their respective owners.",
+                  "Nothing contained on the SRCDEV Design System should be construed as granting any license or right to use any trademark without the prior written permission of SRCDEV or the respective owner."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Disclaimer of Warranties",
+            "link": "disclaimer-of-warranties",
+            "section": [
+              {
+                "title": "",
+                "content": [
+                  "The SRCDEV Design System is provided on an 'as is' and 'as available' basis. SRCDEV makes no representations or warranties of any kind, express or implied, regarding the operation or availability of the SRCDEV Design System or the information, content, materials, or products included on it.",
+                  "To the fullest extent permissible by applicable law, SRCDEV disclaims all warranties, express or implied, including but not limited to implied warranties of merchantability and fitness for a particular purpose. SRCDEV does not warrant that the SRCDEV Design System will be uninterrupted or error-free, nor does it make any warranty as to the accuracy, reliability, or currency of any information or content provided through the SRCDEV Design System."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Limitation of Liability",
+            "link": "limitation-of-liability",
+            "section": [
+              {
+                "title": "",
+                "content": [
+                  "In no event shall SRCDEV be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of or inability to use the SRCDEV Design System, even if SRCDEV has been advised of the possibility of such damages.",
+                  "Some jurisdictions do not allow the exclusion or limitation of certain damages, so some of the above limitations may not apply to you."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Governing Law",
+            "link": "governing-law",
+            "section": [
+              {
+                "title": "",
+                "content": [
+                  "These Terms and Conditions shall be governed by and construed in accordance with the laws of England and Wales, without regard to its conflict of law principles.",
+                  "Any disputes arising out of or relating to these Terms and Conditions shall be subject to the exclusive jurisdiction of the courts located in England and Wales."
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Contact Information",
+            "link": "contact-information",
+            "section": [
+              {
+                "title": "",
+                "content": [
+                  "If you have any questions or concerns about these Terms and Conditions, please contact us at [support{'@'}srcdev.com](mailto:support{'@'}srcdev.com)."
+                ]
+              }
+            ]
           }
         ]
       }

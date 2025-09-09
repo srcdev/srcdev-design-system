@@ -9,18 +9,29 @@
         </LayoutRow>
 
         <div class="terms-content">
-          <nav class="terms-page-nav">
-            <header class="page-heading-2">{{ t("pages.legal.terms.pageContent.title") }}</header>
-            <ul>
-              <li v-for="item in termOfUseData" :key="item.link">
-                <NuxtLink :to="`#${item.link}`">{{ item.title }}</NuxtLink>
-              </li>
-            </ul>
-          </nav>
+          <div class="col-1">
+            <nav class="terms-page-nav">
+              <header class="header page-heading-3">{{ t("pages.legal.terms.pageContent.title") }}</header>
+              <hr class="divider" />
+              <ul class="link-list">
+                <li v-for="(item, index) in termOfUseData" :key="item.link" class="link-item">
+                  <a
+                    @click="setActiveLinkIndex(index)"
+                    :href="`#${item.link}`"
+                    class="link"
+                    :class="{ active: activeLinkIndex === index }"
+                  >
+                    {{ item.title }}
+                    <Icon name="material-symbols:arrow-right-alt" class="icon" />
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
 
-          <div>
-            <section v-for="item in termOfUseData" :key="item.link" :id="item.link">
-              <article v-for="(section, articleIndex) in item.section" :key="articleIndex">
+          <div class="terms-sections">
+            <section v-for="item in termOfUseData" :key="item.link" :id="item.link" class="section">
+              <article v-for="(section, articleIndex) in item.section" :key="articleIndex" class="article">
                 <h3
                   :class="{ 'page-heading-2': Number(articleIndex) === 0, 'page-heading-3': Number(articleIndex) > 0 }"
                 >
@@ -74,6 +85,11 @@ interface TermOfUseData {
 }
 
 const termOfUseData = useRawLocaleData<TermOfUseData[]>("pages.legal.terms.sections", [])
+
+const activeLinkIndex = ref<number>(0)
+const setActiveLinkIndex = (index: number) => {
+  activeLinkIndex.value = index
+}
 </script>
 
 <style lang="css">
@@ -81,33 +97,98 @@ const termOfUseData = useRawLocaleData<TermOfUseData[]>("pages.legal.terms.secti
   .terms-content {
     display: grid;
     gap: 2rem;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr;
 
-    .terms-page-nav {
-      position: sticky;
-      top: 1rem;
-      align-self: start;
+    @media (width >= 768px) {
+      grid-template-columns: 300px 1fr;
+    }
 
-      header {
-        font-weight: 600;
-        margin-block-end: 0.5rem;
+    .col-1 {
+      @media (width >= 768px) {
+        height: 100%;
       }
 
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+      .terms-page-nav {
+        position: sticky;
+        top: 60px;
+        background-color: light-dark(var(--gray-1), var(--gray-11));
+        border-radius: 8px;
 
-        li {
-          margin-block-end: 0.5rem;
+        .header {
+          color: light-dark(var(--gray-7), var(--gray-3));
+          padding: 2rem;
+          line-height: 1;
+        }
 
-          a {
-            text-decoration: none;
-            color: var(--mbe-color-link);
-            font-weight: 500;
+        .divider {
+          height: 2px;
+          background-color: light-dark(var(--gray-7), var(--gray-3));
+          border: none;
+          margin-block: 0;
+        }
 
-            &:hover {
-              text-decoration: underline;
+        .link-list {
+          margin-block: 8px;
+          list-style-type: none;
+          padding: 0;
+
+          .link-item {
+            .link {
+              --_transition-duration: 250ms;
+              --_transition-easing: ease-in-out;
+              color: var(--tertiaryBackgroundDarkBlue);
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: 1;
+              text-decoration: none;
+
+              display: grid;
+              grid-template-columns: 1fr auto;
+              justify-content: space-between;
+              align-items: center;
+              padding: 16px;
+              transition: background-color var(--_transition-easing) var(--_transition-duration);
+
+              .icon {
+                display: inline-block;
+                color: light-dark(var(--gray-12), var(--gray-0));
+
+                margin-inline-end: 8px;
+                opacity: 0;
+                transition: opacity var(--_transition-easing) var(--_transition-duration);
+              }
+
+              &:hover,
+              &:focus-visible,
+              &.active {
+                background-color: light-dark(var(--gray-12), var(--gray-10));
+
+                .icon {
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .terms-sections {
+      .section {
+        margin-block-end: 3rem;
+        padding: 2rem;
+        background-color: light-dark(var(--gray-1), var(--gray-11));
+        border-radius: 8px;
+
+        .article {
+          ul {
+            list-style: decimal;
+            padding-inline-start: 1.5rem;
+            margin-block-end: 1rem;
+
+            li {
+              margin-block-end: 0.5rem;
             }
           }
         }

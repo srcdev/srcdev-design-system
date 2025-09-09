@@ -57,7 +57,7 @@ const responsiveNavLinks = computed(() => ({
       childLinksTitle: t("components.navigation.childLinksTitle.uiComponents"),
       childLinks: [
         { name: "Display Prompt Component", path: localePath("/playground/components/ui/display-prompt") },
-        { name: `${t("components.navigation.placeholderLink")} 1`, path: "/" },
+        { name: "LayoutRow component", path: localePath("/playground/components/ui/layout-row") },
         { name: `${t("components.navigation.placeholderLink")} 2`, path: "/" },
         { name: `${t("components.navigation.placeholderLink")} 3`, path: "/" },
         { name: `${t("components.navigation.placeholderLink")} 4`, path: "/" },

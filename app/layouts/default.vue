@@ -2,7 +2,7 @@
   <div class="page-layout">
     <HeaderNavigation />
 
-    <LayoutRow tag="main" variant="full-width" :style-class-passthrough="['main-content']">
+    <LayoutRow tag="main" variant="full" :style-class-passthrough="['main-content']">
       <slot name="layout-content">Page content goes here</slot>
     </LayoutRow>
     <footer class="footer">&copy; {{ year }} Footer</footer>
@@ -23,7 +23,6 @@ const year = computed(() => new Date().getFullYear())
 
   .main-content {
     background-color: var(--color-background);
-    padding: 20px;
     min-block-size: 75svh;
   }
 

@@ -2,7 +2,7 @@
   <div>
     <NuxtLayout name="default">
       <template #layout-content>
-        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
           <h1 class="page-heading-1">Typography - Body Text</h1>
           <p class="page-body-normal">Page body styles</p>
           <p class="page-body-normal">Use within main body content</p>

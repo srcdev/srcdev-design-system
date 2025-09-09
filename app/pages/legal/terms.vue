@@ -2,56 +2,61 @@
   <div>
     <NuxtLayout name="default">
       <template #layout-content>
-        <LayoutRow tag="div" variant="full" :style-class-passthrough="['mbe-24']">
+        <LayoutRow tag="div" variant="content" :style-class-passthrough="['mbe-24']">
           <h1 class="page-heading-1">{{ $t("pages.legal.terms.header") }}</h1>
 
           <p class="page-body-normal-semibold">{{ $t("pages.legal.terms.subheader") }}</p>
         </LayoutRow>
 
-        <div class="terms-content">
-          <div class="col-1">
-            <nav class="terms-page-nav">
-              <header class="header page-heading-3">{{ t("pages.legal.terms.pageContent.title") }}</header>
-              <hr class="divider" />
-              <ul class="link-list">
-                <li v-for="(item, index) in termOfUseData" :key="item.link" class="link-item">
-                  <a
-                    @click="setActiveLinkIndex(index)"
-                    :href="`#${item.link}`"
-                    class="link"
-                    :class="{ active: activeLinkIndex === index }"
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-24']">
+          <div class="terms-content">
+            <div class="col-1">
+              <nav class="terms-page-nav">
+                <header class="header page-heading-3">{{ t("pages.legal.terms.pageContent.title") }}</header>
+                <hr class="divider" />
+                <ul class="link-list">
+                  <li v-for="(item, index) in termOfUseData" :key="item.link" class="link-item">
+                    <a
+                      @click="setActiveLinkIndex(index)"
+                      :href="`#${item.link}`"
+                      class="link"
+                      :class="{ active: activeLinkIndex === index }"
+                    >
+                      {{ item.title }}
+                      <Icon name="material-symbols:arrow-right-alt" class="icon" />
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+            <div class="terms-sections">
+              <section v-for="item in termOfUseData" :key="item.link" :id="item.link" class="section">
+                <article v-for="(section, articleIndex) in item.section" :key="articleIndex" class="article">
+                  <h3
+                    :class="{
+                      'page-heading-2': Number(articleIndex) === 0,
+                      'page-heading-3': Number(articleIndex) > 0,
+                    }"
                   >
-                    {{ item.title }}
-                    <Icon name="material-symbols:arrow-right-alt" class="icon" />
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+                    {{ section.title }}
+                  </h3>
 
-          <div class="terms-sections">
-            <section v-for="item in termOfUseData" :key="item.link" :id="item.link" class="section">
-              <article v-for="(section, articleIndex) in item.section" :key="articleIndex" class="article">
-                <h3
-                  :class="{ 'page-heading-2': Number(articleIndex) === 0, 'page-heading-3': Number(articleIndex) > 0 }"
-                >
-                  {{ section.title }}
-                </h3>
-
-                <div v-for="(content, contentIndex) in section.content" :key="contentIndex">
-                  <ul v-if="Array.isArray(content)">
-                    <li
-                      v-for="(listItem, listIndex) in content"
-                      :key="listIndex"
-                      v-html="renderMarkdown(listItem)"
-                    ></li>
-                  </ul>
-                  <p v-else-if="typeof content === 'string'" v-html="renderMarkdown(content)"></p>
-                </div>
-              </article>
-            </section>
+                  <div v-for="(content, contentIndex) in section.content" :key="contentIndex">
+                    <ul v-if="Array.isArray(content)">
+                      <li
+                        v-for="(listItem, listIndex) in content"
+                        :key="listIndex"
+                        v-html="renderMarkdown(listItem)"
+                      ></li>
+                    </ul>
+                    <p v-else-if="typeof content === 'string'" v-html="renderMarkdown(content)"></p>
+                  </div>
+                </article>
+              </section>
+            </div>
           </div>
-        </div>
+        </LayoutRow>
       </template>
     </NuxtLayout>
   </div>

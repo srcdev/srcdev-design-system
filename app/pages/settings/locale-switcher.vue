@@ -2,13 +2,13 @@
   <div>
     <NuxtLayout name="default">
       <template #layout-content>
-        <section>
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
           <h1>{{ $t("pages.settings.locale-switcher.header") }}</h1>
 
           <p>{{ $t("pages.settings.locale-switcher.description") }}</p>
-        </section>
+        </LayoutRow>
 
-        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
           <LocaleSwitcher />
         </LayoutRow>
       </template>

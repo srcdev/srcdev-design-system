@@ -2,12 +2,12 @@
   <div>
     <NuxtLayout name="default">
       <template #layout-content>
-        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
           <h1 class="page-heading-1">{{ $t("pages.settings.colour-mode-switcher.header") }}</h1>
           <p class="page-body-normal">{{ $t("pages.settings.colour-mode-switcher.description") }}</p>
         </LayoutRow>
 
-        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
           <TripleToggleSwitchCore
             v-model="colorModeVal"
             v-model:field-data="sampleFieldData"

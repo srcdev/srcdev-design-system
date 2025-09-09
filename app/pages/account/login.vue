@@ -2,14 +2,14 @@
   <div>
     <NuxtLayout name="default">
       <template #layout-content>
-        <section>
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
           <h1 class="page-heading-2">{{ $t("pages.account.login.header") }}</h1>
 
           <p class="page-body-normal">{{ $t("pages.account.login.description") }}</p>
-        </section>
+        </LayoutRow>
 
         <!-- GitHub OAuth Login -->
-        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
           <FormWrapper width="medium">
             <template #default>
               <ClientOnly>
@@ -28,12 +28,12 @@
           </FormWrapper>
         </LayoutRow>
 
-        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20', 'display-none']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
           <ThemeSwitcher v-model="selectedTheme" />
         </LayoutRow>
 
         <!-- Traditional Login Form (when not authenticated) -->
-        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
           <FormWrapper width="medium">
             <template #default>
               <ClientOnly>

@@ -2,17 +2,17 @@
   <div>
     <NuxtLayout name="default">
       <template #layout-content>
-        <section>
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
           <h1 class="page-heading-1">Display Prompt Component</h1>
 
           <p class="page-body-normal">Display Prompt Component variants</p>
-        </section>
+        </LayoutRow>
 
-        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20', 'display-none']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20', 'display-none']">
           <ThemeSwitcher v-model="selectedTheme" />
         </LayoutRow>
 
-        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20', 'display-none']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20', 'display-none']">
           <DisplayPromptCore :theme="selectedTheme" :dismissible="true">
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />
@@ -26,7 +26,7 @@
           </DisplayPromptCore>
         </LayoutRow>
 
-        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20', 'display-none']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20', 'display-none']">
           <DisplayPromptCore :theme="selectedTheme" :dismissible="true" :style-class-passthrough="['dark']">
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />
@@ -40,7 +40,7 @@
           </DisplayPromptCore>
         </LayoutRow>
 
-        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20', 'display-none']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20', 'display-none']">
           <DisplayPromptCore :theme="selectedTheme" :dismissible="true" :style-class-passthrough="['dark', 'outlined']">
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />

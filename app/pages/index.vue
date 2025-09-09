@@ -2,13 +2,11 @@
   <div>
     <NuxtLayout name="default">
       <template #layout-content>
-        <section>
-          <LayoutRow tag="div" variant="full" :style-class-passthrough="['mbe-20', 'display-none']">
-            <h1 class="page-heading-1">{{ $t("pages.index.header") }}</h1>
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
+          <h1 class="page-heading-1">{{ $t("pages.index.header") }}</h1>
 
-            <p>{{ $t("pages.index.description") }}</p>
-          </LayoutRow>
-        </section>
+          <p>{{ $t("pages.index.description") }}</p>
+        </LayoutRow>
       </template>
     </NuxtLayout>
   </div>

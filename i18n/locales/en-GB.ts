@@ -154,7 +154,14 @@ export default {
                     "These Terms and Conditions may be updated from time to time. It is your responsibility to review them periodically for any changes. Your continued use of the SRCDEV Design System after any modifications constitutes your acceptance of the updated terms.",
                     "We recommend bookmarking this page to stay informed about any changes to our terms.",
                     "If you have any questions or concerns about these Terms and Conditions, please contact us at [support{'@'}srcdev.com](mailto:support{'@'}srcdev.com).",
-                    "Example with markdown and a link to [Google](https://www.google.com)."
+                    "Example with markdown and a link to [Google](https://www.google.com).",
+                    [
+                      "This is a nested list item 1.",
+                      "This is a nested list item 2.",
+                      "This is a nested list item 3.",
+                      "This is a nested list item 4.",
+                      "This is a nested list item 5."
+                    ]
                   ]
                 ]
               },
@@ -215,7 +222,7 @@ export default {
             "link": "disclaimer-of-warranties",
             "section": [
               {
-                "title": "",
+                "title": "Sample article title",
                 "content": [
                   "The SRCDEV Design System is provided on an 'as is' and 'as available' basis. SRCDEV makes no representations or warranties of any kind, express or implied, regarding the operation or availability of the SRCDEV Design System or the information, content, materials, or products included on it.",
                   "To the fullest extent permissible by applicable law, SRCDEV disclaims all warranties, express or implied, including but not limited to implied warranties of merchantability and fitness for a particular purpose. SRCDEV does not warrant that the SRCDEV Design System will be uninterrupted or error-free, nor does it make any warranty as to the accuracy, reliability, or currency of any information or content provided through the SRCDEV Design System."
@@ -228,7 +235,7 @@ export default {
             "link": "limitation-of-liability",
             "section": [
               {
-                "title": "",
+                "title": "Sample article title",
                 "content": [
                   "In no event shall SRCDEV be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of or inability to use the SRCDEV Design System, even if SRCDEV has been advised of the possibility of such damages.",
                   "Some jurisdictions do not allow the exclusion or limitation of certain damages, so some of the above limitations may not apply to you."
@@ -241,7 +248,7 @@ export default {
             "link": "governing-law",
             "section": [
               {
-                "title": "",
+                "title": "Sample article title",
                 "content": [
                   "These Terms and Conditions shall be governed by and construed in accordance with the laws of England and Wales, without regard to its conflict of law principles.",
                   "Any disputes arising out of or relating to these Terms and Conditions shall be subject to the exclusive jurisdiction of the courts located in England and Wales."
@@ -254,7 +261,7 @@ export default {
             "link": "contact-information",
             "section": [
               {
-                "title": "",
+                "title": "Sample article title",
                 "content": [
                   "If you have any questions or concerns about these Terms and Conditions, please contact us at [support{'@'}srcdev.com](mailto:support{'@'}srcdev.com)."
                 ]

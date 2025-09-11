@@ -35,47 +35,7 @@
               </div>
             </div>
 
-            <div class="terms-sections">
-              <section v-for="item in termOfUseData" :key="item.link" :id="item.link" class="section">
-                <article v-for="(section, articleIndex) in item.section" :key="articleIndex" class="article">
-                  <h3
-                    v-if="section.title"
-                    :class="{
-                      'section-heading': Number(articleIndex) === 0,
-                      'article-heading': Number(articleIndex) > 0,
-                    }"
-                  >
-                    {{ section.title }}
-                  </h3>
-                  <template v-for="(content, contentIndex) in section.content" :key="contentIndex">
-                    <template v-if="Array.isArray(content)">
-                      <ul>
-                        <template v-for="(listItem, listIndex) in content" :key="`item-${listIndex}`">
-                          <!-- Only render list items that are strings, not arrays -->
-                          <li v-if="typeof listItem === 'string'" class="article-list-normal">
-                            <span v-html="renderMarkdown(listItem)"></span>
-                            <!-- Check if the next item is an array (nested list) and render it here -->
-                            <ul v-if="getNextItemIfArray(content, listIndex)">
-                              <li
-                                v-for="(nestedItem, nestedIndex) in getNextItemIfArray(content, listIndex)"
-                                :key="`nested-${nestedIndex}`"
-                                class="article-list-normal"
-                                v-html="renderMarkdown(nestedItem)"
-                              ></li>
-                            </ul>
-                          </li>
-                        </template>
-                      </ul>
-                    </template>
-                    <p
-                      v-else-if="typeof content === 'string'"
-                      class="article-body-normal"
-                      v-html="renderMarkdown(content)"
-                    ></p>
-                  </template>
-                </article>
-              </section>
-            </div>
+            <RenderMarkdownSections :i18n-content="termOfUseData" :style-class-passthrough="['terms-sections']" />
           </div>
         </LayoutRow>
       </template>
@@ -84,7 +44,9 @@
 </template>
 
 <script setup lang="ts">
+import type { SectionMarkdownI18nContent, SectionMarkdownI18nData } from "@/types/i18n"
 import { useBreakpoints } from "@vueuse/core"
+import RenderMarkdownSections from "~/components/markdown-rendering/RenderMarkdownSections.vue"
 definePageMeta({
   layout: false,
 })
@@ -100,18 +62,18 @@ useHead({
   },
 })
 
-interface SectionContent {
-  title?: string
-  content: string[] | { list: string[] }
-}
+// interface SectionMarkdownI18nContent {
+//   title?: string
+//   content: string[] | { list: string[] }
+// }
 
-interface TermOfUseData {
-  text: string
-  link: string
-  section?: SectionContent[]
-}
+// interface SectionMarkdownI18nData {
+//   text: string
+//   link: string
+//   section?: SectionMarkdownI18nContent[]
+// }
 
-const termOfUseData = useRawLocaleData<TermOfUseData[]>("pages.legal.terms.sections", [])
+const termOfUseData = useRawLocaleData<SectionMarkdownI18nData[]>("pages.legal.terms.sections", [])
 
 const breakpoints = useBreakpoints({
   screenMobile: 414,
@@ -122,13 +84,6 @@ const isScreenMobile = breakpoints.between("screenMobile", "screenTablet")
 const activeLinkIndex = ref<number>(0)
 const setActiveLinkIndex = (index: number) => {
   activeLinkIndex.value = index
-}
-
-const getNextItemIfArray = (items: any[], currentIndex: number): any[] | null => {
-  if (currentIndex + 1 < items.length && Array.isArray(items[currentIndex + 1])) {
-    return items[currentIndex + 1]
-  }
-  return null
 }
 
 const summaryRef = useTemplateRef<HTMLElement>("summaryRef")
@@ -282,61 +237,6 @@ onMounted(() => {
                 }
               }
             }
-          }
-        }
-      }
-    }
-
-    .terms-sections {
-      .section {
-        margin-block-end: 3rem;
-        padding: 2rem;
-        background-color: light-dark(var(--gray-1), var(--gray-11));
-        border-radius: 8px;
-
-        .article {
-          --_first-list-padding-start: 20px;
-          --_second-list-padding-start: 36px;
-          ul {
-            margin-block: 24px;
-            padding-inline-start: 0; /* remove built-in padding */
-            list-style-type: none;
-            counter-reset: item;
-          }
-          ul > li {
-            counter-increment: item;
-            position: relative;
-            padding-inline-start: var(--_first-list-padding-start); /* space for the marker */
-          }
-          ul > li::before {
-            content: counter(item) " ";
-            position: absolute;
-            left: 0; /* align to left edge */
-            width: var(--_first-list-padding-start); /* fixed width ensures left alignment */
-            text-align: left; /* markers line up neatly */
-          }
-          /* Nested UL */
-          ul ul {
-            margin-block: 8px;
-            padding-inline-start: 0;
-            list-style: none;
-            counter-reset: itemNested;
-          }
-          ul ul > li {
-            counter-increment: itemNested;
-            position: relative;
-            padding-inline-start: var(--_second-list-padding-start); /* more space for nested markers */
-          }
-          ul ul > li::before {
-            content: "(" counter(itemNested, lower-roman) ") ";
-            position: absolute;
-            left: 0;
-            width: var(--_second-list-padding-start); /* wide enough for (xiii) */
-            text-align: left;
-          }
-
-          + .article {
-            margin-block-start: 48px;
           }
         }
       }

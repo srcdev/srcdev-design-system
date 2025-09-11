@@ -12,3 +12,14 @@ export interface LocaleSchema {
     }
   }
 }
+
+export interface SectionMarkdownI18nContent {
+  title?: string
+  content: string[] | { list: string[] }
+}
+
+export interface SectionMarkdownI18nData {
+  text: string
+  link: string
+  section?: SectionMarkdownI18nContent[]
+}

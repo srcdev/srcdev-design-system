@@ -2,6 +2,12 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   extends: ["srcdev-nuxt-forms", "srcdev-nuxt-components"],
+  // imports: {
+  //   dirs: ["./stores"],
+  // },
+  // alias: {
+  //   "@/shared": "./shared",
+  // },
   devtools: { enabled: true },
   devServer: {
     // https true for production, false for local dev

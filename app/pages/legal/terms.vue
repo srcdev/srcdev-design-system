@@ -60,7 +60,7 @@ const breakpoints = useBreakpoints({
   screenMobile: 414,
   screenTablet: 768,
 })
-const isScreenMobile = breakpoints.between("screenMobile", "screenTablet")
+const isScreenMobile = breakpoints.smallerOrEqual("screenTablet")
 watch(isScreenMobile, () => {
   forceExpanded.value = !isScreenMobile.value
 })

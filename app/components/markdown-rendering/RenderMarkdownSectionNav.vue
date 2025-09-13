@@ -95,7 +95,7 @@ onMounted(() => {
   }
 
   .details {
-    background-color: light-dark(var(--gray-1), var(--gray-11));
+    background-color: light-dark(var(--gray-0), var(--gray-11));
     border-radius: 8px;
 
     &:has([open]) .icon {
@@ -167,7 +167,7 @@ onMounted(() => {
           &:hover,
           &:focus-visible,
           &.active {
-            background-color: light-dark(var(--gray-12), var(--gray-10));
+            background-color: light-dark(var(--gray-2), var(--gray-10));
 
             .link-icon {
               opacity: 1;

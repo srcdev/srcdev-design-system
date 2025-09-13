@@ -19,7 +19,12 @@ export interface SectionMarkdownI18nContent {
 }
 
 export interface SectionMarkdownI18nData {
-  text: string
-  link: string
+  sectionTitle: string
+  sectionLink: string
   section?: SectionMarkdownI18nContent[]
+}
+
+export interface SectionMarkdwnI18nNav {
+  sectionTitle: string
+  sectionLink: string
 }

@@ -1,11 +1,12 @@
 <template>
   <component :is="tag" class="render-markdown-sections" :class="[elementClasses]">
-    <section v-for="item in i18nContent" :key="item.link" :id="item.link" class="section">
+    <section v-for="item in i18nContent" :key="item.sectionLink" :aria-labelledby="item.sectionLink" class="section">
       <article v-for="(section, articleIndex) in item.section" :key="articleIndex" class="article">
         <component
           :is="getHeadingTag(item.section, articleIndex)"
           v-if="section.title"
           :class="getHeadingClass(item.section, articleIndex)"
+          :id="item.sectionLink"
         >
           {{ section.title }}
         </component>
@@ -45,24 +46,11 @@ const props = defineProps({
     type: String,
     default: "div",
     validator(value: string) {
-      return [
-        "div",
-        "p",
-        "span",
-        "section",
-        "article",
-        "aside",
-        "header",
-        "footer",
-        "main",
-        "nav",
-        "ul",
-        "ol",
-      ].includes(value)
+      return ["div", "aside", "header", "footer", "nav"].includes(value)
     },
   },
   i18nContent: {
-    type: Object as PropType<SectionMarkdownI18nData>,
+    type: Array as PropType<SectionMarkdownI18nData[]>,
     required: true,
   },
   styleClassPassthrough: {
@@ -89,11 +77,7 @@ const getHeadingTag = (sections: SectionMarkdownI18nContent[] | undefined, curre
 
   if (firstTitleIndex === -1) return "h3" // No titles found, default to h3
 
-  if (currentIndex === firstTitleIndex) {
-    return "h2" // First title should be h2
-  } else {
-    return "h3" // Subsequent titles should be h3
-  }
+  return currentIndex === firstTitleIndex ? "h2" : "h3"
 }
 
 const getHeadingClass = (sections: SectionMarkdownI18nContent[] | undefined, currentIndex: number): string => {
@@ -104,11 +88,7 @@ const getHeadingClass = (sections: SectionMarkdownI18nContent[] | undefined, cur
 
   if (firstTitleIndex === -1) return "article-heading" // No titles found, default to article-heading
 
-  if (currentIndex === firstTitleIndex) {
-    return "section-heading" // First title gets section-heading class
-  } else {
-    return "article-heading" // Subsequent titles get article-heading class
-  }
+  return currentIndex === firstTitleIndex ? "section-heading" : "article-heading"
 }
 
 watch(

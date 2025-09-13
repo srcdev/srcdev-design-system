@@ -136,8 +136,8 @@ export default {
         },
         "sections": [
           {
-            "title": "Introduction",
-            "link": "introduction",
+            "sectionTitle": "Introduction",
+            "sectionLink": "introduction",
             "section": [
               {
                 "title": "What is the SRCDEV Design System?",
@@ -174,8 +174,8 @@ export default {
             ]
           },
           {
-            "title": "Use of the SRCDEV Design System",
-            "link": "use-of-the-srcdev-design-system",
+            "sectionTitle": "Use of the SRCDEV Design System",
+            "sectionLink": "use-of-the-srcdev-design-system",
             "section": [
               {
                 "title": "Permitted Use",
@@ -198,8 +198,8 @@ export default {
             ]
           },
           {
-            "title": "Intellectual Property",
-            "link": "intellectual-property",
+            "sectionTitle": "Intellectual Property",
+            "sectionLink": "intellectual-property",
             "section": [
               {
                 "title": "Ownership",
@@ -218,8 +218,8 @@ export default {
             ]
           },
           {
-            "title": "Disclaimer of Warranties",
-            "link": "disclaimer-of-warranties",
+            "sectionTitle": "Disclaimer of Warranties",
+            "sectionLink": "disclaimer-of-warranties",
             "section": [
               {
                 "title": "Sample article title",
@@ -231,8 +231,8 @@ export default {
             ]
           },
           {
-            "title": "Limitation of Liability",
-            "link": "limitation-of-liability",
+            "sectionTitle": "Limitation of Liability",
+            "sectionLink": "limitation-of-liability",
             "section": [
               {
                 "title": "Sample article title",
@@ -244,8 +244,8 @@ export default {
             ]
           },
           {
-            "title": "Governing Law",
-            "link": "governing-law",
+            "sectionTitle": "Governing Law",
+            "sectionLink": "governing-law",
             "section": [
               {
                 "title": "Sample article title",
@@ -257,8 +257,8 @@ export default {
             ]
           },
           {
-            "title": "Contact Information",
-            "link": "contact-information",
+            "sectionTitle": "Contact Information",
+            "sectionLink": "contact-information",
             "section": [
               {
                 "title": "Sample article title",

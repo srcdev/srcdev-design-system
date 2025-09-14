@@ -5,6 +5,7 @@
     :style="{ '--navWrapperHeight': navWrapperHeight }"
   >
     <ExpandingPanel
+      v-model="isPanelOpen"
       :animation-duration="300"
       name="terms-nav"
       icon-size="medium"
@@ -20,15 +21,16 @@
       <template #content>
         <ul class="link-list">
           <li v-for="(item, index) in i18nContent" :key="item.sectionLink" class="link-item">
-            <a
+            <NuxtLink
               @click="setActiveLinkIndex(index)"
+              @keydown.enter="setActiveLinkIndex(index)"
               :href="`#${item.sectionLink}`"
               class="link"
               :class="{ active: activeLinkIndex === index }"
             >
               {{ item.sectionTitle }}
               <Icon name="material-symbols:arrow-right-alt" class="link-icon" />
-            </a>
+            </NuxtLink>
           </li>
         </ul>
       </template>
@@ -72,6 +74,13 @@ const open = computed(() => {
 const activeLinkIndex = ref<number>(0)
 const setActiveLinkIndex = (index: number) => {
   activeLinkIndex.value = index
+  if (props.forceExpanded) return
+  closePanel()
+}
+
+const isPanelOpen = ref(false)
+const closePanel = () => {
+  isPanelOpen.value = false
 }
 
 const summaryRef = useTemplateRef<HTMLElement>("summaryRef")

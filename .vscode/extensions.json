@@ -12,6 +12,7 @@
     "echoapi.echoapi-for-vscode",
     "pranaygp.vscode-css-peek", // hover then ctrl + click to go to css file
     "formulahendry.auto-rename-tag", // auto rename closing tag
-    "adpyke.codesnap" // ctrl + p > search/select codesnap then highlight code
+    "adpyke.codesnap", // ctrl + p > search/select codesnap then highlight code
+    "usernamehw.errorlens"
   ]
 }

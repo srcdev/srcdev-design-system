@@ -11,11 +11,6 @@
         <LayoutRow tag="div" variant="content" :style-class-passthrough="['mbe-24']">
           <div class="terms-content">
             <div class="col-1">
-              <div class="mp-12">
-                <button class="btn btn-primary" @click="forceExpanded = !forceExpanded">
-                  Toggle forceExpanded (currently: {{ forceExpanded }})
-                </button>
-              </div>
               <RenderMarkdownSectionNav
                 :i18n-content="navI18nData"
                 :force-expanded

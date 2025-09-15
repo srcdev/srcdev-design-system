@@ -38,6 +38,12 @@
       border-radius: 50%;
     }
 
+    &:hover {
+      background-color: var(--theme-input-surface-hover);
+      outline-color: var(--theme-input-outline-hover);
+      outline-offset: var(--form-element-outline-offset-hover);
+    }
+
     &:has(.input-checkbox-radio-core:checked) {
       .input-checked-icon-slot {
         .input-checked-icon-checked {

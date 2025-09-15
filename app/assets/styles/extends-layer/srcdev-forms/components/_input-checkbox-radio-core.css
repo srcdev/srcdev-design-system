@@ -39,6 +39,7 @@
     }
 
     &:hover {
+      /* Duplicate within _input-checkbox-radio-with-label.css */
       background-color: var(--theme-input-surface-hover);
       outline-color: var(--theme-input-outline-hover);
       outline-offset: var(--form-element-outline-offset-hover);

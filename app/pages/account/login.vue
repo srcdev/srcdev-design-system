@@ -168,7 +168,7 @@ const formSchema = reactive(
     .object({
       emailAddress: z
         .string({
-          required_error: "Email address is required",
+          message: "Email address is required",
         })
         .email({ message: "Invalid email address" })
         .refine((email) => email !== zodFormControl.previousState.emailAddress.value, {

@@ -108,7 +108,7 @@
                         <template #labelContent>
                           <span class="body-normal">
                             You must agree to our
-                            <NuxtLink to="/" class="link-normal">terms and conditions</NuxtLink>
+                            <NuxtLink to="/" class="page-link-normal-semibold">terms and conditions</NuxtLink>
                             to continue
                           </span>
                         </template>

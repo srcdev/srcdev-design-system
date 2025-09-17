@@ -59,12 +59,7 @@ const responsiveNavLinks = computed(() => ({
         { name: "Display Prompt Component", path: localePath("/playground/components/ui/display-prompt") },
         { name: "LayoutRow component", path: localePath("/playground/components/ui/layout-row") },
         { name: "Display Card", path: localePath("/playground/components/ui/display-card") },
-        { name: `${t("components.navigation.placeholderLink")} 3`, path: "/" },
-        { name: `${t("components.navigation.placeholderLink")} 4`, path: "/" },
-        { name: `${t("components.navigation.placeholderLink")} 5`, path: "/" },
-        { name: `${t("components.navigation.placeholderLink")} 6`, path: "/" },
-        { name: `${t("components.navigation.placeholderLink")} 7`, path: "/" },
-        { name: `${t("components.navigation.placeholderLink")} 8`, path: "/" },
+        { name: "Glowing Border", path: localePath("/playground/components/ui/glowing-border") },
       ],
     },
     {

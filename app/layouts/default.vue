@@ -2,9 +2,9 @@
   <div class="page-layout">
     <HeaderNavigation />
 
-    <LayoutRow id="main-content" tag="main" variant="full" :style-class-passthrough="['main-content']">
+    <main id="main-content" class="main-content">
       <slot name="layout-content">Page content goes here</slot>
-    </LayoutRow>
+    </main>
     <footer id="footer" class="footer">&copy; {{ year }} Footer</footer>
   </div>
 </template>

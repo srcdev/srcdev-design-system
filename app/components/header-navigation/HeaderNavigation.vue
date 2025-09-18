@@ -164,10 +164,35 @@ const responsiveNavLinks = computed(() => ({
 
       .main-navigation-item {
         width: initial;
+
         .main-navigation-link {
+          position: relative;
+          display: block;
           color: var(--gray-0);
           text-decoration: none;
           margin-inline-start: 0;
+
+          padding: 8px 2px;
+          border-bottom: 0.2rem solid #efefef25;
+
+          &:before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 0.2rem;
+            background-color: transparent;
+            transition: all 0.3s;
+          }
+
+          &:hover {
+            &:before {
+              width: 100%;
+              height: 0.2rem;
+              background-color: var(--green-8);
+            }
+          }
         }
 
         .main-navigation-details {
@@ -178,12 +203,35 @@ const responsiveNavLinks = computed(() => ({
           }
 
           .main-navigation-details-summary {
+            position: relative;
             color: var(--gray-0);
             white-space: nowrap;
+            border-bottom: 0.2rem solid #efefef25;
+
+            &:before {
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 0%;
+              height: 0.2rem;
+              background-color: transparent;
+              transition: all 0.3s;
+            }
+          }
+
+          &[open] {
+            .main-navigation-details-summary {
+              &:before {
+                width: 100%;
+                height: 0.2rem;
+                background-color: var(--green-8);
+              }
+            }
           }
 
           .main-navigation-sub-nav {
-            padding: 12px;
+            padding: 8px;
             border: 1px solid #efefef75;
             border-radius: 8px;
             background-color: #000;
@@ -195,6 +243,7 @@ const responsiveNavLinks = computed(() => ({
               gap: 12px;
 
               .main-navigation-sub-nav-item {
+                display: block;
                 margin-bottom: 0;
 
                 &:last-child {
@@ -202,10 +251,33 @@ const responsiveNavLinks = computed(() => ({
                 }
 
                 .main-navigation-sub-nav-link {
+                  position: relative;
                   display: block;
                   text-wrap-mode: nowrap;
                   text-decoration: none;
                   color: var(--gray-0);
+                  padding: 8px 2px;
+                  border-bottom: 0.2rem solid #efefef25;
+                  min-width: 170px;
+
+                  &:before {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0%;
+                    height: 0.2rem;
+                    background-color: transparent;
+                    transition: all 0.3s;
+                  }
+
+                  &:hover {
+                    &:before {
+                      width: 100%;
+                      height: 0.2rem;
+                      background-color: var(--green-8);
+                    }
+                  }
                 }
               }
             }
@@ -234,6 +306,7 @@ const responsiveNavLinks = computed(() => ({
 
     .main-navigation-link {
       color: var(--gray-0);
+
       .icon {
         height: 1.35em;
         width: 1.35em;

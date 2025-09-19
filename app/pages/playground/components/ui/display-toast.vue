@@ -45,7 +45,7 @@
         <LayoutRow tag="div" variant="inset-content" :style-class-passthrough="['mbe-20']">
           <DisplayToast
             v-model="secondToastActive"
-            :duration="5000"
+            :duration="2000"
             :reveal-duration="500"
             :style-class-passthrough="['top', 'full-width']"
           >
@@ -53,7 +53,7 @@
               v-model:parentComponentState="secondToastActive"
               theme="error"
               :dismissible="true"
-              :style-class-passthrough="['dark']"
+              :style-class-passthrough="['dark', 'outlined']"
             >
               <template #customDecoratorIcon>
                 <Icon name="akar-icons:info" class="icon" />
@@ -68,7 +68,7 @@
           <DisplayToast
             v-model="thirdToastActive"
             :duration="0"
-            :reveal-duration="5000"
+            :reveal-duration="500"
             :style-class-passthrough="['top', 'full-width']"
           >
             <DisplayPromptCore

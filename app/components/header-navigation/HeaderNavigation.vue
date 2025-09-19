@@ -57,6 +57,7 @@ const responsiveNavLinks = computed(() => ({
       childLinksTitle: t("components.navigation.childLinksTitle.uiComponents"),
       childLinks: [
         { name: "Display Prompt Component", path: localePath("/playground/components/ui/display-prompt") },
+        { name: "Display Toast Component", path: localePath("/playground/components/ui/display-toast") },
         { name: "LayoutRow component", path: localePath("/playground/components/ui/layout-row") },
         { name: "Display Card", path: localePath("/playground/components/ui/display-card") },
         { name: "Glowing Border", path: localePath("/playground/components/ui/glowing-border") },
@@ -110,7 +111,7 @@ const responsiveNavLinks = computed(() => ({
     background-color: #000;
 
     position: relative;
-    z-index: 999999;
+    z-index: 9;
 
     width: 100%;
 

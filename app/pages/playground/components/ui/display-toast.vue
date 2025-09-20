@@ -24,6 +24,22 @@
               Trigger Fourth Toast (current value: {{ fourthToastActive }})
             </button>
           </p>
+          <p>
+            <button @click.prevent="triggerFifthToast()" class="button primary mbe-10">
+              Trigger Fifth Toast (current value: {{ fifthToastActive }})
+            </button>
+          </p>
+        </LayoutRow>
+
+        <LayoutRow tag="div" variant="inset-content" :style-class-passthrough="['mbe-20']">
+          <DisplayToast
+            v-model="fifthToastActive"
+            theme="warning"
+            :duration="0"
+            :reveal-duration="500"
+            toast-display-text="This is a toast notification message"
+            :style-class-passthrough="['top', 'full-width']"
+          ></DisplayToast>
         </LayoutRow>
 
         <LayoutRow tag="div" variant="inset-content" :style-class-passthrough="['mbe-20']">
@@ -143,6 +159,7 @@ const firstToastActive = ref(false)
 const secondToastActive = ref(false)
 const thirdToastActive = ref(false)
 const fourthToastActive = ref(false)
+const fifthToastActive = ref(false)
 
 const triggerFirstToast = () => {
   firstToastActive.value = true
@@ -158,6 +175,10 @@ const triggerThirdToast = () => {
 
 const triggerFourthToast = () => {
   fourthToastActive.value = true
+}
+
+const triggerFifthToast = () => {
+  fifthToastActive.value = true
 }
 
 onMounted(() => {

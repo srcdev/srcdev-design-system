@@ -44,6 +44,25 @@ export default defineNuxtConfig({
     "@nuxtjs/storybook",
     "@nuxt/content",
   ],
+  content: {
+    // Configure content to help with hydration
+    renderer: {
+      anchorLinks: false,
+    },
+    build: {
+      markdown: {
+        // Disable plugins that might cause hydration issues
+        remarkPlugins: {
+          "remark-slug": false,
+          "remark-autolink-headings": false,
+        },
+        rehypePlugins: {
+          "rehype-slug": false,
+          "rehype-autolink-headings": false,
+        },
+      },
+    },
+  },
   security: {
     headers: {
       contentSecurityPolicy: {

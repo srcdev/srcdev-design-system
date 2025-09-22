@@ -42,6 +42,7 @@ export default defineNuxtConfig({
     "nuxt-security",
     "nuxt-auth-utils",
     "@nuxtjs/storybook",
+    "@nuxt/content",
   ],
   security: {
     headers: {
@@ -51,7 +52,7 @@ export default defineNuxtConfig({
         "style-src": ["'self'", "'unsafe-inline'"],
         "script-src-attr": ["'self'", "'unsafe-inline'"],
         "img-src": ["'self'", "data:", "avatars.githubusercontent.com"],
-        "connect-src": ["'self'", "api.iconify.design", "github.com"],
+        "connect-src": ["'self'", "api.iconify.design", "github.com", "ws://localhost:4000/ws"],
         "frame-src": ["'self'"],
         "worker-src": ["'self'", "blob:"],
         "child-src": ["'self'", "blob:"],

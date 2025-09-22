@@ -52,7 +52,9 @@
     "zod": "4.1.11"
   },
   "dependencies": {
+    "@nuxt/content": "3.7.1",
     "@vueuse/core": "13.9.0",
+    "better-sqlite3": "^12.3.0",
     "markdown-it": "14.1.0"
   },
   "overrides": {

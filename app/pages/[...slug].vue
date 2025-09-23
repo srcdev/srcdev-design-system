@@ -2,10 +2,8 @@
   <div>
     <NuxtLayout name="default">
       <template #layout-content>
-        <div class="content-wrapper">
-          <ContentRenderer v-if="page" :value="page" tag="article" :prose="true" />
-          <div v-else>Page not found</div>
-        </div>
+        <ContentRenderer v-if="page" :value="page" tag="article" :prose="true" />
+        <div v-else>Page not found</div>
       </template>
     </NuxtLayout>
   </div>
@@ -40,10 +38,7 @@ useHead({
 </script>
 
 <style scoped>
-.content-wrapper {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 20px;
-  margin-bottom: 24px;
+.content-page {
+  /* Override page-specific styles here */
 }
 </style>

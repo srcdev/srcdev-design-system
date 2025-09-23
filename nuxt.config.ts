@@ -42,7 +42,27 @@ export default defineNuxtConfig({
     "nuxt-security",
     "nuxt-auth-utils",
     "@nuxtjs/storybook",
+    "@nuxt/content",
   ],
+  content: {
+    // Configure content to help with hydration
+    renderer: {
+      anchorLinks: false,
+    },
+    build: {
+      markdown: {
+        // Disable plugins that might cause hydration issues
+        remarkPlugins: {
+          "remark-slug": false,
+          "remark-autolink-headings": false,
+        },
+        rehypePlugins: {
+          "rehype-slug": false,
+          "rehype-autolink-headings": false,
+        },
+      },
+    },
+  },
   security: {
     headers: {
       contentSecurityPolicy: {
@@ -51,7 +71,7 @@ export default defineNuxtConfig({
         "style-src": ["'self'", "'unsafe-inline'"],
         "script-src-attr": ["'self'", "'unsafe-inline'"],
         "img-src": ["'self'", "data:", "avatars.githubusercontent.com"],
-        "connect-src": ["'self'", "api.iconify.design", "github.com"],
+        "connect-src": ["'self'", "api.iconify.design", "github.com", "ws://localhost:4000/ws"],
         "frame-src": ["'self'"],
         "worker-src": ["'self'", "blob:"],
         "child-src": ["'self'", "blob:"],

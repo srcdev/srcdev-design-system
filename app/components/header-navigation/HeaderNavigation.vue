@@ -74,7 +74,7 @@ const responsiveNavLinks = computed(() => ({
         { name: "Page Links", path: localePath("/playground/typography/page-link") },
       ],
     },
-    { name: t("components.navigation.about"), path: localePath("/") },
+    { name: t("components.navigation.about"), path: localePath("/about") },
   ],
   secondNav: [
     { name: t("components.navigation.someOtherLink"), iconName: "material-symbols:widgets", path: "#link-description" },

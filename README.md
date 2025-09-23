@@ -350,6 +350,340 @@ npm run dev
 
 The error occurs because VPNs can interfere with the Bunny CDN font provider requests, causing HTML error pages to be returned instead of expected JSON responses.
 
+## 📄 Nuxt Content Module
+
+This project uses `@nuxt/content` v3.7.1 to provide a file-based content management system. The Content module allows you to write content in Markdown, Vue components, and other formats, and query them through a powerful API.
+
+### Content Module Configuration
+
+The Content module is configured in `nuxt.config.ts` with optimizations for hydration:
+
+```typescript
+modules: [
+  "@nuxt/content",
+  // ... other modules
+],
+content: {
+  // Configure content to help with hydration
+  renderer: {
+    anchorLinks: false,
+  },
+  build: {
+    markdown: {
+      // Disable plugins that might cause hydration issues
+      remarkPlugins: {
+        "remark-slug": false,
+        "remark-autolink-headings": false,
+      },
+      rehypePlugins: {
+        "rehype-slug": false,
+        "rehype-autolink-headings": false,
+      },
+    },
+  },
+}
+```
+
+### Content Directory Structure
+
+Content files are stored in the `/content/` directory at the project root:
+
+```text
+content/
+└── about.md              # Accessible at /about
+```
+
+#### File-Based Routing
+
+- Files in `/content/` are automatically mapped to routes
+- `about.md` becomes accessible at `/about`
+- Nested directories create nested routes (e.g., `blog/post1.md` → `/blog/post1`)
+
+### Markdown Features
+
+#### Frontmatter
+
+All content files support frontmatter for metadata:
+
+```markdown
+---
+title: "About us"
+description: "Welcome to our site"
+bodyClass: "about-us-page"
+---
+
+# Your content here
+```
+
+#### Custom Components in Markdown
+
+The project includes custom Vue components that can be used directly in Markdown:
+
+```markdown
+::layout-row{tag=div variant=inset-content style-class-passthrough=mb-20}
+  :header-block{tag-level=2 class-level=2}[Display Prompt Example]
+
+  :raw-text[This renders plain text content]
+
+  :markdown-nuxt-link{to="/about" style-class-passthrough="custom-class"}[Link Text]
+::
+```
+
+### Custom Markdown Components
+
+The project provides several custom components for enhanced Markdown functionality:
+
+#### RawText Component
+
+Located at `app/components/custom-markdown-components/RawText.vue`:
+
+```vue
+<template>
+  <slot></slot>
+</template>
+```
+
+**Usage in Markdown:**
+
+```markdown
+**Usage in Markdown:**
+
+```markdown
+:raw-text[Your plain text content here]
+```
+
+#### MarkdownNuxtLink Component
+
+Located at `app/components/custom-markdown-components/MarkdownNuxtLink.vue`:
+
+```vue
+<template>
+  <NuxtLink :to :class="[elementClasses]"><slot></slot></NuxtLink>
+</template>
+```
+
+**Usage in Markdown:**
+
+```markdown
+**Usage in Markdown:**
+
+```markdown
+:markdown-nuxt-link{to="/contact" style-class-passthrough="btn-primary"}[Contact Us]
+```
+
+**Props:**
+
+- `to` (required): The route path
+
+**Props:**
+
+- `to` (required): The route path
+- `style-class-passthrough`: CSS classes to apply
+
+### Content Rendering
+
+#### Dynamic Pages with `[...slug].vue`
+
+The project uses a catch-all route (`app/pages/[...slug].vue`) to render content dynamically:
+
+```vue
+<template>
+  <div>
+    <NuxtLayout name="default">
+      <template #layout-content>
+        <ContentRenderer v-if="page" :value="page" tag="article" :prose="true" />
+        <div v-else>Page not found</div>
+      </template>
+    </NuxtLayout>
+  </div>
+</template>
+
+<script setup lang="ts">
+const route = useRoute()
+
+// Query content using the new Content v3 API
+const { data: page } = await useAsyncData(`page:${route.path}`, async () => {
+  const content = await queryCollection("content").path(route.path).first()
+  return content
+})
+
+// Handle 404 errors
+if (!page.value) {
+  throw createError({ statusCode: 404, statusMessage: "Page not found", fatal: true })
+}
+
+// Set page metadata from frontmatter
+useHead({
+  title: page.value?.title || "Page",
+  meta: [
+    {
+      name: "description",
+      content: page.value?.description || "",
+    },
+  ],
+  bodyAttrs: {
+    class: page.value?.bodyClass || "content-page",
+  },
+})
+</script>
+```
+
+### Content API Usage
+
+#### Query Content
+
+Use the `queryCollection` API to fetch content:
+
+```typescript
+// Get a single page by path
+const page = await queryCollection("content").path("/about").first()
+
+// Get all content
+const allContent = await queryCollection("content").all()
+
+// Filter content
+const blogPosts = await queryCollection("content")
+  .path("/blog")
+  .sort({ date: -1 })
+  .all()
+```
+
+#### In Components
+
+You can also use content in any Vue component:
+
+```vue
+<script setup lang="ts">
+const { data: aboutPage } = await useAsyncData("about", () =>
+  queryCollection("content").path("/about").first()
+)
+</script>
+
+<template>
+  <ContentRenderer v-if="aboutPage" :value="aboutPage" />
+</template>
+```
+
+### Creating New Content
+
+#### 1. Create a Markdown File
+
+```bash
+# Create a new content file
+touch content/services.md
+```
+
+#### 2. Add Frontmatter and Content
+
+```markdown
+---
+title: "Our Services"
+description: "Comprehensive design and development services"
+bodyClass: "services-page"
+---
+
+# Our Services
+
+We offer a wide range of services...
+
+:raw-text[This is plain text rendered through our custom component]
+
+::layout-row{tag=section variant=popout}
+  # Service Section
+
+  :markdown-nuxt-link{to="/contact"}[Get in touch]
+::
+```
+
+#### 3. Access Your Content
+
+The file will automatically be accessible at `/services`
+
+### Markdown Utilities
+
+The project includes a custom `useMarkdown()` composable for processing markdown:
+
+```typescript
+// In app/composables/useMarkdown.ts
+export function useMarkdown() {
+  const renderMarkdown = (text: string): string => {
+    return md.renderInline(text)
+  }
+
+  return { renderMarkdown }
+}
+```
+
+**Features:**
+
+- Automatic external link handling (adds `target="_blank"` and `rel="noopener noreferrer"`)
+- Safe HTML rendering
+- Link detection and processing
+
+### Best Practices
+
+#### 1. File Organization
+
+```text
+content/
+├── index.md              # Homepage content
+├── about.md              # About page
+├── services/
+│   ├── index.md          # Services overview
+│   ├── web-design.md     # Individual service
+│   └── development.md    # Individual service
+└── blog/
+    ├── index.md          # Blog listing
+    └── posts/
+        ├── post-1.md
+        └── post-2.md
+```
+
+#### 2. Frontmatter Consistency
+
+Always include essential metadata:
+
+```markdown
+---
+title: "Page Title"
+description: "SEO-friendly description"
+bodyClass: "page-specific-class"
+date: "2025-01-15"
+author: "Author Name"
+---
+```
+
+#### 3. Custom Component Usage
+
+- Use `:raw-text[]` for plain text that doesn't need markdown processing
+- Use `:markdown-nuxt-link{}[]` for internal links with custom styling
+- Wrap related content in layout components using `::component-name{}`
+
+#### 4. SEO Optimization
+
+The content system automatically handles SEO through:
+
+- Frontmatter title and description become page meta
+- Custom body classes for page-specific styling
+- Automatic 404 handling for missing content
+
+### Troubleshooting
+
+#### Content Not Found
+
+1. **File Path Issues**: Ensure your content file path matches the URL structure
+2. **Frontmatter Syntax**: Check that frontmatter is properly formatted with `---` delimiters
+3. **Component Errors**: Verify custom component syntax matches the component props
+
+#### Hydration Issues
+
+The configuration disables certain plugins that can cause hydration mismatches:
+
+- `remark-slug` and `rehype-slug` are disabled
+- `remark-autolink-headings` and `rehype-autolink-headings` are disabled
+
+If you experience hydration issues, check the browser console for specific errors.
+
 ## 🎨 Styling Architecture
 
 The project uses a modular CSS architecture located in `/app/assets/styles/` with two distinct organizational layers:

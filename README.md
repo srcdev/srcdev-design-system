@@ -250,12 +250,12 @@ This project includes a fully configured Storybook setup for component developme
 ### Current Setup
 
 - **Framework**: `@storybook-vue/nuxt` (via `@nuxtjs/storybook`)
-- **Version**: Storybook 9.1.5 with Nuxt 4.1.1 compatibility
+- **Version**: Storybook 9.1.7 with Nuxt 4.1.2 compatibility
 - **Addons**:
-  - `@storybook/addon-docs` - Automatic documentation
-  - `@storybook/addon-a11y` - Accessibility testing
-  - `@storybook/addon-vitest` - Testing integration
-  - `@chromatic-com/storybook` - Visual testing
+  - `@storybook/addon-docs` 9.1.7 - Automatic documentation
+  - `@storybook/addon-a11y` 9.1.7 - Accessibility testing
+  - `@storybook/addon-vitest` 9.1.7 - Testing integration
+  - `@chromatic-com/storybook` 4.1.1 - Visual testing and chromatic integration
 
 ### Stories Location
 
@@ -274,7 +274,7 @@ app/components/
 
 ### Story Pattern
 
-Stories follow the modern Storybook 7+ pattern:
+Stories follow the modern Storybook 8+ pattern (compatible with 9.1.7):
 
 ```typescript
 import type { Meta, StoryObj } from "@storybook/vue3"
@@ -318,7 +318,7 @@ If you encounter Storybook configuration errors:
 
 2. **Version Compatibility Warnings**:
 
-   - The project uses package overrides to ensure compatibility between Storybook 9.1.5 and Nuxt 4.1.1
+   - The project uses package overrides to ensure compatibility between Storybook 9.1.7 and Nuxt 4.1.2
    - Warnings are expected but don't affect functionality
 
 3. **Missing Types**: Ensure both `@nuxtjs/storybook` and `@storybook-vue/nuxt` are installed:

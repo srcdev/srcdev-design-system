@@ -29,7 +29,7 @@ const props = defineProps({
     default: "div",
   },
   styleClassPassthrough: {
-    type: Array as PropType<string[]>,
+    type: [String, Array] as PropType<string | string[]>,
     default: () => [],
   },
 })

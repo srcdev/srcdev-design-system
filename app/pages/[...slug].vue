@@ -2,9 +2,10 @@
   <div>
     <NuxtLayout name="default">
       <template #layout-content>
-        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
-          <ContentRenderer v-if="page" :value="page" />
-        </LayoutRow>
+        <div class="content-wrapper">
+          <ContentRenderer v-if="page" :value="page" tag="article" :prose="true" />
+          <div v-else>Page not found</div>
+        </div>
       </template>
     </NuxtLayout>
   </div>
@@ -13,19 +14,36 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const { data: page } = await useAsyncData("page-" + route.path, () => {
-  return queryCollection("content").path(route.path).first()
+// Use a more specific approach with Content v3
+const { data: page } = await useAsyncData(`page:${route.path}`, async () => {
+  const content = await queryCollection("content").path(route.path).first()
+  return content
 })
-
-// const { data: page } = await useAsyncData(() => queryContent(route.path).findOne())
 
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: "Page not found", fatal: true })
 }
 
+// Safe meta data handling - ensure values exist and are strings
 useHead({
-  title: page.value.title,
-  meta: [{ name: "description", content: page.value.description }],
-  bodyAttrs: { class: page.value.bodyClass },
+  title: page.value?.title || "Page",
+  meta: [
+    {
+      name: "description",
+      content: page.value?.description || "",
+    },
+  ],
+  bodyAttrs: {
+    class: page.value?.bodyClass || "content-page",
+  },
 })
 </script>
+
+<style scoped>
+.content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  margin-bottom: 24px;
+}
+</style>

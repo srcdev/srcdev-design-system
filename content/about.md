@@ -8,9 +8,9 @@ bodyClass: "about-us-page"
 
   :header-block{tag-level=2 class-level=2}[Display Prompt Example]
 
-  ::DisplayPromptCore{theme="success" :dismissible="true" :use-local-style-overrides="true" :style-class-passthrough="['your-scope-class']"}
+  ::display-prompt-core{theme="success" :dismissible="true" :use-local-style-overrides="true" :style-class-passthrough="['your-scope-class']"}
   #customDecoratorIcon
-  :Icon{name="akar-icons:info" class="icon"}
+  :icon{name="akar-icons:info" class="icon"}
 
   #title
   Success Prompt Title with content (Dismissable)
@@ -18,10 +18,10 @@ bodyClass: "about-us-page"
   #layout-content
   This is prompt content, it can contain html or plain text.
 
-  #customCloseIcon
-  :Icon{name="material-symbols:close-small" class="icon"}
+  #custom-close-icon
+  :icon{name="material-symbols:close-small" class="icon"}
 
-  #customTitle
+  #custom-title
   Dismiss
   ::
 
@@ -31,7 +31,7 @@ bodyClass: "about-us-page"
 
 :header-block{tag-level=2 class-level=2}[Example Layout Grid B]
 
-::LayoutGridB{:top-row-slot1-item-count="6" :bottom-row-item-count="4" :style-class-passthrough="['canvas-name']"}
+::layout-grid-b{:top-row-slot1-item-count="6" :bottom-row-item-count="4" :style-class-passthrough="['canvas-name']"}
 #top-row-slot1-1-content
 <p class="p-24">This is content slot 1</p>
 

@@ -6,9 +6,7 @@ bodyClass: "about-us-page"
 
 ::layout-row{tag=div variant=inset-content style-class-passthrough=mb-20}
 
-  ::header-block{tag-level=2 class-level=2}
-Header Block level 2
-  ::
+  :header-block{tag-level=2 class-level=2}[Header Block level 2]
 
 ::
 

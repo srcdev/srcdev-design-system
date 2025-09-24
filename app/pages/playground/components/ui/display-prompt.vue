@@ -13,12 +13,27 @@
         </LayoutRow>
 
         <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
-          <DisplayPromptCore :theme="selectedTheme" :dismissible="true">
+          <form>
+            <label>
+              <input type="checkbox" v-model="displayContent" />
+              Toggle content
+            </label>
+            <label>
+              <input type="checkbox" v-model="dismissible" />
+              Toggle dismissible
+            </label>
+          </form>
+        </LayoutRow>
+
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
+          <DisplayPromptCore :theme="selectedTheme" :dismissible>
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />
             </template>
-            <template #title>Success Prompt Title with content (Dismissable)</template>
-            <template #layout-content>This is prompt content, it can contain html or plain text.</template>
+            <template #title>Prompt Default (Outlined)</template>
+            <template v-if="displayContent" #content>
+              This is prompt content, it can contain html or plain text.
+            </template>
             <template #customCloseIcon>
               <Icon name="material-symbols:close-small" class="icon" />
             </template>
@@ -27,12 +42,14 @@
         </LayoutRow>
 
         <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
-          <DisplayPromptCore :theme="selectedTheme" :dismissible="true" :style-class-passthrough="['outlined']">
+          <DisplayPromptCore :theme="selectedTheme" :dismissible :style-class-passthrough="['outlined']">
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />
             </template>
-            <template #title>Success Prompt Title with content (Dismissable)</template>
-            <template #layout-content>Dark variant.</template>
+            <template #title>Prompt Default (No outline)</template>
+            <template v-if="displayContent" #content>
+              This is prompt content, it can contain html or plain text.
+            </template>
             <template #customCloseIcon>
               <Icon name="material-symbols:close-small" class="icon" />
             </template>
@@ -41,12 +58,14 @@
         </LayoutRow>
 
         <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
-          <DisplayPromptCore :theme="selectedTheme" :dismissible="true" :style-class-passthrough="['dark']">
+          <DisplayPromptCore :theme="selectedTheme" :dismissible :style-class-passthrough="['dark', 'outlined']">
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />
             </template>
-            <template #title>Success Prompt Title with content (Dismissable)</template>
-            <template #layout-content>Dark variant.</template>
+            <template #title>Prompt Dark (Outlined)</template>
+            <template v-if="displayContent" #content>
+              This is prompt content, it can contain html or plain text.
+            </template>
             <template #customCloseIcon>
               <Icon name="material-symbols:close-small" class="icon" />
             </template>
@@ -55,12 +74,14 @@
         </LayoutRow>
 
         <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
-          <DisplayPromptCore :theme="selectedTheme" :dismissible="true" :style-class-passthrough="['dark', 'outlined']">
+          <DisplayPromptCore :theme="selectedTheme" :dismissible :style-class-passthrough="['dark']">
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />
             </template>
-            <template #title>Success Prompt Title with content (Dismissable)</template>
-            <template #layout-content>Dark + Outlined variant.</template>
+            <template #title>Prompt Dark (No outline)</template>
+            <template v-if="displayContent" #content>
+              This is prompt content, it can contain html or plain text.
+            </template>
             <template #customCloseIcon>
               <Icon name="material-symbols:close-small" class="icon" />
             </template>
@@ -81,11 +102,25 @@ useHead({
   title: "Display Prompt Component", // You could also use: computed(() => $t("pages.index.title")) if you add this to your i18n files
   meta: [{ name: "description", content: "Display Prompt Component" }],
   bodyAttrs: {
-    // class: "",
+    class: "display-prompt-page",
   },
 })
 
 const selectedTheme = ref("primary")
+const displayContent = ref(true)
+const dismissible = ref(true)
 </script>
 
-<style lang="css"></style>
+<style lang="css">
+.display-prompt-page {
+  form {
+    label {
+      display: grid;
+      grid-template-columns: 20px auto;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 12px;
+    }
+  }
+}
+</style>

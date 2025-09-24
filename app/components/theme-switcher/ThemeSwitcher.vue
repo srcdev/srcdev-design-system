@@ -13,6 +13,7 @@
             :field-has-error="false"
             v-model="selectedTheme"
             v-model:fieldData="themeData"
+            :theme="selectedTheme"
             input-variant="underlined"
             size="default"
           >

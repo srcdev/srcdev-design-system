@@ -62,6 +62,7 @@ const responsiveNavLinks = computed(() => ({
         { name: "Display Card", path: localePath("/playground/components/ui/display-card") },
         { name: "Glowing Border", path: localePath("/playground/components/ui/glowing-border") },
         { name: "Magnetic Navigation", path: localePath("/playground/components/ui/magnetic-navigation") },
+        { name: "Display Chip", path: localePath("/playground/components/ui/display-chip") },
       ],
     },
     {

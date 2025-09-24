@@ -8,11 +8,11 @@
           <p class="page-body-normal">Display Prompt Component variants</p>
         </LayoutRow>
 
-        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20', 'display-none']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
           <ThemeSwitcher v-model="selectedTheme" />
         </LayoutRow>
 
-        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20', 'display-none']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
           <DisplayPromptCore :theme="selectedTheme" :dismissible="true">
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />
@@ -26,7 +26,21 @@
           </DisplayPromptCore>
         </LayoutRow>
 
-        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20', 'display-none']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
+          <DisplayPromptCore :theme="selectedTheme" :dismissible="true" :style-class-passthrough="['outlined']">
+            <template #customDecoratorIcon>
+              <Icon name="akar-icons:info" class="icon" />
+            </template>
+            <template #title>Success Prompt Title with content (Dismissable)</template>
+            <template #layout-content>Dark variant.</template>
+            <template #customCloseIcon>
+              <Icon name="material-symbols:close-small" class="icon" />
+            </template>
+            <template #customTitle>Dismiss</template>
+          </DisplayPromptCore>
+        </LayoutRow>
+
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
           <DisplayPromptCore :theme="selectedTheme" :dismissible="true" :style-class-passthrough="['dark']">
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />
@@ -40,7 +54,7 @@
           </DisplayPromptCore>
         </LayoutRow>
 
-        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20', 'display-none']">
+        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
           <DisplayPromptCore :theme="selectedTheme" :dismissible="true" :style-class-passthrough="['dark', 'outlined']">
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />

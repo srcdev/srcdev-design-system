@@ -9,7 +9,7 @@
       padding-inline-start: 8px;
 
       &.dark {
-        border: 1px solid var(--gray-12);
+        border-width: 0;
 
         .display-prompt-inner {
           background-color: var(--gray-12);

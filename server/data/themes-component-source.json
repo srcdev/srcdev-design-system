@@ -1,0 +1,37 @@
+{
+  "data": [
+    {
+      "id": "success",
+      "name": "selectedComponentTheme",
+      "value": "success",
+      "label": "Success"
+    },
+    {
+      "id": "secondary",
+      "name": "selectedComponentTheme",
+      "value": "secondary",
+      "label": "Secondary"
+    },
+    {
+      "id": "info",
+      "name": "selectedComponentTheme",
+      "value": "info",
+      "label": "Info"
+    },
+    {
+      "id": "error",
+      "name": "selectedComponentTheme",
+      "value": "error",
+      "label": "Error"
+    },
+    {
+      "id": "warning",
+      "name": "selectedComponentTheme",
+      "value": "warning",
+      "label": "Warning"
+    }
+  ],
+  "total": 5,
+  "skip": 0,
+  "limit": 5
+}

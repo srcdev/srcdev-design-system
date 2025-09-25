@@ -28,110 +28,104 @@
           </FormWrapper>
         </LayoutRow>
 
-        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
-          <ThemeSwitcher v-model="selectedTheme" />
-        </LayoutRow>
-
         <!-- Traditional Login Form (when not authenticated) -->
         <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mb-24']">
           <FormWrapper width="medium">
-            <template #default>
-              <ClientOnly>
-                <form ref="formRef" class="form-wrapper" @submit.stop.prevent="submitForm()">
-                  <div id="aria-live-message" aria-live="assertive"></div>
+            <ClientOnly>
+              <form ref="formRef" class="form-wrapper" @submit.stop.prevent="submitForm()">
+                <div id="aria-live-message" aria-live="assertive"></div>
 
-                  <FormField width="wide" :has-gutter="false">
-                    <template #default>
-                      <InputTextWithLabel
-                        v-model="state.emailAddress"
-                        type="email"
-                        inputmode="email"
-                        :maxlength="fieldMaxLength('email')"
-                        id="emailAddress"
-                        name="emailAddress"
-                        placeholder="eg. name@domain.com"
-                        label="Email address"
-                        :errorMessage="formErrors?.emailAddress?._errors[0] ?? ''"
-                        :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.emailAddress)"
-                        :required="true"
-                        :styleClassPassthrough="['style-1', 'style-2']"
-                        :theme="selectedTheme"
-                        :size
-                        :inputVariant
-                      >
-                        <template #left>
-                          <Icon name="radix-icons:envelope-closed" class="icon" />
-                        </template>
-                        <template #right>
-                          <Icon name="radix-icons:envelope-closed" class="icon" />
-                        </template>
-                      </InputTextWithLabel>
-                    </template>
-                  </FormField>
+                <FormField width="wide" :has-gutter="false">
+                  <template #default>
+                    <InputTextWithLabel
+                      v-model="state.emailAddress"
+                      type="email"
+                      inputmode="email"
+                      :maxlength="fieldMaxLength('email')"
+                      id="emailAddress"
+                      name="emailAddress"
+                      placeholder="eg. name@domain.com"
+                      label="Email address"
+                      :errorMessage="formErrors?.emailAddress?._errors[0] ?? ''"
+                      :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.emailAddress)"
+                      :required="true"
+                      :styleClassPassthrough="['style-1', 'style-2']"
+                      :theme="selectedTheme"
+                      :size
+                      :inputVariant
+                    >
+                      <template #left>
+                        <Icon name="radix-icons:envelope-closed" class="icon" />
+                      </template>
+                      <template #right>
+                        <Icon name="radix-icons:envelope-closed" class="icon" />
+                      </template>
+                    </InputTextWithLabel>
+                  </template>
+                </FormField>
 
-                  <FormField width="wide" :has-gutter="false">
-                    <template #default>
-                      <InputPasswordWithLabel
-                        v-model="state.password"
-                        :maxlength="fieldMaxLength('password')"
-                        id="password"
-                        name="password"
-                        placeholder="eg. a mixture of numbers and letters"
-                        label="Password"
-                        :errorMessage="formErrors?.password?._errors[0] ?? ''"
-                        :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.password)"
-                        :required="true"
-                        :styleClassPassthrough="['style-1', 'style-2']"
-                        :theme="selectedTheme"
-                        :size
-                        :inputVariant
-                      >
-                        <template #right>
-                          <Icon name="radix-icons:eye-open" class="icon" />
-                        </template>
-                      </InputPasswordWithLabel>
-                    </template>
-                  </FormField>
+                <FormField width="wide" :has-gutter="false">
+                  <template #default>
+                    <InputPasswordWithLabel
+                      v-model="state.password"
+                      :maxlength="fieldMaxLength('password')"
+                      id="password"
+                      name="password"
+                      placeholder="eg. a mixture of numbers and letters"
+                      label="Password"
+                      :errorMessage="formErrors?.password?._errors[0] ?? ''"
+                      :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.password)"
+                      :required="true"
+                      :styleClassPassthrough="['style-1', 'style-2']"
+                      :theme="selectedTheme"
+                      :size
+                      :inputVariant
+                    >
+                      <template #right>
+                        <Icon name="radix-icons:eye-open" class="icon" />
+                      </template>
+                    </InputPasswordWithLabel>
+                  </template>
+                </FormField>
 
-                  <FormField width="wide" :has-gutter="false">
-                    <template #default>
-                      <SingleCheckbox
-                        v-model="state.terms"
-                        name="terms"
-                        legend="Terms and conditions"
-                        :required="true"
-                        :error-message="formErrors?.terms?._errors[0] ?? ''"
-                        :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.terms)"
-                        :theme="selectedTheme"
-                        :size
-                      >
-                        <template #labelContent>
-                          <span class="body-normal">
-                            You must agree to our
-                            <NuxtLink to="/" class="page-link-normal-semibold">terms and conditions</NuxtLink>
-                            to continue
-                          </span>
-                        </template>
-                      </SingleCheckbox>
-                    </template>
-                  </FormField>
+                <FormField width="wide" :has-gutter="false">
+                  <template #default>
+                    <SingleCheckbox
+                      v-model="state.terms"
+                      name="terms"
+                      legend="Terms and conditions"
+                      :required="true"
+                      :error-message="formErrors?.terms?._errors[0] ?? ''"
+                      :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.terms)"
+                      :theme="selectedTheme"
+                      :size
+                    >
+                      <template #labelContent>
+                        <span class="body-normal">
+                          You must agree to our
+                          <NuxtLink to="/" class="page-link-normal-semibold">terms and conditions</NuxtLink>
+                          to continue
+                        </span>
+                      </template>
+                    </SingleCheckbox>
+                  </template>
+                </FormField>
 
-                  <FormField width="wide" :has-gutter="false">
-                    <template #default>
-                      <InputButtonSubmit
-                        type="button"
-                        :is-pending="false"
-                        :readonly="zodFormControl.submitDisabled"
-                        button-text="Submit"
-                        :size
-                        :theme="selectedTheme"
-                        @click.stop.prevent="submitForm()"
-                      />
-                    </template>
-                  </FormField>
-                </form>
-              </ClientOnly>
-            </template>
+                <FormField width="wide" :has-gutter="false">
+                  <template #default>
+                    <InputButtonSubmit
+                      type="button"
+                      :is-pending="false"
+                      :readonly="zodFormControl.submitDisabled"
+                      button-text="Submit"
+                      :size
+                      :theme="selectedTheme"
+                      @click.stop.prevent="submitForm()"
+                    />
+                  </template>
+                </FormField>
+              </form>
+            </ClientOnly>
           </FormWrapper>
         </LayoutRow>
       </template>

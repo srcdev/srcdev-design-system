@@ -1,0 +1,55 @@
+{
+  "data": [
+    {
+      "id": "primary",
+      "name": "selectedTheme",
+      "value": "primary",
+      "label": "Primary"
+    },
+    {
+      "id": "secondary",
+      "name": "selectedTheme",
+      "value": "secondary",
+      "label": "Secondary"
+    },
+    {
+      "id": "tertiary",
+      "name": "selectedTheme",
+      "value": "tertiary",
+      "label": "Tertiary"
+    },
+    {
+      "id": "ghost",
+      "name": "selectedTheme",
+      "value": "ghost",
+      "label": "Ghost"
+    },
+    {
+      "id": "error",
+      "name": "selectedTheme",
+      "value": "error",
+      "label": "Error"
+    },
+    {
+      "id": "info",
+      "name": "selectedTheme",
+      "value": "info",
+      "label": "Info"
+    },
+    {
+      "id": "success",
+      "name": "selectedTheme",
+      "value": "success",
+      "label": "Success"
+    },
+    {
+      "id": "warning",
+      "name": "selectedTheme",
+      "value": "warning",
+      "label": "Warning"
+    }
+  ],
+  "total": 8,
+  "skip": 0,
+  "limit": 10
+}

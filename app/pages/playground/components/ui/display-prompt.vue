@@ -8,25 +8,50 @@
           <p class="page-body-normal">Display Prompt Component variants</p>
         </LayoutRow>
 
-        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
-          <ThemeSwitcher v-model="selectedTheme" />
+        <LayoutRow tag="div" variant="popout">
+          <ThemeComponentSwitcher v-model="selectedComponentTheme" />
+        </LayoutRow>
+
+        <LayoutRow tag="div" variant="popout">
+          <FormWrapper width="medium">
+            <form ref="formRef" class="form-wrapper pbe-0" @submit.stop.prevent>
+              <FormField :has-gutter="false">
+                <template #default>
+                  <SingleCheckbox
+                    v-model="displayContent"
+                    name="displayContent"
+                    legend="Toggle content"
+                    :theme="selectedComponentTheme"
+                    errorMessage=""
+                  >
+                    <template #labelContent>
+                      <span class="body-normal">Toggle content</span>
+                    </template>
+                  </SingleCheckbox>
+                </template>
+              </FormField>
+
+              <FormField :has-gutter="false">
+                <template #default>
+                  <SingleCheckbox
+                    v-model="dismissible"
+                    name="dismissible"
+                    legend="Toggle dismissible button"
+                    :theme="selectedComponentTheme"
+                    errorMessage=""
+                  >
+                    <template #labelContent>
+                      <span class="body-normal">Toggle dismissible button</span>
+                    </template>
+                  </SingleCheckbox>
+                </template>
+              </FormField>
+            </form>
+          </FormWrapper>
         </LayoutRow>
 
         <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
-          <form>
-            <label>
-              <input type="checkbox" v-model="displayContent" />
-              Toggle content
-            </label>
-            <label>
-              <input type="checkbox" v-model="dismissible" />
-              Toggle dismissible
-            </label>
-          </form>
-        </LayoutRow>
-
-        <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
-          <DisplayPromptCore :theme="selectedTheme" :dismissible>
+          <DisplayPromptCore :theme="selectedComponentTheme" :dismissible>
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />
             </template>
@@ -42,7 +67,7 @@
         </LayoutRow>
 
         <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
-          <DisplayPromptCore :theme="selectedTheme" :dismissible :style-class-passthrough="['outlined']">
+          <DisplayPromptCore :theme="selectedComponentTheme" :dismissible :style-class-passthrough="['outlined']">
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />
             </template>
@@ -58,7 +83,11 @@
         </LayoutRow>
 
         <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
-          <DisplayPromptCore :theme="selectedTheme" :dismissible :style-class-passthrough="['dark', 'outlined']">
+          <DisplayPromptCore
+            :theme="selectedComponentTheme"
+            :dismissible
+            :style-class-passthrough="['dark', 'outlined']"
+          >
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />
             </template>
@@ -74,7 +103,7 @@
         </LayoutRow>
 
         <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
-          <DisplayPromptCore :theme="selectedTheme" :dismissible :style-class-passthrough="['dark']">
+          <DisplayPromptCore :theme="selectedComponentTheme" :dismissible :style-class-passthrough="['dark']">
             <template #customDecoratorIcon>
               <Icon name="akar-icons:info" class="icon" />
             </template>
@@ -106,7 +135,7 @@ useHead({
   },
 })
 
-const selectedTheme = ref("primary")
+const selectedComponentTheme = ref("primary")
 const displayContent = ref(true)
 const dismissible = ref(true)
 </script>
@@ -120,6 +149,15 @@ const dismissible = ref(true)
       align-items: center;
       gap: 18px;
       margin-bottom: 12px;
+    }
+  }
+
+  .form-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+    .form-field {
+      margin-block: 0;
     }
   }
 }

@@ -3,17 +3,17 @@
     <form class="form-wrapper" ref="formRef">
       <div aria-live="assertive" id="aria-live-message"></div>
 
-      <FormField v-if="selectedTheme !== null" width="wide" :has-gutter="false">
+      <FormField v-if="selectedComponentTheme !== null" width="wide" :has-gutter="false">
         <template #default>
           <InputSelectWithLabel
-            name="selectedTheme"
-            label="Select Theme"
+            name="selectedComponentTheme"
+            label="Select Form Theme"
             placeholder="Please select a theme"
             error-message=""
             :field-has-error="false"
-            v-model="selectedTheme"
-            v-model:fieldData="themeData"
-            :theme="selectedTheme"
+            v-model="selectedComponentTheme"
+            v-model:fieldData="themeComponentData"
+            :theme="selectedFormTheme"
             input-variant="underlined"
             size="default"
           >
@@ -26,9 +26,10 @@
 </template>
 
 <script setup lang="ts">
-const { data: themeData } = await useFetch<IFormMultipleOptions>("/api/themes-source")
+const { data: themeComponentData } = await useFetch<IFormMultipleOptions>("/api/themes-component-source")
 
-const selectedTheme = defineModel<string>()
+const selectedComponentTheme = defineModel<string>()
+const selectedFormTheme = computed(() => selectedComponentTheme.value || "primary")
 </script>
 
 <style scoped>

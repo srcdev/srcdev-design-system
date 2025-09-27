@@ -189,7 +189,7 @@ const formSchema = reactive(
     .object({
       emailAddress: z
         .string({
-          required_error: "Email address is required",
+          message: "Email address is required",
         })
         .email({ message: "Invalid email address" })
         .refine((email) => email !== zodFormControl.previousState.emailAddress.value, {
@@ -197,7 +197,7 @@ const formSchema = reactive(
         }),
       givenname: z
         .string({
-          required_error: "Your name is required",
+          message: "Your name is required",
         })
         .trim()
         .min(2, "Your name is too short")

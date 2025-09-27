@@ -14,39 +14,41 @@
 
         <LayoutRow tag="div" variant="popout">
           <FormWrapper width="medium">
-            <form ref="formRef" class="form-wrapper pbe-0" @submit.stop.prevent>
-              <FormField :has-gutter="false">
-                <template #default>
-                  <SingleCheckbox
-                    v-model="displayContent"
-                    name="displayContent"
-                    legend="Toggle content"
-                    :theme="selectedComponentTheme"
-                    errorMessage=""
-                  >
-                    <template #labelContent>
-                      <span class="body-normal">Toggle content</span>
-                    </template>
-                  </SingleCheckbox>
-                </template>
-              </FormField>
+            <ClientOnly>
+              <form ref="formRef" class="form-wrapper pbe-0" @submit.stop.prevent>
+                <FormField :has-gutter="false">
+                  <template #default>
+                    <SingleCheckbox
+                      v-model="displayContent"
+                      name="displayContent"
+                      legend="Toggle content"
+                      :theme="selectedComponentTheme"
+                      errorMessage=""
+                    >
+                      <template #labelContent>
+                        <span class="body-normal">Toggle content</span>
+                      </template>
+                    </SingleCheckbox>
+                  </template>
+                </FormField>
 
-              <FormField :has-gutter="false">
-                <template #default>
-                  <SingleCheckbox
-                    v-model="dismissible"
-                    name="dismissible"
-                    legend="Toggle dismissible button"
-                    :theme="selectedComponentTheme"
-                    errorMessage=""
-                  >
-                    <template #labelContent>
-                      <span class="body-normal">Toggle dismissible button</span>
-                    </template>
-                  </SingleCheckbox>
-                </template>
-              </FormField>
-            </form>
+                <FormField :has-gutter="false">
+                  <template #default>
+                    <SingleCheckbox
+                      v-model="dismissible"
+                      name="dismissible"
+                      legend="Toggle dismissible button"
+                      :theme="selectedComponentTheme"
+                      errorMessage=""
+                    >
+                      <template #labelContent>
+                        <span class="body-normal">Toggle dismissible button</span>
+                      </template>
+                    </SingleCheckbox>
+                  </template>
+                </FormField>
+              </form>
+            </ClientOnly>
           </FormWrapper>
         </LayoutRow>
 
@@ -68,10 +70,7 @@
 
         <LayoutRow tag="div" variant="popout" :style-class-passthrough="['mbe-20']">
           <DisplayPromptCore :theme="selectedComponentTheme" :dismissible :style-class-passthrough="['outlined']">
-            <template #customDecoratorIcon>
-              <Icon name="akar-icons:info" class="icon" />
-            </template>
-            <template #title>Prompt Default (No outline)</template>
+            <template #title>Prompt Default (No outline) with default icon</template>
             <template v-if="displayContent" #content>
               This is prompt content, it can contain html or plain text.
             </template>

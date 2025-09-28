@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ResponsiveHeaderProp } from "srcdev-nuxt-components/app/types/responsiveHeader"
+import type { ResponsiveHeaderProp } from "srcdev-nuxt-components/app/types"
 
 const { t } = useI18n()
 const localePath = useLocalePath()

@@ -102,6 +102,10 @@ const responsiveNavLinks = computed(() => ({
 
 <style lang="css">
 .header {
+  .debug-grid {
+    display: none !important;
+  }
+
   width: 100%;
 
   &.responsive-header {

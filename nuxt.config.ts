@@ -70,7 +70,7 @@ export default defineNuxtConfig({
         "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
         "style-src": ["'self'", "'unsafe-inline'"],
         "script-src-attr": ["'self'", "'unsafe-inline'"],
-        "img-src": ["'self'", "data:", "avatars.githubusercontent.com"],
+        "img-src": ["'self'", "data:", "avatars.githubusercontent.com", "https://github.com"],
         "connect-src": ["'self'", "api.iconify.design", "github.com", "ws://localhost:4000/ws"],
         "frame-src": ["'self'"],
         "worker-src": ["'self'", "blob:"],

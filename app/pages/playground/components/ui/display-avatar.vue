@@ -68,7 +68,7 @@
               <div class="dd">
                 <DisplayChip shape="circle" :config="chipConfig" :style-class-passthrough="['online']">
                   <div class="chip-content round">
-                    <Icon name="akar-icons:info" size="24" color="white" />
+                    <Icon name="akar-icons:info" size="24" class="icon" />
                   </div>
                 </DisplayChip>
               </div>
@@ -77,7 +77,7 @@
               <div class="dd">
                 <DisplayChip shape="square" :config="chipConfig" :style-class-passthrough="['idle']">
                   <div class="chip-content square">
-                    <Icon name="akar-icons:info" size="24" color="white" />
+                    <Icon name="akar-icons:info" size="24" class="icon" />
                   </div>
                 </DisplayChip>
               </div>
@@ -181,16 +181,24 @@ const changeAngle = (e: Event) => {
           &.round {
             width: 50px;
             height: 50px;
-            background-color: var(--gray-12);
+            background-color: light-dark(var(--gray-3), var(--gray-4));
             border-radius: 50%;
           }
 
           &.square {
             width: 50px;
             height: 50px;
-            background-color: var(--gray-12);
+            background-color: light-dark(var(--gray-3), var(--gray-4));
             border-radius: 4px;
           }
+
+          .icon {
+            color: light-dark(var(--gray-12), var(--gray-12));
+          }
+        }
+
+        .display-avatar {
+          color: light-dark(var(--gray-12), var(--gray-0));
         }
       }
     }

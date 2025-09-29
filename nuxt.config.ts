@@ -128,6 +128,7 @@ export default defineNuxtConfig({
         styles: ["normal"],
         provider: "local",
         display: "swap",
+        preload: false,
       },
       // {
       //   name: "Inter Variable",

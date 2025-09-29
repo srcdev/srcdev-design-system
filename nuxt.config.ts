@@ -127,6 +127,7 @@ export default defineNuxtConfig({
         weights: [300, 400, 500, 600, 700],
         styles: ["normal"],
         provider: "local",
+        display: "swap",
       },
       // {
       //   name: "Inter Variable",

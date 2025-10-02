@@ -6,23 +6,28 @@
     box-shadow: var(--_box-shadow);
 
     &.x-small {
-      --input-symbol-size: var(--step-3);
+      --input-checked-element-size: var(--step-3);
+      --input-checked-icon-size: var(--step-2);
     }
 
     &.small {
-      --input-symbol-size: var(--step-4);
+      --input-checked-element-size: var(--step-4);
+      --input-checked-icon-size: var(--step-3);
     }
 
     &.default {
-      --input-symbol-size: var(--step-7);
+      --input-checked-element-size: var(--step-7);
+      --input-checked-icon-size: var(--step-6);
     }
 
     &.medium {
-      --input-symbol-size: var(--step-6);
+      --input-checked-element-size: var(--step-6);
+      --input-checked-icon-size: var(--step-5);
     }
 
     &.large {
-      --input-symbol-size: var(--step-6);
+      --input-checked-element-size: var(--step-6);
+      --input-checked-icon-size: var(--step-5);
     }
 
     &.checkbox {
@@ -60,7 +65,8 @@
       outline-offset: var(--form-element-outline-offset-focus);
     }
 
-    .input-checked-icon-checked {
+    .input-checked-icon-checked,
+    .icon {
       color: var(--theme-checkbox-symbol-color);
       box-shadow: var(--_box-shadow);
     }

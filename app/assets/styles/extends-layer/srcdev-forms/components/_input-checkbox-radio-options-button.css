@@ -1,7 +1,7 @@
 .srcdev-forms-extended {
   .input-checkbox-radio-options-button {
     gap: 1rem;
-    border-radius: 1lh;
+    border-radius: 0.4rem;
 
     /* &.inline {} */
 
@@ -10,8 +10,6 @@
     outline: var(--form-element-outline-width) solid var(--theme-input-outline);
 
     box-shadow: 0.1rem 0.1rem 0.8rem 0.1rem transparent;
-    padding-block: var(--input-checkbox-radio-options-padding-block);
-    padding-inline: var(--input-checkbox-radio-options-padding-inline);
 
     &:hover {
       background-color: var(--theme-input-surface-hover);
@@ -38,8 +36,8 @@
       gap: 1rem;
     }
     &.default {
-      padding-block: 0.4rem;
-      padding-inline: 1.2rem;
+      padding-block: 0.6rem;
+      padding-inline: 1rem;
       gap: 1rem;
     }
     &.medium {

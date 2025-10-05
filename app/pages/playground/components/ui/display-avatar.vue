@@ -40,7 +40,7 @@
               <div class="dt">Has Avatar image</div>
               <div class="dd">
                 <DisplayAvatar
-                  src="https://github.com/srcdev.png"
+                  src="https://github.com/benjamincanac.png"
                   alt="Joe Bloggs"
                   :style-class-passthrough="['online']"
                 />
@@ -53,9 +53,51 @@
               <div class="dt">Has Avatar image and Chip</div>
               <div class="dd">
                 <DisplayAvatar
-                  src="https://github.com/srcdev.png"
+                  src="https://github.com/benjamincanac.png"
                   alt="Joe Bloggs"
                   :chip="chipConfig"
+                  :style-class-passthrough="['online']"
+                />
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="dl">
+              <div class="dt">Has Avatar image and Chip (with icon)</div>
+              <div class="dd">
+                <DisplayAvatar
+                  src="https://github.com/benjamincanac.png"
+                  alt="Joe Bloggs"
+                  :chip="{ ...chipConfig, icon: 'material-symbols:star-outline', size: '16px', maskWidth: '6px' }"
+                  :style-class-passthrough="['online']"
+                />
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="dl">
+              <div class="dt">Has Avatar image and Chip (text single character)</div>
+              <div class="dd">
+                <DisplayAvatar
+                  src="https://github.com/benjamincanac.png"
+                  alt="Joe Bloggs"
+                  :chip="{ ...chipConfig, label: '3', size: '16px', maskWidth: '6px' }"
+                  :style-class-passthrough="['online']"
+                />
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="dl">
+              <div class="dt">Has Avatar image and Chip (text 2 character)</div>
+              <div class="dd">
+                <DisplayAvatar
+                  src="https://github.com/benjamincanac.png"
+                  alt="Joe Bloggs"
+                  :chip="{ ...chipConfig, label: '+2', size: '16px', maskWidth: '6px' }"
                   :style-class-passthrough="['online']"
                 />
               </div>
@@ -67,8 +109,8 @@
               <div class="dt">Round</div>
               <div class="dd">
                 <DisplayChip shape="circle" :config="chipConfig" :style-class-passthrough="['online']">
-                  <div class="chip-content round">
-                    <Icon name="akar-icons:info" size="24" class="icon" />
+                  <div class="demo-content round">
+                    <Icon name="akar-icons:info" size="24" color="white" />
                   </div>
                 </DisplayChip>
               </div>
@@ -76,8 +118,8 @@
               <div class="dt">Square</div>
               <div class="dd">
                 <DisplayChip shape="square" :config="chipConfig" :style-class-passthrough="['idle']">
-                  <div class="chip-content square">
-                    <Icon name="akar-icons:info" size="24" class="icon" />
+                  <div class="demo-content square">
+                    <Icon name="akar-icons:info" size="24" color="white" />
                   </div>
                 </DisplayChip>
               </div>
@@ -161,9 +203,10 @@ const changeAngle = (e: Event) => {
 
     .dl {
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: auto auto;
       gap: 2rem;
       align-items: center;
+      justify-content: start;
 
       /* background-color: var(--gray-5); */
 
@@ -173,7 +216,7 @@ const changeAngle = (e: Event) => {
       .dd {
         margin: 0;
 
-        .chip-content {
+        .demo-content {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -181,24 +224,16 @@ const changeAngle = (e: Event) => {
           &.round {
             width: 50px;
             height: 50px;
-            background-color: light-dark(var(--gray-3), var(--gray-4));
+            background-color: var(--gray-12);
             border-radius: 50%;
           }
 
           &.square {
             width: 50px;
             height: 50px;
-            background-color: light-dark(var(--gray-3), var(--gray-4));
+            background-color: var(--gray-12);
             border-radius: 4px;
           }
-
-          .icon {
-            color: light-dark(var(--gray-12), var(--gray-12));
-          }
-        }
-
-        .display-avatar {
-          color: light-dark(var(--gray-12), var(--gray-0));
         }
       }
     }

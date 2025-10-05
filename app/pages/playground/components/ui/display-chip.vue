@@ -30,18 +30,70 @@
             <div class="dl">
               <div class="dt">Round</div>
               <div class="dd">
-                <DisplayChip shape="circle" v-model="chipConfig" :style-class-passthrough="['online']">
-                  <div class="chip-content round">
-                    <Icon name="akar-icons:info" size="24" class="icon" />
+                <DisplayChip shape="circle" :config="chipConfig" :style-class-passthrough="['online']">
+                  <div class="demo-content round">
+                    <Icon name="akar-icons:info" class="icon" />
+                  </div>
+                </DisplayChip>
+              </div>
+
+              <div class="dt">Round + Icon</div>
+              <div class="dd">
+                <DisplayChip
+                  shape="circle"
+                  :config="{ ...chipConfig, icon: 'material-symbols:star-outline' }"
+                  :style-class-passthrough="['online']"
+                >
+                  <div class="demo-content round">
+                    <p class="page-body-normal">SRC</p>
+                  </div>
+                </DisplayChip>
+              </div>
+
+              <div class="dt">Round + Text (1 character)</div>
+              <div class="dd">
+                <DisplayChip
+                  shape="circle"
+                  :config="{ ...chipConfig, label: '2' }"
+                  :style-class-passthrough="['online']"
+                >
+                  <div class="demo-content round">
+                    <p class="page-body-normal">SRC</p>
+                  </div>
+                </DisplayChip>
+              </div>
+
+              <div class="dt">Round + Text (2 character)</div>
+              <div class="dd">
+                <DisplayChip
+                  shape="circle"
+                  :config="{ ...chipConfig, label: '+2' }"
+                  :style-class-passthrough="['online']"
+                >
+                  <div class="demo-content round">
+                    <p class="page-body-normal">SRC</p>
+                  </div>
+                </DisplayChip>
+              </div>
+
+              <div class="dt">Round + Text (3 character)</div>
+              <div class="dd">
+                <DisplayChip
+                  shape="circle"
+                  :config="{ ...chipConfig, label: '314' }"
+                  :style-class-passthrough="['online']"
+                >
+                  <div class="demo-content round">
+                    <p class="page-body-normal">SRC</p>
                   </div>
                 </DisplayChip>
               </div>
 
               <div class="dt">Square</div>
               <div class="dd">
-                <DisplayChip shape="square" v-model="chipConfig" :style-class-passthrough="['idle']">
-                  <div class="chip-content square">
-                    <Icon name="akar-icons:info" size="24" class="icon" />
+                <DisplayChip shape="square" :config="chipConfig" :style-class-passthrough="['idle']">
+                  <div class="demo-content square">
+                    <Icon name="akar-icons:info" class="icon" />
                   </div>
                 </DisplayChip>
               </div>
@@ -124,9 +176,10 @@ const changeAngle = (e: Event) => {
 
     .dl {
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: auto auto;
       gap: 2rem;
       align-items: center;
+      justify-content: start;
 
       /* background-color: var(--gray-5); */
 
@@ -136,26 +189,32 @@ const changeAngle = (e: Event) => {
       .dd {
         margin: 0;
 
-        .chip-content {
+        .demo-content {
           display: flex;
           align-items: center;
           justify-content: center;
 
+          .page-body-normal {
+            color: light-dark(var(--gray-12), var(--gray-11));
+          }
+
           .icon {
-            color: light-dark(var(--gray-12), var(--gray-0));
+            width: 24px;
+            height: 24px;
+            color: light-dark(var(--gray-12), var(--gray-11));
           }
 
           &.round {
             width: 50px;
             height: 50px;
-            background-color: var(--gray-12);
+            background-color: light-dark(var(--gray-3), var(--gray-4));
             border-radius: 50%;
           }
 
           &.square {
             width: 50px;
             height: 50px;
-            background-color: var(--gray-12);
+            background-color: light-dark(var(--gray-3), var(--gray-4));
             border-radius: 4px;
           }
         }

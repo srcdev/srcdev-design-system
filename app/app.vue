@@ -29,7 +29,7 @@ useHead({
 </script>
 
 <style lang="css">
-:root {
+:where(html) {
   -writing-mode: auto;
 }
 </style>

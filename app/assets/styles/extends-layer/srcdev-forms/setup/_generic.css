@@ -1,4 +1,4 @@
-:root {
+:where(html) {
   --theme-form-font-familty: var(--font-family);
   --theme-error-surface: var(--red-12);
   --theme-error-text: var(--red-0);

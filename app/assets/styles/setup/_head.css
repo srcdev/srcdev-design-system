@@ -1,4 +1,4 @@
-:root {
+:where(html) {
   font-family:
     "Quicksand", futura-pt, Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans", source-sans-pro, sans-serif;
 }

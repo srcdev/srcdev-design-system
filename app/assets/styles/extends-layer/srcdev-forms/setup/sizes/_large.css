@@ -1,5 +1,5 @@
-:root {
-  [data-size='large'] {
+:where(html) {
+  [data-size="large"] {
     --form-element-font-size: var(--step-6);
     --form-placeholder-font-size: calc(var(--step-6) * 0.65);
     --form-element-line-height: var(--step-6);

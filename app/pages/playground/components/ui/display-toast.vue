@@ -107,6 +107,7 @@
               theme="success"
               :dismissible="true"
               :style-class-passthrough="['dark', 'outlined']"
+              :use-auto-focus="true"
             >
               <template #customDecoratorIcon>
                 <Icon name="akar-icons:info" class="icon" />

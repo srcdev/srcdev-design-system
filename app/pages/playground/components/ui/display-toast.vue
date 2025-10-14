@@ -9,28 +9,48 @@
           </HeaderBlock>
           <p class="page-body-normal">Trigger default toast with manual dismiss</p>
           <p>
-            <button @click.prevent="triggerFirstToast()" :read-only="firstToastActive" class="button primary mbe-10">
+            <button
+              @click.prevent="triggerFirstToast()"
+              ref="firstToastButton"
+              :read-only="firstToastActive"
+              class="button primary mbe-10"
+            >
               Trigger First Toast (current value: {{ firstToastActive }})
             </button>
           </p>
           <hr class="mbe-20" />
           <p class="page-body-normal">Trigger ERROR prompt as toast with auto dismiss</p>
           <p>
-            <button @click.prevent="triggerSecondToast()" :read-only="secondToastActive" class="button primary mbe-10">
+            <button
+              @click.prevent="triggerSecondToast()"
+              ref="secondToastButton"
+              :read-only="secondToastActive"
+              class="button primary mbe-10"
+            >
               Trigger Second Toast (current value: {{ secondToastActive }})
             </button>
           </p>
           <hr class="mbe-20" />
           <p class="page-body-normal">Trigger SUCCESS prompt as toast with manual dismiss</p>
           <p>
-            <button @click.prevent="triggerThirdToast()" :read-only="thirdToastActive" class="button primary mbe-10">
+            <button
+              @click.prevent="triggerThirdToast()"
+              ref="thirdToastButton"
+              :read-only="thirdToastActive"
+              class="button primary mbe-10"
+            >
               Trigger Third Toast (current value: {{ thirdToastActive }})
             </button>
           </p>
           <hr class="mbe-20" />
           <p class="page-body-normal">Trigger INFO prompt as toast with auto dismiss (full-width)</p>
           <p>
-            <button @click.prevent="triggerFourthToast()" :read-only="fourthToastActive" class="button primary mbe-10">
+            <button
+              @click.prevent="triggerFourthToast()"
+              ref="fourthToastButton"
+              :read-only="fourthToastActive"
+              class="button primary mbe-10"
+            >
               Trigger Fourth Toast (current value: {{ fourthToastActive }})
             </button>
           </p>
@@ -39,6 +59,7 @@
           <div class="button-grid">
             <button
               @click.prevent="triggerBottomLeftToast()"
+              ref="bottomLeftToastButton"
               :read-only="bottomLeftToastActive"
               class="button secondary"
             >
@@ -46,6 +67,7 @@
             </button>
             <button
               @click.prevent="triggerBottomCenterToast()"
+              ref="bottomCenterToastButton"
               :read-only="bottomCenterToastActive"
               class="button secondary"
             >
@@ -53,6 +75,7 @@
             </button>
             <button
               @click.prevent="triggerCustomIconToast()"
+              ref="customIconToastButton"
               :read-only="customIconToastActive"
               class="button secondary"
             >
@@ -65,7 +88,7 @@
           v-model="firstToastActive"
           :config="{
             appearance: { theme: 'warning', position: 'top', alignment: 'right' },
-            behavior: { autoDismiss: false },
+            behavior: { autoDismiss: false, returnFocusTo: firstToastButton },
             content: { text: 'This is a toast notification message' },
           }"
         ></DisplayToast>
@@ -74,6 +97,7 @@
           v-model="secondToastActive"
           :config="{
             appearance: { theme: 'error', position: 'top', alignment: 'right' },
+            behavior: { returnFocusTo: secondToastButton },
           }"
         >
           <DisplayPromptCore
@@ -94,7 +118,7 @@
           v-model="thirdToastActive"
           :config="{
             appearance: { theme: 'success', position: 'top', alignment: 'right' },
-            behavior: { autoDismiss: false },
+            behavior: { autoDismiss: false, returnFocusTo: thirdToastButton },
           }"
         >
           <DisplayPromptCore
@@ -120,6 +144,7 @@
           v-model="fourthToastActive"
           :config="{
             appearance: { theme: 'info', position: 'top', fullWidth: true },
+            behavior: { returnFocusTo: fourthToastButton },
           }"
         >
           <DisplayPromptCore
@@ -141,7 +166,7 @@
           v-model="bottomLeftToastActive"
           :config="{
             appearance: { theme: 'primary', position: 'bottom', alignment: 'left' },
-            behavior: { autoDismiss: true, duration: 3000 },
+            behavior: { autoDismiss: true, duration: 3000, returnFocusTo: bottomLeftToastButton },
             content: { text: 'Bottom left positioned toast!' },
           }"
         ></DisplayToast>
@@ -150,7 +175,7 @@
           v-model="bottomCenterToastActive"
           :config="{
             appearance: { theme: 'secondary', position: 'bottom', alignment: 'center' },
-            behavior: { autoDismiss: true, duration: 4000 },
+            behavior: { autoDismiss: true, duration: 4000, returnFocusTo: bottomCenterToastButton },
             content: { text: 'Bottom center positioned toast with longer duration!' },
           }"
         ></DisplayToast>
@@ -159,7 +184,7 @@
           v-model="customIconToastActive"
           :config="{
             appearance: { theme: 'success', position: 'top', alignment: 'left' },
-            behavior: { autoDismiss: false },
+            behavior: { autoDismiss: false, returnFocusTo: customIconToastButton },
             content: { text: 'Custom icon toast (manual dismiss)', customIcon: 'akar-icons:check-box' },
           }"
         ></DisplayToast>
@@ -177,11 +202,15 @@
  * 2. New positioning capabilities (bottom left, bottom center)
  * 3. Custom icon support through config
  * 4. Different behavior configurations (autoDismiss, duration)
+ * 5. Return focus functionality for accessibility
  *
  * The new config system groups props into logical sections:
  * - appearance: theme, position, alignment, fullWidth
- * - behavior: autoDismiss, duration, revealDuration
+ * - behavior: autoDismiss, duration, revealDuration, returnFocusTo
  * - content: text, customIcon
+ *
+ * The returnFocusTo property accepts an HTMLElement or ComponentPublicInstance
+ * and will focus that element when the toast is dismissed, improving accessibility.
  */
 
 definePageMeta({
@@ -202,7 +231,6 @@ useHead({
 })
 
 // Toast state variables
-
 const firstToastActive = ref(false)
 const secondToastActive = ref(false)
 const thirdToastActive = ref(false)
@@ -210,6 +238,15 @@ const fourthToastActive = ref(false)
 const bottomLeftToastActive = ref(false)
 const bottomCenterToastActive = ref(false)
 const customIconToastActive = ref(false)
+
+// Template refs for focus return
+const firstToastButton = useTemplateRef<HTMLButtonElement>("firstToastButton")
+const secondToastButton = useTemplateRef<HTMLButtonElement>("secondToastButton")
+const thirdToastButton = useTemplateRef<HTMLButtonElement>("thirdToastButton")
+const fourthToastButton = useTemplateRef<HTMLButtonElement>("fourthToastButton")
+const bottomLeftToastButton = useTemplateRef<HTMLButtonElement>("bottomLeftToastButton")
+const bottomCenterToastButton = useTemplateRef<HTMLButtonElement>("bottomCenterToastButton")
+const customIconToastButton = useTemplateRef<HTMLButtonElement>("customIconToastButton")
 
 const triggerFirstToast = () => {
   firstToastActive.value = true

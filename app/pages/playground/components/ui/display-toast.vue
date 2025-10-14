@@ -61,123 +61,108 @@
           </div>
         </LayoutRow>
 
-        <LayoutRow tag="div" variant="inset-content" :style-class-passthrough="['mbe-20']">
-          <DisplayToast
-            v-model="firstToastActive"
-            :config="{
-              appearance: { theme: 'warning', position: 'top', alignment: 'right' },
-              behavior: { autoDismiss: false },
-              content: { text: 'This is a toast notification message' },
-            }"
-          ></DisplayToast>
-        </LayoutRow>
+        <DisplayToast
+          v-model="firstToastActive"
+          :config="{
+            appearance: { theme: 'warning', position: 'top', alignment: 'right' },
+            behavior: { autoDismiss: false },
+            content: { text: 'This is a toast notification message' },
+          }"
+        ></DisplayToast>
 
-        <LayoutRow tag="div" variant="inset-content" :style-class-passthrough="['mbe-20']">
-          <DisplayToast
+        <DisplayToast
+          v-model="secondToastActive"
+          :config="{
+            appearance: { theme: 'error', position: 'top', alignment: 'right' },
+          }"
+        >
+          <DisplayPromptCore
             v-model="secondToastActive"
-            :config="{
-              appearance: { theme: 'error', position: 'top', alignment: 'right' },
-            }"
+            theme="error"
+            :dismissible="false"
+            :style-class-passthrough="['dark', 'outlined']"
           >
-            <DisplayPromptCore
-              v-model="secondToastActive"
-              theme="error"
-              :dismissible="false"
-              :style-class-passthrough="['dark', 'outlined']"
-            >
-              <template #customDecoratorIcon>
-                <Icon name="akar-icons:info" class="icon" />
-              </template>
-              <template #title>Info Prompt Title with content (Dismissable)</template>
-              <template #content>This is prompt content, it can contain html or plain text.</template>
-            </DisplayPromptCore>
-          </DisplayToast>
-        </LayoutRow>
+            <template #customDecoratorIcon>
+              <Icon name="akar-icons:info" class="icon" />
+            </template>
+            <template #title>Info Prompt Title with content (Dismissable)</template>
+            <template #content>This is prompt content, it can contain html or plain text.</template>
+          </DisplayPromptCore>
+        </DisplayToast>
 
-        <LayoutRow tag="div" variant="inset-content" :style-class-passthrough="['mbe-20']">
-          <DisplayToast
+        <DisplayToast
+          v-model="thirdToastActive"
+          :config="{
+            appearance: { theme: 'success', position: 'top', alignment: 'right' },
+            behavior: { autoDismiss: false },
+          }"
+        >
+          <DisplayPromptCore
             v-model="thirdToastActive"
-            :config="{
-              appearance: { theme: 'success', position: 'top', alignment: 'right' },
-              behavior: { autoDismiss: false },
-            }"
+            theme="success"
+            :dismissible="true"
+            :style-class-passthrough="['dark', 'outlined']"
+            :use-auto-focus="true"
           >
-            <DisplayPromptCore
-              v-model="thirdToastActive"
-              theme="success"
-              :dismissible="true"
-              :style-class-passthrough="['dark', 'outlined']"
-              :use-auto-focus="true"
-            >
-              <template #customDecoratorIcon>
-                <Icon name="akar-icons:info" class="icon" />
-              </template>
-              <template #title>Success Prompt Title with content (Dismissable)</template>
-              <template #content>This is prompt content, it can contain html or plain text.</template>
-              <template #customCloseIcon>
-                <Icon name="material-symbols:close-small" class="icon" />
-              </template>
-              <template #customTitle>Dismiss</template>
-            </DisplayPromptCore>
-          </DisplayToast>
-        </LayoutRow>
+            <template #customDecoratorIcon>
+              <Icon name="akar-icons:info" class="icon" />
+            </template>
+            <template #title>Success Prompt Title with content (Dismissable)</template>
+            <template #content>This is prompt content, it can contain html or plain text.</template>
+            <template #customCloseIcon>
+              <Icon name="material-symbols:close-small" class="icon" />
+            </template>
+            <template #customTitle>Dismiss</template>
+          </DisplayPromptCore>
+        </DisplayToast>
 
-        <LayoutRow tag="div" variant="inset-content" :style-class-passthrough="['mbe-20']">
-          <DisplayToast
+        <DisplayToast
+          v-model="fourthToastActive"
+          :config="{
+            appearance: { theme: 'info', position: 'top', fullWidth: true },
+          }"
+        >
+          <DisplayPromptCore
             v-model="fourthToastActive"
-            :config="{
-              appearance: { theme: 'info', position: 'top', fullWidth: true },
-            }"
+            theme="info"
+            :dismissible="false"
+            :style-class-passthrough="['dark', 'outlined']"
           >
-            <DisplayPromptCore
-              v-model="fourthToastActive"
-              theme="info"
-              :dismissible="false"
-              :style-class-passthrough="['dark', 'outlined']"
-            >
-              <template #title>Warning Prompt Title with content (Auto Dismiss)</template>
-              <template #content>This is prompt content, it can contain html or plain text.</template>
-              <template #customCloseIcon>
-                <Icon name="material-symbols:close-small" class="icon" />
-              </template>
-              <template #customTitle>Dismiss</template>
-            </DisplayPromptCore>
-          </DisplayToast>
-        </LayoutRow>
+            <template #title>Warning Prompt Title with content (Auto Dismiss)</template>
+            <template #content>This is prompt content, it can contain html or plain text.</template>
+            <template #customCloseIcon>
+              <Icon name="material-symbols:close-small" class="icon" />
+            </template>
+            <template #customTitle>Dismiss</template>
+          </DisplayPromptCore>
+        </DisplayToast>
 
-        <!-- New config-based positioning examples -->
-        <LayoutRow tag="div" variant="inset-content" :style-class-passthrough="['mbe-20']">
-          <DisplayToast
-            v-model="bottomLeftToastActive"
-            :config="{
-              appearance: { theme: 'primary', position: 'bottom', alignment: 'left' },
-              behavior: { autoDismiss: true, duration: 3000 },
-              content: { text: 'Bottom left positioned toast!' },
-            }"
-          ></DisplayToast>
-        </LayoutRow>
+        <DisplayToast
+          v-model="bottomLeftToastActive"
+          :config="{
+            appearance: { theme: 'primary', position: 'bottom', alignment: 'left' },
+            behavior: { autoDismiss: true, duration: 3000 },
+            content: { text: 'Bottom left positioned toast!' },
+          }"
+        ></DisplayToast>
 
-        <LayoutRow tag="div" variant="inset-content" :style-class-passthrough="['mbe-20']">
-          <DisplayToast
-            v-model="bottomCenterToastActive"
-            :config="{
-              appearance: { theme: 'secondary', position: 'bottom', alignment: 'center' },
-              behavior: { autoDismiss: true, duration: 4000 },
-              content: { text: 'Bottom center positioned toast with longer duration!' },
-            }"
-          ></DisplayToast>
-        </LayoutRow>
+        <DisplayToast
+          v-model="bottomCenterToastActive"
+          :config="{
+            appearance: { theme: 'secondary', position: 'bottom', alignment: 'center' },
+            behavior: { autoDismiss: true, duration: 4000 },
+            content: { text: 'Bottom center positioned toast with longer duration!' },
+          }"
+        ></DisplayToast>
 
-        <LayoutRow tag="div" variant="inset-content" :style-class-passthrough="['mbe-20']">
-          <DisplayToast
-            v-model="customIconToastActive"
-            :config="{
-              appearance: { theme: 'success', position: 'top', alignment: 'left' },
-              behavior: { autoDismiss: false },
-              content: { text: 'Custom icon toast (manual dismiss)', customIcon: 'akar-icons:check-box' },
-            }"
-          ></DisplayToast>
-        </LayoutRow>
+        <DisplayToast
+          v-model="customIconToastActive"
+          :config="{
+            appearance: { theme: 'success', position: 'top', alignment: 'left' },
+            behavior: { autoDismiss: false },
+            content: { text: 'Custom icon toast (manual dismiss)', customIcon: 'akar-icons:check-box' },
+          }"
+        ></DisplayToast>
       </template>
     </NuxtLayout>
   </div>
@@ -253,11 +238,6 @@ const triggerBottomCenterToast = () => {
 const triggerCustomIconToast = () => {
   customIconToastActive.value = true
 }
-
-onMounted(() => {
-  // Trigger a toast on mount for demonstration purposes
-  // triggerToast()
-})
 </script>
 
 <style scoped lang="css">

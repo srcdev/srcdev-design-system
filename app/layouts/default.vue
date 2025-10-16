@@ -20,16 +20,17 @@ const year = computed(() => new Date().getFullYear())
 .page-layout {
   display: flex;
   flex-direction: column;
+  min-height: 100svh;
 
   .main-content {
     background-color: var(--color-background);
-    min-block-size: 75svh;
+    flex-grow: 1;
   }
 
   .footer {
     text-align: center;
     padding: 10px;
-    /* background-color: light-dark(#f0f0f0, #333); */
+    background-color: light-dark(#f0f0f0, #333);
   }
 }
 </style>

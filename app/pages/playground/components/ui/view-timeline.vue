@@ -151,15 +151,20 @@ onUnmounted(() => {
     position: sticky;
     top: 50%;
     left: 100%;
-    width: 512px;
+    width: 50%;
     aspect-ratio: 1;
     transform: translateY(-50%);
     z-index: 10;
+
+    @media (width >= 1024px) {
+      width: 512px;
+    }
 
     .sticky-item {
       position: absolute;
       inset: 0;
       border-radius: 0.5rem;
+      width: 100%;
     }
   }
 

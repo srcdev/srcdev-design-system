@@ -2,79 +2,38 @@
   <div>
     <NuxtLayout name="default">
       <template #layout-content>
+        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['banner', 'mbe-20']">
+          <h2 class="page-heading-1">View Timeline Example</h2>
+          <pre class="page-body-normal">timelineInset: {{ timelineInset }}</pre>
+        </LayoutRow>
+
         <LayoutRow tag="div" variant="full">
-          <div class="scroll-clip-container">
-            <div class="sticky-frame" ref="stickyContainerRef">
-              <div class="sticky-layer">
-                <NuxtImg
-                  src="/images/rotating-carousel/image-1.webp"
-                  width="100%"
-                  alt="Sample Image 1"
-                  class="rounded-lg shadow-lg"
-                />
-              </div>
-              <div class="sticky-layer">
-                <NuxtImg
-                  src="/images/rotating-carousel/image-2.webp"
-                  width="100%"
-                  alt="Sample Image 1"
-                  class="rounded-lg shadow-lg"
-                />
-              </div>
-              <div class="sticky-layer">
-                <NuxtImg
-                  src="/images/rotating-carousel/image-4.webp"
-                  width="100%"
-                  alt="Sample Image 1"
-                  class="rounded-lg shadow-lg"
-                />
-              </div>
-              <div class="sticky-layer">
-                <NuxtImg
-                  src="/images/rotating-carousel/image-5.webp"
-                  width="100%"
-                  alt="Sample Image 1"
-                  class="rounded-lg shadow-lg"
-                />
-              </div>
-              <div class="sticky-layer">
-                <NuxtImg
-                  src="/images/rotating-carousel/image-6.webp"
-                  width="100%"
-                  alt="Sample Image 1"
-                  class="rounded-lg shadow-lg"
-                />
-              </div>
+          <div class="scroll-clip-container" ref="scrollContainerRef">
+            <div ref="frameRef" class="image-frame">
+              <NuxtImg
+                v-for="(layer, index) in videoLayers"
+                :key="index"
+                :src="layer.src"
+                :alt="layer.alt"
+                width="100%"
+                class="image-layer"
+                :style="{
+                  'animation-timeline': index === videoLayers.length - 1 ? 'none' : `--section-${index}`,
+                  'z-index': videoLayers.length - index,
+                }"
+              />
             </div>
 
-            <section class="experience-section">
-              <LayoutRow tag="div" variant="full-width">
-                <h2 class="page-heading-2">View Timeline 1</h2>
-              </LayoutRow>
-            </section>
-
-            <section class="experience-section">
-              <LayoutRow tag="div" variant="full-width">
-                <h2 class="page-heading-2">View Timeline 2</h2>
-              </LayoutRow>
-            </section>
-
-            <section class="experience-section">
-              <LayoutRow tag="div" variant="full-width">
-                <h2 class="page-heading-2">View Timeline 3</h2>
-              </LayoutRow>
-            </section>
-
-            <section class="experience-section">
-              <LayoutRow tag="div" variant="full-width">
-                <h2 class="page-heading-2">View Timeline 4</h2>
-              </LayoutRow>
-            </section>
-
-            <section class="experience-section">
-              <LayoutRow tag="div" variant="full-width">
-                <h2 class="page-heading-2">View Timeline 5</h2>
-              </LayoutRow>
+            <section
+              v-for="(section, index) in experienceSections"
+              :key="index"
+              class="experience-section"
+              :style="{
+                'view-timeline-name': `--section-${index}`,
+              }"
+            >
+              <h2 class="page-heading-2">{{ section.title }}</h2>
+              <pre class="page-body-normal">timelineInset: {{ timelineInset }}</pre>
             </section>
           </div>
         </LayoutRow>
@@ -101,20 +60,82 @@ useHead({
   },
 })
 
-const stickyContainerRef = useTemplateRef<HTMLElement | null>("stickyContainerRef")
+const videoLayers = [
+  {
+    src: "/images/rotating-carousel/image-1.webp",
+    alt: "Sample Image 1",
+  },
+  {
+    src: "/images/rotating-carousel/image-2.webp",
+    alt: "Sample Image 2",
+  },
+  {
+    src: "/images/rotating-carousel/image-4.webp",
+    alt: "Sample Image 4",
+  },
+  {
+    src: "/images/rotating-carousel/image-5.webp",
+    alt: "Sample Image 5",
+  },
+  {
+    src: "/images/rotating-carousel/image-6.webp",
+    alt: "Sample Image 6",
+  },
+]
+
+const experienceSections = [
+  { title: "View Timeline 1" },
+  { title: "View Timeline 2" },
+  { title: "View Timeline 3" },
+  { title: "View Timeline 4" },
+  { title: "View Timeline 5" },
+]
+
+const frameRef = useTemplateRef<HTMLElement | null>("frameRef")
+const scrollContainerRef = useTemplateRef<HTMLElement | null>("scrollContainerRef")
 const timelineInset = ref("35% 35%")
 
+// const calculateInset = () => {
+//   const el = frameRef.value
+//   if (!el) return
+
+//   const rect = el.getBoundingClientRect()
+//   const vh = window.innerHeight
+
+//   const topPercent = (rect.top / vh) * 100
+//   const bottomPercent = ((vh - rect.bottom) / vh) * 100
+
+//   timelineInset.value = `${topPercent.toFixed(2)}% ${bottomPercent.toFixed(2)}%`
+
+//   if (!scrollContainerRef.value) return
+
+//   scrollContainerRef.value.style.setProperty(
+//     "--calculated-inset",
+//     `${topPercent.toFixed(2)}% ${bottomPercent.toFixed(2)}%`
+//   )
+// }
+
 const calculateInset = () => {
-  const el = stickyContainerRef.value
+  const el = frameRef.value
   if (!el) return
 
+  // Get the sticky frame's position relative to the viewport
   const rect = el.getBoundingClientRect()
   const vh = window.innerHeight
 
+  // Compute top and bottom inset percentages relative to viewport height
   const topPercent = (rect.top / vh) * 100
   const bottomPercent = ((vh - rect.bottom) / vh) * 100
 
+  // Update the reactive timelineInset ref (can be used in v-bind)
   timelineInset.value = `${topPercent.toFixed(2)}% ${bottomPercent.toFixed(2)}%`
+
+  // Also update a CSS variable for use in view-timeline-inset
+  if (!scrollContainerRef.value) return
+  scrollContainerRef.value.style.setProperty(
+    "--calculated-inset",
+    `${topPercent.toFixed(2)}% ${bottomPercent.toFixed(2)}%`
+  )
 }
 
 onMounted(() => {
@@ -129,59 +150,43 @@ onUnmounted(() => {
 
 <style lang="css">
 .view-timeline-page {
-  /* CSS styles */
-
-  /* container-type: inline-size; */
-
-  .scroll-clip-container {
-    /* min-height: 400svh; */
+  .banner {
+    padding-block: 2rem;
+    margin-block-end: 60rem;
   }
 }
 
 .scroll-clip-container {
-  timeline-scope: --section-1, --section-2, --section-3, --section-4, --section-5;
-  outline: 1px solid red;
-  min-height: 600vh; /* Ensure enough scroll height */
+  timeline-scope: --section-0, --section-1, --section-2, --section-3, --section-4;
 
-  .sticky-frame {
+  .image-frame {
     position: sticky;
     top: 50%;
-    left: 50%;
+    left: 100%;
     width: 512px;
     aspect-ratio: 1;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
     z-index: 10;
 
-    .sticky-layer {
+    /* timeline-scope: --section-0, --section-1, --section-2, --section-3, --section-4; */
+
+    outline: 1px dashed red;
+
+    .image-layer {
       position: absolute;
       inset: 0;
-      border-radius: 0.5rem; /* Match rounded-lg */
-      overflow: hidden;
+      border-radius: 0.5rem;
     }
   }
 
   .experience-section {
     view-timeline-axis: block;
-    view-timeline-inset: v-bind(timelineInset);
+    /* view-timeline-inset: v-bind(timelineInset); */
+    /* view-timeline-inset: 35% 35%; */
+    /* view-timeline-inset: var(--calculated-inset); */
+    view-timeline-inset: 0% 0%;
 
-    /* dev only styles */
     min-height: 100vh;
-
-    &:nth-child(2) {
-      view-timeline-name: --section-1;
-    }
-    &:nth-child(3) {
-      view-timeline-name: --section-2;
-    }
-    &:nth-child(4) {
-      view-timeline-name: --section-3;
-    }
-    &:nth-child(5) {
-      view-timeline-name: --section-4;
-    }
-    &:nth-child(6) {
-      view-timeline-name: --section-5;
-    }
   }
 }
 
@@ -189,34 +194,15 @@ onUnmounted(() => {
   @keyframes wipe-out {
     0% {
       clip-path: inset(0 0 0% 0);
-      opacity: 1;
-    } /* fully visible */
+    }
     100% {
       clip-path: inset(0 0 100% 0);
-      opacity: 0;
-    } /* fully clipped from bottom up */
+    }
   }
 
-  .sticky-layer {
-    animation: wipe-out linear both;
+  .image-layer {
+    animation: wipe-out 1s linear both;
     animation-range: entry 0% exit 100%;
-  }
-
-  /* Each layer clips away when the corresponding section enters viewport */
-  .sticky-layer:nth-child(1) {
-    animation-timeline: --section-1;
-  }
-  .sticky-layer:nth-child(2) {
-    animation-timeline: --section-2;
-  }
-  .sticky-layer:nth-child(3) {
-    animation-timeline: --section-3;
-  }
-  .sticky-layer:nth-child(4) {
-    animation-timeline: --section-4;
-  }
-  .sticky-layer:nth-child(5) {
-    animation-timeline: --section-5;
   }
 }
 </style>

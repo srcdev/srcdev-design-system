@@ -116,13 +116,23 @@ const calculateInset = () => {
   scrollContainerRef.value.style.setProperty("--calculated-inset", timelineInset.value)
 }
 
+// Throttle scroll handler using requestAnimationFrame
+let rafId: number | null = null
+const onScroll = () => {
+  if (rafId !== null) return
+  rafId = requestAnimationFrame(() => {
+    calculateInset()
+    rafId = null
+  })
+}
+
 onMounted(() => {
   calculateInset()
-  window.addEventListener("scroll", calculateInset)
+  window.addEventListener("scroll", onScroll)
 })
 
 onUnmounted(() => {
-  window.removeEventListener("scroll", calculateInset)
+  window.removeEventListener("scroll", onScroll)
 })
 </script>
 

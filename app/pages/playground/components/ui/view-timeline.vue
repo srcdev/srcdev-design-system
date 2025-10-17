@@ -10,7 +10,11 @@
         </LayoutRow>
 
         <LayoutRow tag="div" variant="full">
-          <div class="scroll-clip-container" ref="scrollContainerRef">
+          <div
+            class="scroll-clip-container"
+            ref="scrollContainerRef"
+            :style="{ 'timeline-scope': videoLayers.map((_, i) => `--section-${i}`).join(', ') }"
+          >
             <div ref="frameRef" class="image-frame">
               <NuxtImg
                 v-for="(layer, index) in videoLayers"
@@ -145,8 +149,6 @@ onUnmounted(() => {
 }
 
 .scroll-clip-container {
-  timeline-scope: --section-0, --section-1, --section-2, --section-3, --section-4;
-
   .image-frame {
     position: sticky;
     top: 50%;
@@ -189,6 +191,7 @@ onUnmounted(() => {
 
   .image-layer {
     animation: wipe-out 1s linear both;
+    /* Runs only during section entry, synced to the sticky frame */
     animation-range: entry 0% entry 100%;
   }
 }

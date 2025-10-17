@@ -5,37 +5,41 @@
         <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['banner', 'mbe-20']">
           <h2 class="page-heading-1">View Timeline Example</h2>
           <pre class="page-body-normal">timelineInset: {{ timelineInset }}</pre>
+          <pre class="page-body-normal">topPercent: {{ topPercent }}</pre>
+          <pre class="page-body-normal">bottomPercent: {{ bottomPercent }}</pre>
         </LayoutRow>
 
         <LayoutRow tag="div" variant="full">
-        <div class="scroll-clip-container" ref="scrollContainerRef">
-          <div ref="frameRef" class="image-frame">
-            <NuxtImg
-              v-for="(layer, index) in videoLayers"
-              :key="index"
-              :src="layer.src"
-              :alt="layer.alt"
-              width="100%"
-              class="image-layer"
-              :style="{
-                'animation-timeline': index === videoLayers.length - 1 ? 'none' : `--section-${index}`,
-                'z-index': videoLayers.length - index,
-              }"
-            />
-          </div>
+          <div class="scroll-clip-container" ref="scrollContainerRef">
+            <div ref="frameRef" class="image-frame">
+              <NuxtImg
+                v-for="(layer, index) in videoLayers"
+                :key="index"
+                :src="layer.src"
+                :alt="layer.alt"
+                width="100%"
+                class="image-layer"
+                :style="{
+                  'animation-timeline': index === videoLayers.length - 1 ? 'none' : `--section-${index}`,
+                  'z-index': videoLayers.length - index,
+                }"
+              />
+            </div>
 
-          <section
-            v-for="(section, index) in experienceSections"
-            :key="index"
-            class="experience-section"
-            :style="{
-              'view-timeline-name': `--section-${index}`,
-            }"
-          >
-            <h2 class="page-heading-2">{{ section.title }}</h2>
-            <pre class="page-body-normal">timelineInset: {{ timelineInset }}</pre>
-          </section>
-        </div>
+            <section
+              v-for="(section, index) in experienceSections"
+              :key="index"
+              class="experience-section"
+              :style="{
+                'view-timeline-name': `--section-${index}`,
+              }"
+            >
+              <h2 class="page-heading-2">{{ section.title }}</h2>
+              <pre class="page-body-normal">timelineInset: {{ timelineInset }}</pre>
+              <pre class="page-body-normal">topPercent: {{ topPercent }}</pre>
+              <pre class="page-body-normal">bottomPercent: {{ bottomPercent }}</pre>
+            </section>
+          </div>
         </LayoutRow>
       </template>
     </NuxtLayout>
@@ -94,48 +98,25 @@ const experienceSections = [
 const frameRef = useTemplateRef<HTMLElement | null>("frameRef")
 const scrollContainerRef = useTemplateRef<HTMLElement | null>("scrollContainerRef")
 const timelineInset = ref("35% 35%")
-
-// const calculateInset = () => {
-//   const el = frameRef.value
-//   if (!el) return
-
-//   const rect = el.getBoundingClientRect()
-//   const vh = window.innerHeight
-
-//   const topPercent = (rect.top / vh) * 100
-//   const bottomPercent = ((vh - rect.bottom) / vh) * 100
-
-//   timelineInset.value = `${topPercent.toFixed(2)}% ${bottomPercent.toFixed(2)}%`
-
-//   if (!scrollContainerRef.value) return
-
-//   scrollContainerRef.value.style.setProperty(
-//     "--calculated-inset",
-//     `${topPercent.toFixed(2)}% ${bottomPercent.toFixed(2)}%`
-//   )
-// }
+const topPercent = ref("0")
+const bottomPercent = ref("0")
 
 const calculateInset = () => {
-  const el = frameRef.value
-  if (!el) return
+  if (!frameRef.value) return
 
-  // Get the sticky frame's position relative to the viewport
-  const rect = el.getBoundingClientRect()
-  const vh = window.innerHeight
+  const rect = frameRef.value.getBoundingClientRect()
+  const innerHeight = window.innerHeight
 
-  // Compute top and bottom inset percentages relative to viewport height
-  const topPercent = (rect.top / vh) * 100
-  const bottomPercent = ((vh - rect.bottom) / vh) * 100
+  topPercent.value = ((rect.top / innerHeight) * 100).toFixed(2)
 
-  // Update the reactive timelineInset ref (can be used in v-bind)
-  timelineInset.value = `${topPercent.toFixed(2)}% ${bottomPercent.toFixed(2)}%`
+  // bottomPercent.value = (((innerHeight - rect.bottom) / innerHeight) * 100).toFixed(2)
+  bottomPercent.value = (100 - ((innerHeight - rect.bottom) / innerHeight) * 100).toFixed(2)
 
-  // Also update a CSS variable for use in view-timeline-inset
+  // timelineInset.value = `${topPercent.value}% ${bottomPercent.value}%`
+  timelineInset.value = `${bottomPercent.value}% ${topPercent.value}%`
+
   if (!scrollContainerRef.value) return
-  scrollContainerRef.value.style.setProperty(
-    "--calculated-inset",
-    `${topPercent.toFixed(2)}% ${bottomPercent.toFixed(2)}%`
-  )
+  scrollContainerRef.value.style.setProperty("--calculated-inset", timelineInset.value)
 }
 
 onMounted(() => {
@@ -168,8 +149,6 @@ onUnmounted(() => {
     transform: translateY(-50%);
     z-index: 10;
 
-    /* timeline-scope: --section-0, --section-1, --section-2, --section-3, --section-4; */
-
     outline: 1px dashed red;
 
     .image-layer {
@@ -184,7 +163,7 @@ onUnmounted(() => {
     /* view-timeline-inset: v-bind(timelineInset); */
     /* view-timeline-inset: 35% 35%; */
     view-timeline-inset: var(--calculated-inset);
-    /* view-timeline-inset: 0% 0%; */
+    /* view-timeline-inset: 28% 28%; */
 
     min-height: 100vh;
 
@@ -208,7 +187,7 @@ onUnmounted(() => {
 
   .image-layer {
     animation: wipe-out 1s linear both;
-    animation-range: entry 0% contain 100%;
+    animation-range: entry 0% exit 100%;
   }
 }
 </style>

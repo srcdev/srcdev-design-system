@@ -8,34 +8,34 @@
         </LayoutRow>
 
         <LayoutRow tag="div" variant="full">
-          <div class="scroll-clip-container" ref="scrollContainerRef">
-            <div ref="frameRef" class="image-frame">
-              <NuxtImg
-                v-for="(layer, index) in videoLayers"
-                :key="index"
-                :src="layer.src"
-                :alt="layer.alt"
-                width="100%"
-                class="image-layer"
-                :style="{
-                  'animation-timeline': index === videoLayers.length - 1 ? 'none' : `--section-${index}`,
-                  'z-index': videoLayers.length - index,
-                }"
-              />
-            </div>
-
-            <section
-              v-for="(section, index) in experienceSections"
+        <div class="scroll-clip-container" ref="scrollContainerRef">
+          <div ref="frameRef" class="image-frame">
+            <NuxtImg
+              v-for="(layer, index) in videoLayers"
               :key="index"
-              class="experience-section"
+              :src="layer.src"
+              :alt="layer.alt"
+              width="100%"
+              class="image-layer"
               :style="{
-                'view-timeline-name': `--section-${index}`,
+                'animation-timeline': index === videoLayers.length - 1 ? 'none' : `--section-${index}`,
+                'z-index': videoLayers.length - index,
               }"
-            >
-              <h2 class="page-heading-2">{{ section.title }}</h2>
-              <pre class="page-body-normal">timelineInset: {{ timelineInset }}</pre>
-            </section>
+            />
           </div>
+
+          <section
+            v-for="(section, index) in experienceSections"
+            :key="index"
+            class="experience-section"
+            :style="{
+              'view-timeline-name': `--section-${index}`,
+            }"
+          >
+            <h2 class="page-heading-2">{{ section.title }}</h2>
+            <pre class="page-body-normal">timelineInset: {{ timelineInset }}</pre>
+          </section>
+        </div>
         </LayoutRow>
       </template>
     </NuxtLayout>
@@ -140,11 +140,11 @@ const calculateInset = () => {
 
 onMounted(() => {
   calculateInset()
-  window.addEventListener("resize", calculateInset)
+  window.addEventListener("scroll", calculateInset)
 })
 
 onUnmounted(() => {
-  window.removeEventListener("resize", calculateInset)
+  window.removeEventListener("scroll", calculateInset)
 })
 </script>
 
@@ -183,10 +183,16 @@ onUnmounted(() => {
     view-timeline-axis: block;
     /* view-timeline-inset: v-bind(timelineInset); */
     /* view-timeline-inset: 35% 35%; */
-    /* view-timeline-inset: var(--calculated-inset); */
-    view-timeline-inset: 0% 0%;
+    view-timeline-inset: var(--calculated-inset);
+    /* view-timeline-inset: 0% 0%; */
 
     min-height: 100vh;
+
+    background-color: darkcyan;
+
+    &:nth-child(odd) {
+      background-color: darkgoldenrod;
+    }
   }
 }
 
@@ -202,7 +208,7 @@ onUnmounted(() => {
 
   .image-layer {
     animation: wipe-out 1s linear both;
-    animation-range: entry 0% exit 100%;
+    animation-range: entry 0% contain 100%;
   }
 }
 </style>

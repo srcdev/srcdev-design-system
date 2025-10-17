@@ -108,12 +108,9 @@ const calculateInset = () => {
   const innerHeight = window.innerHeight
 
   topPercent.value = ((rect.top / innerHeight) * 100).toFixed(2)
+  bottomPercent.value = (((innerHeight - rect.bottom) / innerHeight) * 100).toFixed(2)
 
-  // bottomPercent.value = (((innerHeight - rect.bottom) / innerHeight) * 100).toFixed(2)
-  bottomPercent.value = (100 - ((innerHeight - rect.bottom) / innerHeight) * 100).toFixed(2)
-
-  // timelineInset.value = `${topPercent.value}% ${bottomPercent.value}%`
-  timelineInset.value = `${bottomPercent.value}% ${topPercent.value}%`
+  timelineInset.value = `${topPercent.value}% ${bottomPercent.value}%`
 
   if (!scrollContainerRef.value) return
   scrollContainerRef.value.style.setProperty("--calculated-inset", timelineInset.value)
@@ -149,8 +146,6 @@ onUnmounted(() => {
     transform: translateY(-50%);
     z-index: 10;
 
-    outline: 1px dashed red;
-
     .image-layer {
       position: absolute;
       inset: 0;
@@ -160,10 +155,7 @@ onUnmounted(() => {
 
   .experience-section {
     view-timeline-axis: block;
-    /* view-timeline-inset: v-bind(timelineInset); */
-    /* view-timeline-inset: 35% 35%; */
     view-timeline-inset: var(--calculated-inset);
-    /* view-timeline-inset: 28% 28%; */
 
     min-height: 100vh;
 
@@ -187,7 +179,7 @@ onUnmounted(() => {
 
   .image-layer {
     animation: wipe-out 1s linear both;
-    animation-range: entry 0% exit 100%;
+    animation-range: entry 0% entry 100%;
   }
 }
 </style>

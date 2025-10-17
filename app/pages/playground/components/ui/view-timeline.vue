@@ -10,26 +10,26 @@
         </LayoutRow>
 
         <LayoutRow tag="div" variant="full">
-          <div class="scroll-clip-container" ref="scrollContainerRef" :style="{ 'timeline-scope': timelineScope }">
-            <div ref="frameRef" class="image-frame">
+          <div class="scroll-sticky-container" ref="scrollContainerRef" :style="{ 'timeline-scope': timelineScope }">
+            <div ref="stickyItemsContainerRef" class="sticky-items-container">
               <NuxtImg
-                v-for="(layer, index) in videoLayers"
+                v-for="(layer, index) in stickyItems"
                 :key="index"
                 :src="layer.src"
                 :alt="layer.alt"
                 width="100%"
-                class="image-layer"
+                class="sticky-item"
                 :style="{
-                  'animation-timeline': index === videoLayers.length - 1 ? 'none' : `--section-${index}`,
-                  'z-index': videoLayers.length - index,
+                  'animation-timeline': index === stickyItems.length - 1 ? 'none' : `--section-${index}`,
+                  'z-index': stickyItems.length - index,
                 }"
               />
             </div>
 
             <section
-              v-for="(section, index) in experienceSections"
+              v-for="(section, index) in scrollingSection"
               :key="index"
-              class="experience-section"
+              class="scrolling-section"
               :style="{
                 'view-timeline-name': `--section-${index}`,
               }"
@@ -64,7 +64,7 @@ useHead({
   },
 })
 
-const videoLayers = [
+const stickyItems = [
   {
     src: "/images/rotating-carousel/image-1.webp",
     alt: "Sample Image 1",
@@ -87,7 +87,7 @@ const videoLayers = [
   },
 ]
 
-const experienceSections = [
+const scrollingSection = [
   { title: "View Timeline 1" },
   { title: "View Timeline 2" },
   { title: "View Timeline 3" },
@@ -95,18 +95,18 @@ const experienceSections = [
   { title: "View Timeline 5" },
 ]
 
-const frameRef = useTemplateRef<HTMLElement | null>("frameRef")
+const stickyItemsContainerRef = useTemplateRef<HTMLElement | null>("stickyItemsContainerRef")
 const scrollContainerRef = useTemplateRef<HTMLElement | null>("scrollContainerRef")
 const timelineInset = ref("35% 35%")
 const topPercent = ref("0")
 const bottomPercent = ref("0")
 
-const timelineScope = computed(() => videoLayers.map((_, i) => `--section-${i}`).join(", "))
+const timelineScope = computed(() => stickyItems.map((_, i) => `--section-${i}`).join(", "))
 
 const calculateInset = () => {
-  if (!frameRef.value) return
+  if (!stickyItemsContainerRef.value) return
 
-  const rect = frameRef.value.getBoundingClientRect()
+  const rect = stickyItemsContainerRef.value.getBoundingClientRect()
   const innerHeight = window.innerHeight
 
   topPercent.value = ((rect.top / innerHeight) * 100).toFixed(2)
@@ -146,8 +146,8 @@ onUnmounted(() => {
   }
 }
 
-.scroll-clip-container {
-  .image-frame {
+.scroll-sticky-container {
+  .sticky-items-container {
     position: sticky;
     top: 50%;
     left: 100%;
@@ -156,14 +156,14 @@ onUnmounted(() => {
     transform: translateY(-50%);
     z-index: 10;
 
-    .image-layer {
+    .sticky-item {
       position: absolute;
       inset: 0;
       border-radius: 0.5rem;
     }
   }
 
-  .experience-section {
+  .scrolling-section {
     view-timeline-axis: block;
     view-timeline-inset: var(--calculated-inset);
 
@@ -187,7 +187,7 @@ onUnmounted(() => {
     }
   }
 
-  .image-layer {
+  .sticky-item {
     animation: wipe-out 1s linear both;
     /* Runs only during section entry, synced to the sticky frame */
     animation-range: entry 0% entry 100%;

@@ -10,11 +10,7 @@
         </LayoutRow>
 
         <LayoutRow tag="div" variant="full">
-          <div
-            class="scroll-clip-container"
-            ref="scrollContainerRef"
-            :style="{ 'timeline-scope': videoLayers.map((_, i) => `--section-${i}`).join(', ') }"
-          >
+          <div class="scroll-clip-container" ref="scrollContainerRef" :style="{ 'timeline-scope': timelineScope }">
             <div ref="frameRef" class="image-frame">
               <NuxtImg
                 v-for="(layer, index) in videoLayers"
@@ -104,6 +100,8 @@ const scrollContainerRef = useTemplateRef<HTMLElement | null>("scrollContainerRe
 const timelineInset = ref("35% 35%")
 const topPercent = ref("0")
 const bottomPercent = ref("0")
+
+const timelineScope = computed(() => videoLayers.map((_, i) => `--section-${i}`).join(", "))
 
 const calculateInset = () => {
   if (!frameRef.value) return

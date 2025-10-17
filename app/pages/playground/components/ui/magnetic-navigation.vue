@@ -44,7 +44,7 @@ useHead({
   background-position: var(--_background-position);
   background-attachment: fixed;
 
-  .magnetic-navigation {
-  }
+  /* .magnetic-navigation {
+  } */
 }
 </style>

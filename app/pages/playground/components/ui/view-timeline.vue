@@ -2,44 +2,33 @@
   <div>
     <NuxtLayout name="default">
       <template #layout-content>
-        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['banner', 'mbe-20']">
-          <h2 class="page-heading-1">View Timeline Example</h2>
-          <pre class="page-body-normal">timelineInset: {{ timelineInset }}</pre>
-          <pre class="page-body-normal">topPercent: {{ topPercent }}</pre>
-          <pre class="page-body-normal">bottomPercent: {{ bottomPercent }}</pre>
+        <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
+          <h2 class="page-heading-2">Wipe Away Vertical</h2>
         </LayoutRow>
 
         <LayoutRow tag="div" variant="full">
-          <div class="scroll-sticky-container" ref="scrollContainerRef" :style="{ 'timeline-scope': timelineScope }">
-            <div ref="stickyItemsContainerRef" class="sticky-items-container">
-              <NuxtImg
-                v-for="(layer, index) in stickyItems"
-                :key="index"
-                :src="layer.src"
-                :alt="layer.alt"
-                width="100%"
-                class="sticky-item"
-                :style="{
-                  'animation-timeline': index === stickyItems.length - 1 ? 'none' : `--section-${index}`,
-                  'z-index': stickyItems.length - index,
-                }"
-              />
-            </div>
+          <WipeAwayVertical :item-count="scrollingSection.length">
+            <template v-for="(item, index) in stickyItems" :key="`sticky-${index}`" v-slot:[`stickyItem-${index}`]>
+              <div class="sticky-item-container">
+                <NuxtImg :src="item.src" :alt="item.alt" class="sticky-item-image" />
+              </div>
+            </template>
 
-            <section
+            <template
               v-for="(section, index) in scrollingSection"
-              :key="index"
-              class="scrolling-section"
-              :style="{
-                'view-timeline-name': `--section-${index}`,
-              }"
+              :key="`scrolling-${index}`"
+              v-slot:[`scrollingItem-${index}`]
             >
-              <h2 class="page-heading-2">{{ section.title }}</h2>
-              <pre class="page-body-normal">timelineInset: {{ timelineInset }}</pre>
-              <pre class="page-body-normal">topPercent: {{ topPercent }}</pre>
-              <pre class="page-body-normal">bottomPercent: {{ bottomPercent }}</pre>
-            </section>
-          </div>
+              <div class="scrolling-section-content">
+                <h3 class="section-heading-3">{{ section.title }}</h3>
+                <p class="body-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                  aliquip ex ea commodo consequat.
+                </p>
+              </div>
+            </template>
+          </WipeAwayVertical>
         </LayoutRow>
       </template>
     </NuxtLayout>
@@ -52,15 +41,15 @@ definePageMeta({
 })
 
 useHead({
-  title: "View Timeline",
+  title: "Wipe Away Vertical",
   meta: [
     {
       name: "description",
-      content: "View Timeline Meta description content",
+      content: "Wipe Away Vertical Meta description content",
     },
   ],
   bodyAttrs: {
-    class: "view-timeline-page",
+    class: "wipe-away-vertical-page",
   },
 })
 
@@ -94,108 +83,32 @@ const scrollingSection = [
   { title: "View Timeline 4" },
   { title: "View Timeline 5" },
 ]
-
-const stickyItemsContainerRef = useTemplateRef<HTMLElement | null>("stickyItemsContainerRef")
-const scrollContainerRef = useTemplateRef<HTMLElement | null>("scrollContainerRef")
-const timelineInset = ref("35% 35%")
-const topPercent = ref("0")
-const bottomPercent = ref("0")
-
-const timelineScope = computed(() => stickyItems.map((_, i) => `--section-${i}`).join(", "))
-
-const calculateInset = () => {
-  if (!stickyItemsContainerRef.value) return
-
-  const rect = stickyItemsContainerRef.value.getBoundingClientRect()
-  const innerHeight = window.innerHeight
-
-  topPercent.value = ((rect.top / innerHeight) * 100).toFixed(2)
-  bottomPercent.value = (((innerHeight - rect.bottom) / innerHeight) * 100).toFixed(2)
-
-  timelineInset.value = `${topPercent.value}% ${bottomPercent.value}%`
-
-  if (!scrollContainerRef.value) return
-  scrollContainerRef.value.style.setProperty("--calculated-inset", timelineInset.value)
-}
-
-// Throttle scroll handler using requestAnimationFrame
-let rafId: number | null = null
-const onScroll = () => {
-  if (rafId !== null) return
-  rafId = requestAnimationFrame(() => {
-    calculateInset()
-    rafId = null
-  })
-}
-
-onMounted(() => {
-  calculateInset()
-  window.addEventListener("scroll", onScroll)
-})
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", onScroll)
-})
 </script>
 
 <style lang="css">
-.view-timeline-page {
-  .banner {
-    padding-block: 2rem;
-    margin-block-end: 60rem;
-  }
-}
+.wipe-away-vertical-page {
+  /* CSS styles */
 
-.scroll-sticky-container {
-  .sticky-items-container {
-    position: sticky;
-    top: 50%;
-    left: 100%;
-    width: 50%;
-    aspect-ratio: 1;
-    transform: translateY(-50%);
-    z-index: 10;
+  .wipe-away-vertical {
+    .sticky-items-container {
+      width: 50%;
+      aspect-ratio: 1;
 
-    @media (width >= 1024px) {
-      width: 512px;
+      @media (width >= 1024px) {
+        width: 512px;
+      }
     }
 
-    .sticky-item {
-      position: absolute;
-      inset: 0;
-      border-radius: 0.5rem;
-      width: 100%;
+    .scrolling-section {
+      min-height: 100vh;
+      overflow-y: hidden;
+
+      background-color: darkcyan;
+
+      &:nth-child(odd) {
+        background-color: darkgoldenrod;
+      }
     }
-  }
-
-  .scrolling-section {
-    view-timeline-axis: block;
-    view-timeline-inset: var(--calculated-inset);
-
-    min-height: 100vh;
-
-    background-color: darkcyan;
-
-    &:nth-child(odd) {
-      background-color: darkgoldenrod;
-    }
-  }
-}
-
-@supports (animation-timeline: view()) {
-  @keyframes wipe-out {
-    0% {
-      clip-path: inset(0 0 0% 0);
-    }
-    100% {
-      clip-path: inset(0 0 100% 0);
-    }
-  }
-
-  .sticky-item {
-    animation: wipe-out 1s linear both;
-    /* Runs only during section entry, synced to the sticky frame */
-    animation-range: entry 0% entry 100%;
   }
 }
 </style>

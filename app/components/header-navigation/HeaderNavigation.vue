@@ -66,6 +66,7 @@ const responsiveNavLinks = computed(() => ({
         { name: "Display Chip", path: localePath("/playground/components/ui/display-chip") },
         { name: "Display Avatar", path: localePath("/playground/components/ui/display-avatar") },
         { name: "Block Decorators", path: localePath("/playground/components/ui/block-decorators") },
+        { name: "Display Accordian", path: localePath("/playground/components/ui/accordian") },
       ],
     },
     {

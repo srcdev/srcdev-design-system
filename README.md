@@ -84,12 +84,13 @@ npm run storybook       # Start Storybook server
 
 # Building
 npm run build           # Build for production
-npm run build:i18n      # Build i18n translations only
+npm run build:i18n      # Build i18n translations (TypeScript output)
+npm run build:i18n-json # Build i18n translations (JSON output)
 npm run build-storybook # Build Storybook for deployment
 
 # Internationalization
-npm run build:i18n:watch      # Watch and rebuild i18n
-npm run build:i18n-json:watch # Watch and rebuild i18n JSON
+npm run build:i18n:watch      # Watch and rebuild i18n (TypeScript output)
+npm run build:i18n-json:watch # Watch and rebuild i18n (JSON output)
 
 # Utilities
 npm run cleanup         # Remove node_modules, .nuxt, dist
@@ -151,7 +152,31 @@ app/components/
 
 #### 3. Generated Output (`i18n/locales/`)
 
-The build system automatically merges all translation sources into TypeScript files:
+The build system automatically merges all translation sources into structured files. The output format depends on which build script is configured:
+
+**JSON Output (current `dev` configuration):**
+
+```json
+// i18n/locales/en-GB.json
+{
+  "components": {
+    "footer": {
+      /* from i18n-source */
+    },
+    "navigation": {
+      /* from component */
+    }
+  },
+  "global": {
+    /* from i18n-source */
+  },
+  "pages": {
+    /* from i18n-source */
+  }
+}
+```
+
+**TypeScript Output (alternative configuration):**
 
 ```typescript
 // i18n/locales/en-GB.ts
@@ -178,21 +203,29 @@ export default {
 #### Manual Build
 
 ```bash
-npm run build:i18n
+npm run build:i18n      # Build TypeScript output
+npm run build:i18n-json # Build JSON output
 ```
 
 #### Development with Watch Mode
 
 ```bash
-npm run dev  # Includes automatic i18n watching and rebuilding
+npm run dev  # Includes automatic i18n watching and rebuilding (currently configured for JSON output)
 ```
+
+**Available Watch Scripts:**
+
+- `npm run build:i18n:watch` - Watches and generates TypeScript files
+- `npm run build:i18n-json:watch` - Watches and generates JSON files
+
+The `npm run dev` command currently uses the JSON watch script. To switch between formats, update the `dev` script in `package.json` to use either `build:i18n:watch` (TypeScript) or `build:i18n-json:watch` (JSON).
 
 The build system:
 
 - ✅ Automatically discovers component locale directories
 - ✅ Deep merges translations with proper namespacing
 - ✅ Watches for changes in both global and component translations
-- ✅ Regenerates TypeScript files with type safety
+- ✅ Regenerates files with proper structure (JSON or TypeScript)
 - ✅ Provides clear logging of discovered directories and changes
 
 ### Usage

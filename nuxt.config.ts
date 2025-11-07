@@ -37,11 +37,9 @@ export default defineNuxtConfig({
     "@nuxt/icon",
     "@nuxt/image",
     "@nuxt/scripts",
-    "@nuxt/test-utils",
     "@nuxtjs/i18n",
     "nuxt-security",
     "nuxt-auth-utils",
-    "@nuxtjs/storybook",
     "@nuxt/content",
   ],
   content: {

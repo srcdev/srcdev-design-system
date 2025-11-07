@@ -6,7 +6,7 @@
           <h1 class="page-heading-2">Accordian</h1>
           <p>Any item open and/closed</p>
 
-          <AccordianCore :itemCount="3" :style-class-passthrough="['class-modifier-narrow']">
+          <AccordianCore :itemCount="data.length ?? 0" :style-class-passthrough="['class-modifier-narrow']">
             <template v-for="(item, key) in data" v-slot:[`accordian-${key}-summary`]>
               {{ key }} - {{ item.title }}
             </template>
@@ -83,25 +83,85 @@ const data = ref<IAccordianData[]>([
     content:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, amet!, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, amet! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, amet!",
   },
+  {
+    title: "Trigger Item 4",
+    content:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, amet!, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, amet! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, amet!",
+  },
 ])
 </script>
 
 <style lang="css">
-.class-modifier-wide {
-  &.display-accordian {
+.display-accordian {
+  &.class-modifier-narrow {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  &.class-modifier-wide {
     max-width: 800px;
     margin: 0 auto;
   }
 }
 
-.class-modifier-narrow {
+.class-modifier-narrow,
+.class-modifier-wide {
   &.display-accordian {
-    max-width: 300px;
-    margin: 0 auto;
-
     .accordian-item {
       &.expanding-panel {
+        --_border-radius: 0.6rem;
+        --_margin-block-end: 1rem;
+
+        border: 1px solid var(--gray-0);
+        transition:
+          margin-block-end 300ms ease-in-out,
+          border-radius 300ms ease-in-out;
+
+        /* Default state: first element gets top corners, last gets bottom corners */
+        &:first-child {
+          border-start-start-radius: var(--_border-radius);
+          border-start-end-radius: var(--_border-radius);
+        }
+
+        &:last-child {
+          border-end-start-radius: var(--_border-radius);
+          border-end-end-radius: var(--_border-radius);
+        }
+
+        /* When current element is open: gets full border-radius and reduced margin */
+        &:has(.expanding-panel-details[open]) {
+          will-change: margin-block-end, border-radius;
+          border-radius: var(--_border-radius);
+          margin-block-end: var(--_margin-block-end);
+
+          &:first-child {
+            margin-block-end: var(--_margin-block-end);
+          }
+        }
+
+        /* When immediately before an open element: gets bottom corners and margin */
+        &:has(+ .expanding-panel .expanding-panel-details[open]) {
+          will-change: margin-block-end, border-radius;
+          border-end-start-radius: var(--_border-radius);
+          border-end-end-radius: var(--_border-radius);
+          margin-block-end: var(--_margin-block-end);
+        }
+
+        /* Override: if last child and previous element is open, keep bottom corners */
+        &:last-child:has(.expanding-panel-details:not([open])) {
+          border-end-start-radius: var(--_border-radius);
+          border-end-end-radius: var(--_border-radius);
+        }
+
+        /* When following an open element: only gets top corners (not full border-radius) */
+        &:has(.expanding-panel-details[open]) + .expanding-panel {
+          border-start-start-radius: var(--_border-radius);
+          border-start-end-radius: var(--_border-radius);
+        }
+
         .expanding-panel-details {
+          padding-block: 0.8rem;
+          padding-inline: 1.4rem;
+
           .expanding-panel-summary {
             padding: 0.1rem;
 

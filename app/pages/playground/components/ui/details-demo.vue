@@ -82,7 +82,7 @@ useHead({
 
   /* @supports (interpolate-size: allow-keywords) { */
   .details[open]::details-content {
-    height: fit-content;
+    height: unset;
   }
   /* } */
 }

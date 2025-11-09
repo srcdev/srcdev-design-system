@@ -77,13 +77,13 @@ useHead({
   }
 
   .content {
-    background-color: darkblue;
+    background-color: darkcyan;
   }
 
-  @supports (interpolate-size: allow-keywords) {
-    .details[open]::details-content {
-      height: fit-content;
-    }
+  /* @supports (interpolate-size: allow-keywords) { */
+  .details[open]::details-content {
+    height: fit-content;
   }
+  /* } */
 }
 </style>

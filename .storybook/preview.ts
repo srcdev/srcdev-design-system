@@ -1,6 +1,7 @@
 import type { Preview } from "@storybook/vue3-vite"
 import { setup } from "@storybook/vue3"
 import "../app/assets/styles/main.css"
+import { registerComponents, registerNuxtMocks } from "./component-auto-loader"
 
 // Mock Nuxt composables that might be used in components
 declare global {
@@ -15,44 +16,13 @@ declare global {
   }
 }
 
-// Setup Vue app with global components
-setup((app) => {
-  // Mock LayoutRow component
-  app.component("LayoutRow", {
-    props: {
-      tag: { type: String, default: "div" },
-      variant: { type: String, default: "full-width" },
-      styleClassPassthrough: { type: Array, default: () => [] },
-    },
-    template: `
-      <component :is="tag" :class="['layout-row', variant, ...styleClassPassthrough]">
-        <slot />
-      </component>
-    `,
-  })
+// Setup Vue app with components
+setup(async (app) => {
+  // Register your actual components from extends layers (leveraging Nuxt's component discovery)
+  await registerComponents(app)
 
-  // Mock Icon component
-  app.component("Icon", {
-    props: {
-      name: { type: String, required: true },
-      size: { type: String, default: "1em" },
-    },
-    template: `
-      <span
-        :style="{
-          display: 'inline-block',
-          width: size,
-          height: size,
-          backgroundColor: 'currentColor',
-          maskImage: 'url(https://api.iconify.design/' + name.replace(':', '/') + '.svg)',
-          maskRepeat: 'no-repeat',
-          maskPosition: 'center',
-          maskSize: 'contain'
-        }"
-        :title="name"
-      ></span>
-    `,
-  })
+  // Register Nuxt framework component mocks
+  registerNuxtMocks(app)
 })
 
 const preview: Preview = {

@@ -10,6 +10,19 @@
         </p>
         <Icon name="mdi:star" style="width: 48px; height: 48px; color: orange" />
       </div>
+      <div class="test-storybook__content">
+        <div class="dl">
+          <div class="dt">Has Avatar image and Chip</div>
+          <div class="dd">
+            <DisplayAvatar
+              src="https://github.com/srcdev.png"
+              alt="Joe Bloggs"
+              :chip="chipConfig"
+              :style-class-passthrough="['online']"
+            />
+          </div>
+        </div>
+      </div>
     </LayoutRow>
   </div>
 </template>

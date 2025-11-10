@@ -14,8 +14,9 @@
     "generate": "npm run build:i18n && nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook:generate-components": "node scripts/generate-storybook-components.mjs",
+    "storybook": "npm run storybook:generate-components && storybook dev -p 6006",
+    "build-storybook": "npm run storybook:generate-components && storybook build"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.2",
@@ -35,11 +36,7 @@
     "@storybook/addon-vitest": "^10.0.6",
     "@storybook/vue3-vite": "^10.0.6",
     "@types/markdown-it": "14.1.2",
-    "@types/node": "^24.10.0",
     "@unhead/vue": "2.0.19",
-    "@vitejs/plugin-vue": "^6.0.1",
-    "@vitest/browser-playwright": "^4.0.8",
-    "@vitest/coverage-v8": "^4.0.8",
     "better-sqlite3": "12.4.1",
     "concurrently": "9.2.1",
     "eslint": "9.39.1",
@@ -48,12 +45,14 @@
     "nuxt-auth-utils": "0.5.25",
     "nuxt-security": "2.4.0",
     "patch-package": "8.0.1",
-    "playwright": "^1.56.1",
     "srcdev-nuxt-components": "6.2.3",
     "srcdev-nuxt-forms": "6.1.23",
     "storybook": "^10.0.6",
+    "zod": "4.1.12",
     "vitest": "^4.0.8",
-    "zod": "4.1.12"
+    "playwright": "^1.56.1",
+    "@vitest/browser-playwright": "^4.0.8",
+    "@vitest/coverage-v8": "^4.0.8"
   },
   "dependencies": {
     "@nuxt/content": "3.8.0",

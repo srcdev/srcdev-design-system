@@ -28,6 +28,8 @@
 </template>
 
 <script setup lang="ts">
+import { type DisplayChipConfig } from "srcdev-nuxt-components/app/types"
+
 const props = defineProps({
   dataTestid: {
     type: String,
@@ -50,6 +52,13 @@ const props = defineProps({
 const slots = useSlots()
 
 const { elementClasses } = useStyleClassPassthrough(props.styleClassPassthrough)
+
+const chipConfig = reactive<DisplayChipConfig>({
+  size: "12px",
+  maskWidth: "4px",
+  offset: "2px",
+  angle: "45deg",
+})
 </script>
 
 <style lang="css">

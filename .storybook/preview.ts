@@ -18,8 +18,17 @@ declare global {
 
 // Setup Vue app with components
 setup(async (app) => {
-  // Register your actual components from extends layers (leveraging Nuxt's component discovery)
-  await registerComponents(app)
+  // Register commonly used components automatically (or specify which ones you want)
+  // Leave empty array to register ALL discovered components
+  const targetComponents = [
+    "LayoutRow",
+    "TestStorybook",
+    "DisplayBanner",
+    // Add more specific components here if you want selective loading
+    // Or remove this array to auto-register ALL components
+  ]
+
+  await registerComponents(app, targetComponents)
 
   // Register Nuxt framework component mocks
   registerNuxtMocks(app)

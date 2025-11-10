@@ -15,6 +15,7 @@ These are real components from `srcdev-nuxt-components` and `srcdev-nuxt-forms` 
 **Source**: `.nuxt/types/components.d.ts`
 
 **How to add**:
+
 1. Find the component path in `.nuxt/types/components.d.ts`
 2. Add it to `componentPaths` in `.storybook/component-auto-loader.ts`
 3. Add the component name to `componentsToRegister` array

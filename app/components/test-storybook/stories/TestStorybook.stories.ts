@@ -16,7 +16,7 @@ const Template: StoryFn<typeof StoryBookComponent> = (args) => ({
   },
   template: `
     <StoryBookComponent v-bind="args">
-      <template v-if="${"titleSlot" in args}" v-slot:titleSlot>${args.titleSlot}</template>
+      <template v-if="args.titleSlot" v-slot:titleSlot>{{ args.titleSlot }}</template>
     </StoryBookComponent>
   `,
 })

@@ -389,6 +389,7 @@ If you encounter Storybook configuration errors:
    ```
 
 4. **Component Not Updating**: If controls don't update the component:
+
    - Ensure your Template uses direct prop binding
    - Check that args are properly reactive in the template
 

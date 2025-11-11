@@ -20,33 +20,29 @@ export default {
       },
     },
     chipSize: {
-      options: ["8px", "10px", "12px", "14px", "16px", "18px", "20px", "24px"],
-      control: { type: "select" },
-      description: "Size of the chip",
+      control: { type: "range", min: 1, max: 24, step: 1 },
+      description: "Size of the chip in pixels",
       table: {
         category: "Chip Configuration",
       },
     },
     chipMaskWidth: {
-      options: ["1px", "2px", "3px", "4px", "5px", "6px", "8px", "10px"],
-      control: { type: "select" },
-      description: "Width of the chip mask/border",
+      control: { type: "range", min: 0, max: 12, step: 1 },
+      description: "Width of the chip mask/border in pixels",
       table: {
         category: "Chip Configuration",
       },
     },
     chipOffset: {
-      options: ["-2px", "0px", "1px", "2px", "3px", "4px", "5px", "6px"],
-      control: { type: "select" },
-      description: "Offset of the chip from the edge",
+      control: { type: "range", min: -12, max: 12, step: 1 },
+      description: "Offset of the chip from the edge in pixels",
       table: {
         category: "Chip Configuration",
       },
     },
     chipAngle: {
-      options: ["0deg", "45deg", "90deg", "135deg", "180deg", "225deg", "270deg", "315deg"],
-      control: { type: "select" },
-      description: "Angle of the chip position around the avatar",
+      control: { type: "range", min: 0, max: 360, step: 45 },
+      description: "Angle of the chip position around the avatar in degrees",
       table: {
         category: "Chip Configuration",
       },
@@ -67,10 +63,10 @@ export default {
   args: {
     src: "https://github.com/srcdev.png",
     alt: "SrcDev Avatar",
-    chipSize: "12px",
-    chipMaskWidth: "4px",
-    chipOffset: "2px",
-    chipAngle: "45deg",
+    chipSize: 12,
+    chipMaskWidth: 4,
+    chipOffset: 2,
+    chipAngle: 45,
     styleClassPassthrough: ["test-storybook--display-avatar", "online"],
   },
 } as Meta<typeof DisplayAvatarStories>
@@ -78,12 +74,12 @@ export default {
 const Template: StoryFn<typeof DisplayAvatarStories> = (args: any) => ({
   components: { DisplayAvatarStories },
   setup() {
-    // Map the individual chip controls back to the chip object
+    // Map the individual chip controls back to the chip object with proper units
     const chipConfig = {
-      size: args.chipSize,
-      maskWidth: args.chipMaskWidth,
-      offset: args.chipOffset,
-      angle: args.chipAngle,
+      size: `${args.chipSize}px`,
+      maskWidth: `${args.chipMaskWidth}px`,
+      offset: `${args.chipOffset}px`,
+      angle: `${args.chipAngle}deg`,
     }
 
     const templateArgs = {

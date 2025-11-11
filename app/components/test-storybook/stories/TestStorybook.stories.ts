@@ -1,52 +1,28 @@
-import type { Meta, StoryObj } from "@storybook/vue3"
+import type { Meta, StoryFn } from "@storybook/vue3"
 import StoryBookComponent from "../TestStorybook.vue"
 
-const meta = {
+export default {
   title: "Components/TestStorybook/TestStorybook",
   component: StoryBookComponent,
-  argTypes: {
-    layoutTag: {
-      options: ["div", "header", "footer", "section"],
-      control: { type: "select" },
-    },
-    layoutVariant: {
-      options: [
-        "full",
-        "full-start",
-        "full-end",
-        "popout",
-        "popout-start",
-        "popout-end",
-        "content",
-        "content-start",
-        "content-end",
-        "inset-content",
-        "inset-content-start",
-        "inset-content-end",
-        "full-width",
-        "full-content",
-        "full-content-nopad",
-        "full-content",
-      ],
-      control: { type: "select" },
-    },
-  },
   args: {
     styleClassPassthrough: ["test-storybook"],
-    layoutTag: "div",
-    layoutVariant: "full",
-    titleSlot: "Title Slot Content",
   },
-} satisfies Meta<typeof StoryBookComponent>
+} as Meta<typeof StoryBookComponent>
 
-export default meta
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {
-  args: {
-    styleClassPassthrough: ["test-storybook"],
-    layoutTag: "div",
-    layoutVariant: "full",
-    titleSlot: "Title Slot Content",
+const Template: StoryFn<typeof StoryBookComponent> = (args) => ({
+  components: { StoryBookComponent },
+  setup() {
+    return { args }
   },
+  template: `
+    <StoryBookComponent v-bind="args">
+      <template v-if="${"titleSlot" in args}" v-slot:titleSlot>${args.titleSlot}</template>
+    </StoryBookComponent>
+  `,
+})
+
+export const TitleOnlyDismissable = Template.bind({})
+TitleOnlyDismissable.args = {
+  styleClassPassthrough: ["test-storybook--title-only-dismissable"],
+  titleSlot: "Title Slot Content",
 }

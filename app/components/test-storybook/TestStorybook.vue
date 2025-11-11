@@ -1,8 +1,8 @@
 <template>
   <div class="test-storybook" :class="[elementClasses]" :data-testid="props.dataTestid">
-    <LayoutRow :tag="layoutTag" :variant="layoutVariant" :style-class-passthrough="['mbe-20']">
-      <h1 class="page-heading-1">Test Storybook Component</h1>
-      <slot v-if="slots.titleSlot" name="titleSlot"></slot>
+    <LayoutRow tag="div" variant="full-width" :style-class-passthrough="['mbe-20']">
+      <h1>Test Storybook Component</h1>
+      <slot v-if="titleSlot" name="titleSlot">{{ titleSlot }}</slot>
       <div class="test-storybook__content">
         <p>
           <code>&lt;Icon name="mdi:star"&gt;</code>
@@ -20,22 +20,12 @@ const props = defineProps({
     type: String,
     default: "test-storybook",
   },
-  layoutVariant: {
-    type: String,
-    default: "full-width",
-  },
-  layoutTag: {
-    type: String,
-    default: "div",
-  },
   styleClassPassthrough: {
-    type: [String, Array] as PropType<string | string[]>,
+    type: Array as PropType<string[]>,
     default: () => [],
   },
 })
-
 const slots = useSlots()
-
 const { elementClasses } = useStyleClassPassthrough(props.styleClassPassthrough)
 </script>
 
@@ -45,7 +35,6 @@ const { elementClasses } = useStyleClassPassthrough(props.styleClassPassthrough)
   padding: 16px;
   margin: 16px;
   text-align: center;
-
   .test-storybook__content {
     display: grid;
     grid-template-columns: auto 1fr;

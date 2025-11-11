@@ -5,7 +5,7 @@ A modern, comprehensive design system built with Nuxt 4, featuring Storybook int
 ## 🚀 Features
 
 - **🎨 Component Design System**: Built with Vue 3 and Nuxt 4
-- **~~📚 Storybook Integration~~**: ~~Interactive component documentation and testing~~ **(Temporarily deprecated due to incompatibility issues with latest package versions)**
+- **📚 Storybook Integration**: Interactive component documentation and testing *(using nightly build for Nuxt 4 compatibility)*
 - **🌍 Multi-language Support**: Full i18n with 3 languages (English, Chinese, Arabic)
 - **🎯 TypeScript**: Full type safety throughout the project
 - **🧪 Testing Suite**: Comprehensive testing with Vitest and Playwright
@@ -59,22 +59,22 @@ This command automatically:
 - Starts the Nuxt development server
 - Enables hot reload for all file changes
 
-### ~~Storybook Development~~ **(Temporarily Deprecated)**
+### Storybook Development
 
-> **⚠️ Note**: Storybook has been temporarily deprecated due to incompatibility issues with the latest package versions. The documentation below is preserved for reference but is not currently functional.
+> **⚠️ Note**: Storybook is currently functional using a nightly build package (`@nuxtjs/storybook@9.1.0-29374011.dab79ae`) to ensure compatibility with Nuxt 4.x. This is a temporary solution until the stable release supports Nuxt 4.
 
-~~Launch Storybook for component development and documentation:~~
+Launch Storybook for component development and documentation:
 
 ```bash
-# npm run storybook  # Currently not available
+npm run storybook  # Starts on http://localhost:6006
 ```
 
-~~Storybook will be available at `http://localhost:6006/` and includes:~~
+Storybook will be available at `http://localhost:6006/` and includes:
 
-- ~~Interactive component playground~~
-- ~~Automatic documentation generation~~
-- ~~Accessibility testing tools~~
-- ~~Visual regression testing capabilities~~
+- Interactive component playground with range controls
+- Automatic documentation generation
+- Accessibility testing tools
+- Visual regression testing capabilities
 
 ### Available Scripts
 
@@ -82,13 +82,13 @@ This command automatically:
 # Development
 npm run dev              # Start Nuxt with i18n watching
 npm run dev:nuxt-only   # Start Nuxt without i18n watching
-# npm run storybook     # Start Storybook server (temporarily deprecated)
+npm run storybook       # Start Storybook server (using nightly build)
 
 # Building
 npm run build           # Build for production
 npm run build:i18n      # Build i18n translations (TypeScript output)
 npm run build:i18n-json # Build i18n translations (JSON output)
-# npm run build-storybook # Build Storybook for deployment (temporarily deprecated)
+npm run build-storybook # Build Storybook for deployment
 
 # Internationalization
 npm run build:i18n:watch      # Watch and rebuild i18n (TypeScript output)
@@ -278,100 +278,126 @@ The `LocaleSwitcher` component (located in `app/components/locale-switcher/`) pr
 
 The language switcher is integrated into the default layout header and automatically updates the page content when a new language is selected.
 
-## ~~📚 Storybook Configuration~~ **(Temporarily Deprecated)**
+## 📚 Storybook Configuration
 
-> **⚠️ Important**: Storybook has been temporarily deprecated due to incompatibility issues with the latest package versions (Nuxt 4.x and related dependencies). All Storybook-related documentation below is preserved for reference but is not currently functional.
+> **⚠️ Temporary Setup**: Storybook is currently using a nightly build package (`@nuxtjs/storybook@9.1.0-29374011.dab79ae`) to ensure compatibility with Nuxt 4.x. This setup will be updated to use stable releases once they become available.
 
-~~This project includes a fully configured Storybook setup for component development and documentation.~~
+This project includes a fully configured Storybook setup for component development and documentation.
 
-### ~~Current Setup~~ **(Not Currently Available)**
+### Current Setup
 
-- ~~**Framework**: `@storybook-vue/nuxt` (via `@nuxtjs/storybook`)~~
-- ~~**Version**: Storybook 9.1.7 with Nuxt 4.1.2 compatibility~~
-- ~~**Addons**:~~
-  - ~~`@storybook/addon-docs` 9.1.7 - Automatic documentation~~
-  - ~~`@storybook/addon-a11y` 9.1.7 - Accessibility testing~~
-  - ~~`@storybook/addon-vitest` 9.1.7 - Testing integration~~
-  - ~~`@chromatic-com/storybook` 4.1.1 - Visual testing and chromatic integration~~
+- **Framework**: `@storybook-vue/nuxt` (via `@nuxtjs/storybook` nightly build)
+- **Version**: Storybook 10.0.7 with Nuxt 4.2.1 compatibility via nightly package
+- **Addons**:
+  - `@storybook/addon-docs` 10.0.7 - Automatic documentation
+  - `@storybook/addon-a11y` 10.0.7 - Accessibility testing
+  - `@storybook/addon-vitest` 10.0.7 - Testing integration
+  - `@chromatic-com/storybook` 4.1.2 - Visual testing and chromatic integration
 
-### ~~Stories Location~~ **(Reference Only)**
+### Stories Location
 
-~~Stories are located alongside components:~~
+Stories are located alongside components:
 
 ```text
-app/components/
-├── test-storybook/
-│   ├── TestStorybook.vue
-│   └── stories/
-│       ├── TestStorybook.stories.ts  # Not currently functional
-│       └── TestStorybook.mdx         # Not currently functional
-└── components/
-    └── MyNuxtWelcome.stories.ts      # Not currently functional
+app/
+├── components/
+│   └── test-storybook/
+│       ├── TestStorybook.vue
+│       └── stories/
+│           └── TestStorybook.stories.ts
+└── storybook/
+    └── components/
+        └── display-avatar/
+            ├── DisplayAvatar.stories.ts  # With range controls
+            └── DisplayAvatar.mdx         # Documentation
 ```
 
-### ~~Story Pattern~~ **(Reference Only)**
+### Story Pattern
 
-~~Stories follow the modern Storybook 8+ pattern (compatible with 9.1.7):~~
+Stories follow the modern Storybook pattern with enhanced controls:
 
 ```typescript
-// This pattern is preserved for future reference but not currently functional
-import type { Meta, StoryObj } from "@storybook/vue3"
-import MyComponent from "./MyComponent.vue"
+import type { Meta, StoryFn } from "@nuxtjs/storybook"
+import MyComponent from "srcdev-nuxt-components/app/components/my-component/MyComponent.vue"
 
-const meta = {
-  title: "Components/MyComponent",
+export default {
+  title: "Components/UI/MyComponent",
   component: MyComponent,
-  tags: ["autodocs"],
   argTypes: {
-    // Control definitions
+    // Range controls for numeric values
+    size: {
+      control: { type: "range", min: 1, max: 24, step: 1 },
+      description: "Component size in pixels",
+    },
+    // Select controls for predefined options
+    variant: {
+      options: ["primary", "secondary", "tertiary"],
+      control: { type: "select" },
+    },
   },
   args: {
-    // Default args
+    size: 12,
+    variant: "primary",
   },
-} satisfies Meta<typeof MyComponent>
+} as Meta<typeof MyComponent>
 
-export default meta
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {
-  args: {
-    // Story-specific args
+const Template: StoryFn<typeof MyComponent> = (args: any) => ({
+  components: { MyComponent },
+  setup() {
+    return { args }
   },
-}
+  template: `<MyComponent v-bind="args" />`,
+})
+
+export const Default = Template.bind({})
 ```
+
+### Control Types
+
+The setup supports various control types:
+
+- **Range sliders**: `control: { type: "range", min, max, step }`
+- **Select dropdowns**: `control: { type: "select" }` with `options`
+- **Text inputs**: `control: { type: "text" }`
+- **Boolean toggles**: `control: { type: "boolean" }`
+- **Color pickers**: `control: { type: "color" }`
 
 ## 🛠️ Troubleshooting
 
-### ~~Storybook Issues~~ **(Currently Deprecated)**
+### Storybook Issues
 
-> **Note**: The following troubleshooting information is preserved for reference. Storybook is currently deprecated due to package incompatibility issues.
+If you encounter Storybook configuration errors:
 
-~~If you encounter Storybook configuration errors:~~
-
-1. ~~**"Could not evaluate @storybook-vue/nuxt" Error**:~~
+1. **"Could not evaluate @storybook-vue/nuxt" Error**:
 
    ```bash
    # Clean install dependencies
-   # npm run cleanup
-   # npm install
+   npm run cleanup
+   npm install
    ```
 
-2. ~~**Version Compatibility Warnings**:~~
+2. **Version Compatibility Warnings**:
 
-   ~~- The project uses package overrides to ensure compatibility between Storybook 9.1.7 and Nuxt 4.1.2~~
-   ~~- Warnings are expected but don't affect functionality~~
+   - The project uses a nightly build package (`@nuxtjs/storybook@9.1.0-29374011.dab79ae`) for Nuxt 4 compatibility
+   - Some peer dependency warnings are expected but don't affect functionality
+   - This is a temporary solution until stable releases support Nuxt 4
 
-3. ~~**Missing Types**: Ensure both `@nuxtjs/storybook` and `@storybook-vue/nuxt` are installed:~~
+3. **Missing Types**: Ensure both `@nuxtjs/storybook` and `@storybook-vue/nuxt` are installed:
 
    ```bash
-   # npm install --save-dev @nuxtjs/storybook @storybook-vue/nuxt
+   npm install --save-dev @nuxtjs/storybook @storybook-vue/nuxt
    ```
+
+4. **Component Not Updating**: If controls don't update the component:
+   - Ensure your Template uses direct prop binding
+   - Check that args are properly reactive in the template
 
 ### Development Issues
 
 - **i18n Build Errors**: Run `npm run build:i18n` manually if translations aren't updating
-- ~~**Port Conflicts**: Nuxt uses port 3000, Storybook uses port 6006~~ **(Storybook currently deprecated)**
+- **Port Conflicts**: Nuxt uses port 3000, Storybook uses port 6006
 - **Node Version**: Ensure you're using Node.js v22+ for best compatibility
+- **Storybook Nightly Build**: The project temporarily uses `@nuxtjs/storybook@9.1.0-29374011.dab79ae` for Nuxt 4 compatibility
 
 ### Font Provider Errors
 

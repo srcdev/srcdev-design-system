@@ -41,7 +41,7 @@ export default {
       },
     },
     chipAngle: {
-      control: { type: "range", min: 0, max: 360, step: 45 },
+      control: { type: "range", min: 0, max: 360, step: 1 },
       description: "Angle of the chip position around the avatar in degrees",
       table: {
         category: "Chip Configuration",
@@ -74,23 +74,20 @@ export default {
 const Template: StoryFn<typeof DisplayAvatarStories> = (args: any) => ({
   components: { DisplayAvatarStories },
   setup() {
-    // Map the individual chip controls back to the chip object with proper units
-    const chipConfig = {
-      size: `${args.chipSize}px`,
-      maskWidth: `${args.chipMaskWidth}px`,
-      offset: `${args.chipOffset}px`,
-      angle: `${args.chipAngle}deg`,
-    }
-
-    const templateArgs = {
-      ...args,
-      chip: chipConfig,
-    }
-
-    return { args: templateArgs }
+    return { args }
   },
   template: `
-    <DisplayAvatarStories v-bind="args" />
+    <DisplayAvatarStories
+      :src="args.src"
+      :alt="args.alt"
+      :chip="{
+        size: (args.chipSize || 12) + 'px',
+        maskWidth: (args.chipMaskWidth || 4) + 'px',
+        offset: (args.chipOffset || 2) + 'px',
+        angle: (args.chipAngle || 45) + 'deg'
+      }"
+      :style-class-passthrough="args.styleClassPassthrough"
+    />
   `,
 })
 

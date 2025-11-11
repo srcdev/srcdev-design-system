@@ -1,8 +1,46 @@
-import { Meta, Canvas, Controls } from "@storybook/blocks"
+# DisplayAvatar Componentimport { Meta, Canvas, Controls } from "@storybook/blocks"
+
 import * as DisplayAvatarStories from "./DisplayAvatar.stories"
+
+The DisplayAvatar component displays user avatar images with optional chip indicators.
 
 <Meta of={DisplayAvatarStories} />
 
+## Features
+
 <Canvas of={DisplayAvatarStories.Default} />
 
-<Controls of={DisplayAvatarStories.Default} />
+- **Avatar Display**: Shows user profile images with fallback to initials
+
+- **Chip Indicator**: Optional status chip with customizable position and appearance<Controls of={DisplayAvatarStories.Default} />
+
+- **Accessibility**: Proper alt text and semantic HTML
+- **Responsive**: Scales appropriately across different sizes
+
+## Usage
+
+```vue
+<DisplayAvatar
+  src="https://github.com/username.png"
+  alt="User Name"
+  :chip="chipConfig"
+  :style-class-passthrough="['online']"
+/>
+```
+
+## Chip Configuration
+
+The chip prop accepts an object with the following properties:
+
+- **size**: Size of the chip (e.g., "12px")
+- **maskWidth**: Width of the chip border/mask (e.g., "4px")
+- **offset**: Distance from avatar edge (e.g., "2px")
+- **angle**: Position around the avatar (e.g., "45deg")
+
+## Interactive Demo
+
+Use the controls panel below to experiment with different chip configurations in real-time.
+
+---
+
+_Use the Controls tab to adjust chip size, mask width, offset, and angle._

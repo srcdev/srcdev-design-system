@@ -10,11 +10,26 @@
         </p>
         <Icon name="mdi:star" style="width: 48px; height: 48px; color: orange" />
       </div>
+      <div class="test-storybook__content">
+        <div class="dl">
+          <div class="dt">Has Avatar image and Chip</div>
+          <div class="dd">
+            <DisplayAvatar
+              src="https://github.com/srcdev.png"
+              alt="Joe Bloggs"
+              :chip="chipConfig"
+              :style-class-passthrough="['online']"
+            />
+          </div>
+        </div>
+      </div>
     </LayoutRow>
   </div>
 </template>
 
 <script setup lang="ts">
+import { type DisplayChipConfig } from "srcdev-nuxt-components/app/types"
+
 const props = defineProps({
   dataTestid: {
     type: String,
@@ -37,6 +52,13 @@ const props = defineProps({
 const slots = useSlots()
 
 const { elementClasses } = useStyleClassPassthrough(props.styleClassPassthrough)
+
+const chipConfig = reactive<DisplayChipConfig>({
+  size: "12px",
+  maskWidth: "4px",
+  offset: "2px",
+  angle: "45deg",
+})
 </script>
 
 <style lang="css">

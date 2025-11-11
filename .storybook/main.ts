@@ -1,11 +1,10 @@
 import type { StorybookConfig } from "@nuxtjs/storybook"
 
 const config: StorybookConfig = {
-  // const config: any = {
   stories: ["../**/*.mdx", "../**/*.stories.ts"],
   addons: ["@chromatic-com/storybook", "@storybook/addon-docs", "@storybook/addon-a11y", "@storybook/addon-vitest"],
   framework: {
-    name: "@storybook-vue/nuxt",
+    name: "@storybook-vue/nuxt", // correct for SB 9.x + @nuxtjs/storybook@9.0.1
     options: {},
   },
   async viteFinal(config: any) {
@@ -17,13 +16,13 @@ const config: StorybookConfig = {
       },
       resolve: {
         alias: {
-          // Resolve Vue bundler to support runtime compilation
+          // Required for runtime template compilation
           vue: "vue/dist/vue.esm-bundler.js",
         },
       },
       server: {
         proxy: {
-          // Change Vite proxy configuration to enable Storybook server to serve fonts from Nuxt Dev server
+          // Enable Storybook to proxy Nuxt dev server assets
           "^/(_nuxt|_ipx|_icon|__nuxt_devtools__|_fonts)": {
             target: "http://localhost:3000",
             changeOrigin: true,
@@ -35,4 +34,5 @@ const config: StorybookConfig = {
     })
   },
 }
+
 export default config

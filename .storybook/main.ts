@@ -2,7 +2,7 @@ import type { StorybookConfig } from "@nuxtjs/storybook"
 
 const config: StorybookConfig = {
   stories: ["../**/*.mdx", "../**/*.stories.ts"],
-  addons: ["@chromatic-com/storybook", "@storybook/addon-docs", "@storybook/addon-a11y", "@storybook/addon-vitest"],
+  addons: ["@chromatic-com/storybook", "@storybook/addon-docs", "@storybook/addon-a11y"],
   framework: {
     name: "@storybook-vue/nuxt", // correct for SB 9.x + @nuxtjs/storybook@9.0.1
     options: {},

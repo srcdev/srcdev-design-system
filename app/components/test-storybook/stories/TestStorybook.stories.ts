@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from "@storybook/vue3"
+import type { Meta, StoryFn } from "@nuxtjs/storybook"
 import StoryBookComponent from "../TestStorybook.vue"
 
 export default {

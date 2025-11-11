@@ -5,7 +5,7 @@ const config: StorybookConfig = {
   stories: ["../**/*.mdx", "../**/*.stories.ts"],
   addons: ["@chromatic-com/storybook", "@storybook/addon-docs", "@storybook/addon-a11y", "@storybook/addon-vitest"],
   framework: {
-    name: "@storybook-vue/vue3-vite",
+    name: "@storybook-vue/nuxt",
     options: {},
   },
   async viteFinal(config: any) {

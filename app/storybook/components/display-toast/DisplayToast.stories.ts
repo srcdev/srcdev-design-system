@@ -104,7 +104,7 @@ export default {
     position: "top",
     alignment: "right",
     fullWidth: false,
-    autoDismiss: true,
+    autoDismiss: false,
     duration: 3000,
     revealDuration: 300,
     text: "This is a toast notification message",

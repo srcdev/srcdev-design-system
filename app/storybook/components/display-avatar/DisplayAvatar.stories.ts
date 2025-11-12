@@ -1,9 +1,9 @@
 import type { Meta, StoryFn } from "@nuxtjs/storybook"
-import DisplayAvatarStories from "srcdev-nuxt-components/app/components/display-avatar/DisplayAvatar.vue"
+import StorybookComponent from "srcdev-nuxt-components/app/components/display-avatar/DisplayAvatar.vue"
 
 export default {
   title: "Components/UI/DisplayAvatar",
-  component: DisplayAvatarStories,
+  component: StorybookComponent,
   argTypes: {
     src: {
       control: { type: "text" },
@@ -69,15 +69,15 @@ export default {
     chipAngle: 45,
     styleClassPassthrough: ["test-storybook--display-avatar", "online"],
   },
-} as Meta<typeof DisplayAvatarStories>
+} as Meta<typeof StorybookComponent>
 
-const Template: StoryFn<typeof DisplayAvatarStories> = (args: any) => ({
-  components: { DisplayAvatarStories },
+const Template: StoryFn<typeof StorybookComponent> = (args) => ({
+  components: { StorybookComponent },
   setup() {
     return { args }
   },
   template: `
-    <DisplayAvatarStories
+    <StorybookComponent
       :src="args.src"
       :alt="args.alt"
       :chip="{

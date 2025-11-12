@@ -20,6 +20,8 @@
 </template>
 
 <script setup lang="ts">
+import type { IFormMultipleOptions } from "srcdev-nuxt-forms/shared/types/types.forms"
+
 definePageMeta({
   layout: false,
 })
@@ -32,7 +34,7 @@ useHead({
   },
 })
 
-const sampleFieldData = <IFormMultipleOptions>{
+const sampleFieldData = ref<IFormMultipleOptions>({
   data: [
     {
       id: "auto",
@@ -59,7 +61,7 @@ const sampleFieldData = <IFormMultipleOptions>{
   total: 3,
   skip: 0,
   limit: 3,
-}
+})
 
 const { colourScheme, setColourScheme } = useSettingsStore()
 

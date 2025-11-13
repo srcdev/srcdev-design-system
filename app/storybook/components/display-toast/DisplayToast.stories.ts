@@ -1,4 +1,5 @@
 import type { Meta, StoryFn } from "@nuxtjs/storybook"
+import { ref, onMounted } from "vue"
 import StorybookComponent from "srcdev-nuxt-components/app/components/display-toast/DisplayToast.vue"
 
 // Custom interface for story args
@@ -12,6 +13,14 @@ interface ToastStoryArgs {
   revealDuration: number
   text: string
   customIcon: string
+  // DisplayPromptCore specific props
+  usePrompt: boolean
+  promptTheme: "primary" | "secondary" | "success" | "warning" | "error" | "info"
+  dismissible: boolean
+  promptTitle: string
+  promptContent: string
+  useAutoFocus: boolean
+  styleClassPassthrough: string[]
 }
 
 export default {
@@ -87,6 +96,57 @@ export default {
         category: "Content",
       },
     },
+    // DisplayPromptCore Config
+    usePrompt: {
+      control: { type: "boolean" },
+      description: "Use DisplayPromptCore instead of simple text",
+      table: {
+        category: "Prompt",
+      },
+    },
+    promptTheme: {
+      control: { type: "select" },
+      options: ["primary", "secondary", "success", "warning", "error", "info"],
+      description: "Theme for DisplayPromptCore",
+      table: {
+        category: "Prompt",
+      },
+    },
+    dismissible: {
+      control: { type: "boolean" },
+      description: "Whether DisplayPromptCore is dismissible",
+      table: {
+        category: "Prompt",
+      },
+    },
+    promptTitle: {
+      control: { type: "text" },
+      description: "Title for DisplayPromptCore",
+      table: {
+        category: "Prompt",
+      },
+    },
+    promptContent: {
+      control: { type: "text" },
+      description: "Content for DisplayPromptCore",
+      table: {
+        category: "Prompt",
+      },
+    },
+    useAutoFocus: {
+      control: { type: "boolean" },
+      description: "Auto focus DisplayPromptCore",
+      table: {
+        category: "Prompt",
+      },
+    },
+    styleClassPassthrough: {
+      control: { type: "object" },
+      description: "Style classes for DisplayPromptCore (e.g., ['dark', 'outlined'])",
+      table: {
+        category: "Prompt",
+      },
+    },
     // Hide complex internal props
     config: {
       table: {
@@ -109,11 +169,20 @@ export default {
     revealDuration: 300,
     text: "This is a toast notification message",
     customIcon: "",
+    usePrompt: false,
+    promptTheme: "primary",
+    dismissible: true,
+    promptTitle: "Prompt Title",
+    promptContent: "This is prompt content, it can contain html or plain text.",
+    useAutoFocus: false,
+    styleClassPassthrough: ["dark", "outlined"],
   },
 } as Meta<ToastStoryArgs>
 
 const Template: StoryFn<ToastStoryArgs> = (args) => ({
-  components: { StorybookComponent },
+  components: {
+    StorybookComponent,
+  },
   setup() {
     const isActive = ref(false)
 
@@ -124,20 +193,14 @@ const Template: StoryFn<ToastStoryArgs> = (args) => ({
       }, 500)
     })
 
-    // Re-trigger when it closes for continuous demo
-    watch(isActive, (newValue) => {
-      if (!newValue) {
-        setTimeout(() => {
-          isActive.value = true
-        }, 2000)
-      }
-    })
-
     return { args, isActive }
   },
   template: `
     <div style="position: relative; height: 200px; padding: 20px;">
       <p style="margin-bottom: 20px;">Toast will appear and demonstrate the configured behavior:</p>
+      <p v-if="args.usePrompt" style="margin-bottom: 10px; font-style: italic; color: #666;">
+        Note: DisplayPromptCore examples require component to be properly loaded in the environment.
+      </p>
       <button
         @click="isActive = true"
         style="padding: 8px 16px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer;"
@@ -159,7 +222,9 @@ const Template: StoryFn<ToastStoryArgs> = (args) => ({
             duration: args.duration,
             revealDuration: args.revealDuration
           },
-          content: {
+          content: args.usePrompt ? {
+            text: args.promptTitle + ': ' + args.promptContent
+          } : {
             text: args.text,
             ...(args.customIcon && { customIcon: args.customIcon })
           },
@@ -176,7 +241,7 @@ SuccessToast.args = {
   theme: "success",
   text: "Success! Your action was completed.",
   customIcon: "akar-icons:check-box",
-  autoDismiss: true,
+  autoDismiss: false,
   duration: 4000,
   position: "top",
   alignment: "right",
@@ -203,7 +268,7 @@ BottomCenterToast.args = {
   text: "Info message at bottom center",
   position: "bottom",
   alignment: "center",
-  autoDismiss: true,
+  autoDismiss: false,
   duration: 5000,
   fullWidth: false,
   revealDuration: 300,
@@ -217,8 +282,99 @@ FullWidthToast.args = {
   fullWidth: true,
   position: "top",
   alignment: "left",
-  autoDismiss: true,
+  autoDismiss: false,
   duration: 6000,
   revealDuration: 300,
   customIcon: "",
+}
+
+// DisplayPromptCore Examples - Based on Playground
+export const ErrorPromptToast = Template.bind({})
+ErrorPromptToast.args = {
+  theme: "error",
+  position: "top",
+  alignment: "right",
+  fullWidth: false,
+  autoDismiss: false,
+  duration: 5000,
+  revealDuration: 300,
+  usePrompt: true,
+  promptTheme: "error",
+  dismissible: false,
+  promptTitle: "Error Prompt Title with content",
+  promptContent: "This is an error prompt content, it can contain html or plain text.",
+  useAutoFocus: false,
+  styleClassPassthrough: ["dark", "outlined"],
+}
+
+export const SuccessPromptToast = Template.bind({})
+SuccessPromptToast.args = {
+  theme: "success",
+  position: "top",
+  alignment: "right",
+  fullWidth: false,
+  autoDismiss: false,
+  duration: 3000,
+  revealDuration: 300,
+  usePrompt: true,
+  promptTheme: "success",
+  dismissible: true,
+  promptTitle: "Success Prompt Title with content (Dismissible)",
+  promptContent: "This is success prompt content, it can contain html or plain text.",
+  useAutoFocus: true,
+  styleClassPassthrough: ["dark", "outlined"],
+}
+
+export const InfoPromptFullWidth = Template.bind({})
+InfoPromptFullWidth.args = {
+  theme: "info",
+  position: "top",
+  alignment: "center",
+  fullWidth: true,
+  autoDismiss: false,
+  duration: 4000,
+  revealDuration: 300,
+  usePrompt: true,
+  promptTheme: "info",
+  dismissible: false,
+  promptTitle: "Info Prompt Title with content (Auto Dismiss)",
+  promptContent: "This is info prompt content displayed full width.",
+  useAutoFocus: false,
+  styleClassPassthrough: ["dark", "outlined"],
+}
+
+export const WarningPromptBottomCenter = Template.bind({})
+WarningPromptBottomCenter.args = {
+  theme: "warning",
+  position: "bottom",
+  alignment: "center",
+  fullWidth: false,
+  autoDismiss: false,
+  duration: 6000,
+  revealDuration: 300,
+  usePrompt: true,
+  promptTheme: "warning",
+  dismissible: true,
+  promptTitle: "Warning Prompt at Bottom Center",
+  promptContent: "This warning prompt appears at the bottom center with auto dismiss.",
+  useAutoFocus: false,
+  styleClassPassthrough: ["outlined"],
+}
+
+export const PrimaryPromptCustomStyles = Template.bind({})
+PrimaryPromptCustomStyles.args = {
+  theme: "primary",
+  position: "top",
+  alignment: "left",
+  fullWidth: false,
+  autoDismiss: false,
+  duration: 3000,
+  revealDuration: 500,
+  usePrompt: true,
+  promptTheme: "primary",
+  dismissible: true,
+  promptTitle: "Primary Prompt with Custom Styles",
+  promptContent: "This prompt uses custom style configurations and slower reveal animation.",
+  useAutoFocus: false,
+  styleClassPassthrough: ["dark"],
 }

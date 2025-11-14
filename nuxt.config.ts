@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { routeRules } from "./app/config/route-rules"
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   extends: ["srcdev-nuxt-forms", "srcdev-nuxt-components"],
@@ -14,9 +15,11 @@ export default defineNuxtConfig({
     https: process.env.NODE_ENV === "production",
     // port: 3020,
   },
+  routeRules,
   runtimeConfig: {
     public: {
       canonicalHost: "srcdev-design-system.vercel.app", // Replace with your actual domain
+      cmsUrl: process.env.CMS_URL || "https://cms.srcdev.co.uk",
     },
   },
   css: ["./app/assets/styles/main.css"],

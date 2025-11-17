@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { routeRules } from "./app/config/route-rules"
+import { routeRules } from "./app/config/routes"
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   extends: ["srcdev-nuxt-forms", "srcdev-nuxt-components"],

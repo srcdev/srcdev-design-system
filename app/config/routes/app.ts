@@ -1,3 +1,3 @@
-export default {
-  "/termsofuse": { redirect: { to: "/terms-of-use", statusCode: 308 } }
-} as const;
+export const appRules = {
+  "/termsofuse": { redirect: { to: "/terms-of-use", statusCode: 308 } },
+} as const

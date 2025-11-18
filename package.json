@@ -48,7 +48,7 @@
     "nuxt-security": "2.4.0",
     "patch-package": "8.0.1",
     "postinstall-postinstall": "2.1.0",
-    "srcdev-nuxt-components": "6.2.3",
+    "srcdev-nuxt-components": "^6.2.13",
     "srcdev-nuxt-forms": "6.1.23",
     "storybook": "10.0.7",
     "zod": "4.1.12"

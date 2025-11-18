@@ -8,9 +8,30 @@
         </LayoutRow>
 
         <LayoutRow tag="div" variant="popout" :styleClassPassthrough="['mbe-20']">
-          <ClientOnly>
-            <p class="page-body-bold">Timestamp: {{ quotesData?.timestamp }}</p>
-          </ClientOnly>
+          <h2 class="page-heading-4 pb-6">API Result cache dureation: 2 mins (swr cache)</h2>
+          <h3 class="page-heading-5 pb-6">
+            How
+            <code>swr: true</code>
+            Works
+          </h3>
+
+          <h3 class="page-heading-5 pb-6">Cache exists but expired</h3>
+          <ul>
+            <li>The old cached response is served immediately to the client (“stale” data).</li>
+            <li>In the background, Nitro fetches fresh data from your API/external source.</li>
+            <li>Once the new data arrives, the cache is updated for the next request.</li>
+          </ul>
+
+          <h3 class="page-heading-5 pb-6">Cache exists and not expired</h3>
+          <ul>
+            <li>The cached response is served immediately (same as normal caching).</li>
+          </ul>
+
+          <h3 class="page-heading-5 pb-6">No cache</h3>
+          <ul>
+            <li>First request fetches data normally and stores it in cache.</li>
+          </ul>
+          <p class="page-body-bold">Timestamp: {{ quotesData?.timestamp }}</p>
           <MasonryGridOrdered
             v-if="status === 'success'"
             :gridData="quotesData?.quotes.slice(0, displayCount) ?? <IQuotes>{}"
@@ -53,7 +74,6 @@ useHead({
 const useFixedWidth = true
 const displayCount = 12
 const { data: quotesData, status } = await useFetch<IQuotes>("/api/sample-quotes")
-console.log("quotesData:", quotesData.value)
 </script>
 
 <style lang="css"></style>

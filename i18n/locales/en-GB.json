@@ -46,6 +46,48 @@
   "global": {
     "siteName": "SRCDEV Design System"
   },
+  "errors": {
+    "404": {
+      "title": "Page Not Found",
+      "description": "Sorry, we couldn't find the page you're looking for. It may have been moved, deleted, or the URL might be incorrect.",
+      "help": "This usually happens when a page has been moved or removed, or if there's a typo in the web address.",
+      "suggestions": {
+        "checkUrl": "Check the web address for typos",
+        "useNavigation": "Use the navigation menu to find what you need",
+        "searchContent": "Try searching for the content you were looking for"
+      }
+    },
+    "500": {
+      "title": "Internal Server Error",
+      "description": "Something went wrong on our end. We're working to fix this issue.",
+      "help": "This is a temporary issue with our servers. Please try again in a few moments."
+    },
+    "serverError": {
+      "title": "Server Error",
+      "description": "We're experiencing technical difficulties. Please try again later.",
+      "help": "Our servers are temporarily unavailable. This is usually resolved quickly.",
+      "suggestions": {
+        "refresh": "Refresh the page in a few moments",
+        "wait": "Wait a few minutes and try again",
+        "contact": "Contact us if the problem persists"
+      }
+    },
+    "general": {
+      "title": "Something Went Wrong",
+      "description": "An unexpected error occurred. Please try again or contact support if the problem persists."
+    },
+    "actions": {
+      "goHome": "Go to Homepage",
+      "tryAgain": "Try Again"
+    },
+    "help": {
+      "moreInfo": "What can I do?"
+    },
+    "contact": {
+      "text": "If this problem continues, please let us know:",
+      "link": "Contact Support"
+    }
+  },
   "pages": {
     "account": {
       "forgotten-password": {
@@ -65,24 +107,207 @@
         {
           "id": "exampleValue",
           "name": "Example Value",
-          "count": 3
+          "count": 3,
+          "items": [
+            {
+              "id": "item1",
+              "name": "Item 1"
+            },
+            {
+              "id": "item2",
+              "name": "Item 2"
+            },
+            {
+              "id": "item3",
+              "name": "Item 3"
+            }
+          ]
         },
         {
           "id": "exampleValue2",
           "name": "Example Value 2",
-          "count": 5
+          "count": 5,
+          "items": [
+            {
+              "id": "item4",
+              "name": "Item 4"
+            },
+            {
+              "id": "item5",
+              "name": "Item 5"
+            }
+          ]
         },
         {
           "id": "exampleValue3",
           "name": "Example Value 3",
-          "count": 2
+          "count": 2,
+          "items": [
+            {
+              "id": "item6",
+              "name": "Item 6"
+            },
+            {
+              "id": "item7",
+              "name": "Item 7"
+            }
+          ]
         },
         {
           "id": "exampleValue4",
           "name": "Example Value 4",
-          "count": 0
+          "count": 0,
+          "items": []
         }
       ]
+    },
+    "legal": {
+      "terms": {
+        "meta": {
+          "title": "Terms and Conditions",
+          "description": "Legal information regarding the use of the SRCDEV Design System."
+        },
+        "header": "Terms and Conditions",
+        "subheader": "Welcome to the SRCDEV Design System",
+        "pageContent": {
+          "title": "Contents"
+        },
+        "sections": [
+          {
+            "sectionTitle": "Introduction",
+            "sectionLink": "introduction",
+            "section": [
+              {
+                "title": "What is the SRCDEV Design System?",
+                "content": [
+                  "The __SRCDEV__ Design System is a comprehensive collection of design principles, components, and guidelines developed to ensure consistency and efficiency in creating user interfaces across various platforms. It serves as a single source of truth for designers and developers, promoting best practices and enhancing collaboration within the SRCDEV community.",
+                  "By adhering to the SRCDEV Design System, teams can streamline their workflows, reduce redundancy, and deliver high-quality digital experiences that align with SRCDEV's brand identity and user expectations."
+                ]
+              },
+              {
+                "title": "Acceptance of Terms",
+                "content": [
+                  "By accessing and using the SRCDEV Design System, you agree to comply with and be bound by these Terms and Conditions. If you do not agree to these terms, please do not use the SRCDEV Design System.",
+                  [
+                    "These Terms and Conditions may be updated from time to time. It is your responsibility to review them periodically for any changes. Your continued use of the SRCDEV Design System after any modifications constitutes your acceptance of the updated terms.",
+                    "We recommend bookmarking this page to stay informed about any changes to our terms.",
+                    "If you have any questions or concerns about these Terms and Conditions, please contact us at [support{'@'}srcdev.com](mailto:support{'@'}srcdev.com).",
+                    "Example with markdown and a link to [Google](https://www.google.com).",
+                    [
+                      "This is a nested list item 1.",
+                      "This is a nested list item 2.",
+                      "This is a nested list item 3.",
+                      "This is a nested list item 4.",
+                      "This is a nested list item 5."
+                    ]
+                  ]
+                ]
+              },
+              {
+                "title": "Changes to Terms",
+                "content": [
+                  "We reserve the right to modify or update these Terms and Conditions at any time without prior notice. It is your responsibility to review these terms periodically for any changes. Your continued use of the SRCDEV Design System after any modifications constitutes your acceptance of the updated terms."
+                ]
+              }
+            ]
+          },
+          {
+            "sectionTitle": "Use of the SRCDEV Design System",
+            "sectionLink": "use-of-the-srcdev-design-system",
+            "section": [
+              {
+                "title": "Permitted Use",
+                "content": [
+                  "You are granted a non-exclusive, non-transferable, revocable license to access and use the SRCDEV Design System for personal or internal business purposes, subject to these Terms and Conditions.",
+                  "You may not use the SRCDEV Design System for any unlawful or unauthorized purpose. You agree to comply with all applicable laws and regulations while using the SRCDEV Design System."
+                ]
+              },
+              {
+                "title": "Prohibited Use",
+                "content": [
+                  "You may not:",
+                  [
+                    "Modify, copy, distribute, transmit, display, perform, reproduce, publish, license, create derivative works from, transfer, or sell any information, software, products, or services obtained from the SRCDEV Design System without prior written consent from SRCDEV.",
+                    "Use the SRCDEV Design System in any manner that could damage, disable, overburden, or impair its functionality or interfere with other users' access to it.",
+                    "Attempt to gain unauthorized access to any portion of the SRCDEV Design System or any other systems or networks connected to it."
+                  ]
+                ]
+              }
+            ]
+          },
+          {
+            "sectionTitle": "Intellectual Property",
+            "sectionLink": "intellectual-property",
+            "section": [
+              {
+                "title": "Ownership",
+                "content": [
+                  "All content and materials available on the SRCDEV Design System, including but not limited to text, graphics, logos, icons, images, audio clips, video clips, data compilations, and software, are the property of SRCDEV or its licensors and are protected by international copyright laws.",
+                  "The compilation of all content on the SRCDEV Design System is the exclusive property of SRCDEV and is protected by international copyright laws."
+                ]
+              },
+              {
+                "title": "Trademarks",
+                "content": [
+                  "SRCDEV and all related logos and product names are trademarks of SRCDEV. All other trademarks not owned by SRCDEV that appear on the SRCDEV Design System are the property of their respective owners.",
+                  "Nothing contained on the SRCDEV Design System should be construed as granting any license or right to use any trademark without the prior written permission of SRCDEV or the respective owner."
+                ]
+              }
+            ]
+          },
+          {
+            "sectionTitle": "Disclaimer of Warranties",
+            "sectionLink": "disclaimer-of-warranties",
+            "section": [
+              {
+                "title": "Sample article title",
+                "content": [
+                  "The SRCDEV Design System is provided on an 'as is' and 'as available' basis. SRCDEV makes no representations or warranties of any kind, express or implied, regarding the operation or availability of the SRCDEV Design System or the information, content, materials, or products included on it.",
+                  "To the fullest extent permissible by applicable law, SRCDEV disclaims all warranties, express or implied, including but not limited to implied warranties of merchantability and fitness for a particular purpose. SRCDEV does not warrant that the SRCDEV Design System will be uninterrupted or error-free, nor does it make any warranty as to the accuracy, reliability, or currency of any information or content provided through the SRCDEV Design System."
+                ]
+              }
+            ]
+          },
+          {
+            "sectionTitle": "Limitation of Liability",
+            "sectionLink": "limitation-of-liability",
+            "section": [
+              {
+                "title": "Sample article title",
+                "content": [
+                  "In no event shall SRCDEV be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of or inability to use the SRCDEV Design System, even if SRCDEV has been advised of the possibility of such damages.",
+                  "Some jurisdictions do not allow the exclusion or limitation of certain damages, so some of the above limitations may not apply to you."
+                ]
+              }
+            ]
+          },
+          {
+            "sectionTitle": "Governing Law",
+            "sectionLink": "governing-law",
+            "section": [
+              {
+                "title": "Sample article title",
+                "content": [
+                  "These Terms and Conditions shall be governed by and construed in accordance with the laws of England and Wales, without regard to its conflict of law principles.",
+                  "Any disputes arising out of or relating to these Terms and Conditions shall be subject to the exclusive jurisdiction of the courts located in England and Wales."
+                ]
+              }
+            ]
+          },
+          {
+            "sectionTitle": "Contact Information",
+            "sectionLink": "contact-information",
+            "section": [
+              {
+                "title": "Sample article title",
+                "content": [
+                  "If you have any questions or concerns about these Terms and Conditions, please contact us at [support{'@'}srcdev.com](mailto:support{'@'}srcdev.com)."
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "settings": {
       "colour-mode-switcher": {

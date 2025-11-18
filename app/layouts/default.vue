@@ -1,5 +1,5 @@
 <template>
-  <div class="page-layout">
+  <div class="page-layout" :class="elementClasses">
     <HeaderNavigation />
 
     <main id="main-content" class="main-content">
@@ -10,6 +10,15 @@
 </template>
 
 <script setup lang="ts">
+const props = defineProps({
+  styleClassPassthrough: {
+    type: [String, Array] as PropType<string | string[]>,
+    default: () => [],
+  },
+})
+
+const { elementClasses } = useStyleClassPassthrough(props.styleClassPassthrough)
+
 // Set up canonical URL for all pages
 useCanonicalUrl()
 

@@ -8,7 +8,7 @@
         </LayoutRow>
 
         <LayoutRow tag="div" variant="popout" :styleClassPassthrough="['mbe-20']">
-          <h2 class="page-heading-4 pb-6">API Result cache dureation: 2 mins (swr cache)</h2>
+          <h2 class="page-heading-4 pb-6">API Result cache duration: 2 mins (swr cache)</h2>
           <h3 class="page-heading-5 pb-6">
             How
             <code>swr: true</code>

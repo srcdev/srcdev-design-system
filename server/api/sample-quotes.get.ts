@@ -23,7 +23,7 @@ export default cachedEventHandler(
     }
   },
   {
-    maxAge: 1,
+    maxAge: 60 * 2, // cache for 2 minutes
     swr: true, // optional: stale-while-revalidate
   }
 )

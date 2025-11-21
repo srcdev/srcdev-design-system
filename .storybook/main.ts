@@ -7,7 +7,7 @@ const config: StorybookConfig = {
     name: "@storybook-vue/nuxt", // correct for SB 9.x + @nuxtjs/storybook@9.0.1
     options: {},
   },
-  async viteFinal(config: any) {
+  async viteFinal(config) {
     const { mergeConfig } = await import("vite")
 
     return mergeConfig(config, {

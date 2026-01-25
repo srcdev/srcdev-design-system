@@ -77,7 +77,7 @@
                       :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.password)"
                       :required="true"
                       :styleClassPassthrough="['style-1', 'style-2']"
-                      theme="success"
+                      theme="primary"
                       :size
                       inputVariant="underlined"
                     >
@@ -97,7 +97,7 @@
                       :required="true"
                       :error-message="formErrors?.terms?._errors[0] ?? ''"
                       :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.terms)"
-                      theme="primary"
+                      theme="tertiary"
                       :size
                     >
                       <template #labelContent>
@@ -119,7 +119,7 @@
                       :readonly="zodFormControl.submitDisabled"
                       button-text="Submit"
                       :size
-                      theme="primary"
+                      theme="warning"
                       @click.stop.prevent="submitForm()"
                     />
                   </template>

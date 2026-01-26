@@ -97,7 +97,7 @@
                       :required="true"
                       :error-message="formErrors?.terms?._errors[0] ?? ''"
                       :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.terms)"
-                      theme="tertiary"
+                      theme="success"
                       :size
                     >
                       <template #labelContent>
@@ -119,7 +119,7 @@
                       :readonly="zodFormControl.submitDisabled"
                       button-text="Submit"
                       :size
-                      theme="warning"
+                      theme="ghost"
                       @click.stop.prevent="submitForm()"
                     />
                   </template>

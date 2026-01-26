@@ -50,7 +50,6 @@
                       :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.emailAddress)"
                       :required="true"
                       :styleClassPassthrough="['style-1', 'style-2']"
-                      theme="warning"
                       :size
                       inputVariant="underlined"
                     >
@@ -77,7 +76,6 @@
                       :fieldHasError="Boolean(zodFormControl.submitAttempted && formErrors?.password)"
                       :required="true"
                       :styleClassPassthrough="['style-1', 'style-2']"
-                      theme="primary"
                       :size
                       inputVariant="underlined"
                     >
@@ -97,7 +95,6 @@
                       :required="true"
                       :error-message="formErrors?.terms?._errors[0] ?? ''"
                       :field-has-error="Boolean(zodFormControl.submitAttempted && formErrors?.terms)"
-                      theme="success"
                       :size
                     >
                       <template #labelContent>
@@ -119,7 +116,6 @@
                       :readonly="zodFormControl.submitDisabled"
                       button-text="Submit"
                       :size
-                      theme="secondary"
                       @click.stop.prevent="submitForm()"
                     />
                   </template>

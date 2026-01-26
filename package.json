@@ -50,7 +50,7 @@
     "patch-package": "8.0.1",
     "postinstall-postinstall": "2.1.0",
     "srcdev-nuxt-components": "7.0.0",
-    "srcdev-nuxt-forms": "7.0.3",
+    "srcdev-nuxt-forms": "7.0.4",
     "storybook": "10.0.7",
     "zod": "4.3.6"
   },

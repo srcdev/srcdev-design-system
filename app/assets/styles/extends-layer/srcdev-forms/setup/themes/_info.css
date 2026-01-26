@@ -1,4 +1,4 @@
-:where(html) [data-theme="info"] {
+[data-theme="info"] {
   /* Generic */
   --theme-box-shadow: var(--colour-theme-12);
 

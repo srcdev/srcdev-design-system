@@ -14,7 +14,8 @@
   --theme-input-surface-hover: light-dark(var(--gray-1), var(--gray-10));
   --theme-input-surface-focus: light-dark(var(--gray-1), var(--gray-10));
 
-  --theme-input-border: light-dark(var(--gray-9), var(--gray-4));
+  /* --theme-input-border: light-dark(var(--gray-9), var(--gray-4)); */
+  --theme-input-border: var(--gray-4);
   --theme-input-border-hover: light-dark(var(--gray-10), var(--gray-5));
   --theme-input-border-focus: light-dark(var(--gray-10), var(--gray-5));
 

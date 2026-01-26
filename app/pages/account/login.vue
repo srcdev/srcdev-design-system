@@ -119,7 +119,7 @@
                       :readonly="zodFormControl.submitDisabled"
                       button-text="Submit"
                       :size
-                      theme="ghost"
+                      theme="secondary"
                       @click.stop.prevent="submitForm()"
                     />
                   </template>

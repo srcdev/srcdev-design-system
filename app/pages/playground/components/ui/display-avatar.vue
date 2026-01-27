@@ -132,7 +132,7 @@
 </template>
 
 <script setup lang="ts">
-import { type DisplayChipConfig } from "srcdev-nuxt-components/app/types"
+import { type DisplayChipConfig } from "srcdev-nuxt-components"
 definePageMeta({
   layout: false,
 })

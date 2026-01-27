@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ResponsiveHeaderProp } from "srcdev-nuxt-components/app/types"
+import type { ResponsiveHeaderProp } from "srcdev-nuxt-components"
 
 const { t } = useI18n()
 const localePath = useLocalePath()
@@ -69,6 +69,7 @@ const responsiveNavLinks = computed(() => ({
         { name: "Block Decorators", path: localePath("/playground/components/ui/block-decorators") },
         { name: "Display Accordian", path: localePath("/playground/components/ui/accordian") },
         { name: "Details Device Testing", path: localePath("/playground/components/ui/details-demo") },
+        { name: "Qr Codes", path: localePath("/playground/components/ui/qr-code/display") },
       ],
     },
     {

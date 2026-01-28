@@ -154,6 +154,7 @@ export default defineNuxtConfig({
     includeWorkspace: true,
     strict: true,
     shim: true,
+    typeCheck: false,
     tsConfig: {
       compilerOptions: {
         types: ["srcdev-nuxt-forms", "srcdev-nuxt-components"],

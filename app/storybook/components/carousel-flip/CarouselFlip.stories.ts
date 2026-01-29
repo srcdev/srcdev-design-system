@@ -142,6 +142,125 @@ const Template: StoryFn<CarouselFlipStoryArgs> = (args) => ({
       args.carouselData.filter((item) => args.carouselDataIds.includes(item.id))
     )
 
+    // Inject essential CSS styles for proper carousel rendering
+    const styleId = 'carousel-flip-storybook-styles'
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement('style')
+      style.id = styleId
+      style.textContent = `
+        @property --glow-deg {
+          syntax: "<angle>";
+          inherits: true;
+          initial-value: -90deg;
+        }
+        
+        @keyframes glow {
+          100% {
+            --glow-deg: 270deg;
+          }
+        }
+        
+        .carousel-flip-demo.carousel-flip {
+          --_carousel-item-track-gap: 12px;
+          --_carousel-container-max-inline-size: 800px;
+          --_carousel-item-edge-preview-width: 12px;
+        }
+        
+        @media (width >= 768px) {
+          .carousel-flip-demo.carousel-flip {
+            --_carousel-item-track-gap: 24px;
+            --_carousel-item-edge-preview-width: 80px;
+          }
+        }
+        
+        .carousel-flip-demo.carousel-flip .item-container {
+          max-inline-size: 800px;
+          margin-inline: auto;
+          outline: 1px solid light-dark(var(--gray-8, #666), var(--gray-1, #f5f5f5));
+          padding-block: 6px;
+          padding-inline: 6px;
+        }
+        
+        @media (width >= 768px) {
+          .carousel-flip-demo.carousel-flip .item-container {
+            padding-block: 12px;
+            padding-inline: 12px;
+          }
+        }
+        
+        .carousel-flip-demo.carousel-flip .item {
+          background-color: light-dark(var(--gray-5, #e5e5e5), var(--gray-6, #999));
+          contain: layout style paint;
+        }
+        
+        .carousel-flip-demo.carousel-flip .item:nth-child(odd) {
+          background-color: light-dark(var(--gray-6, #999), var(--gray-5, #e5e5e5));
+        }
+        
+        .custom-carousel-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          aspect-ratio: 4 / 3;
+          inline-size: 100%;
+          color: light-dark(#aaa, #333);
+          padding-block: 10px;
+          padding-inline: 10px;
+          border-radius: 4px;
+          outline: 1px solid light-dark(#00000090, #ffffff90);
+        }
+        
+        .carousel-flip-demo.carousel-flip .controls-container {
+          gap: 20px;
+          max-inline-size: 800px;
+        }
+        
+        .carousel-flip-demo.carousel-flip .markers-container {
+          --marker-height: 12px;
+          --marker-width: 12px;
+          --marker-border-radius: 100vw;
+        }
+        
+        @media (width >= 768px) {
+          .carousel-flip-demo.carousel-flip .markers-container {
+            --marker-height: 22px;
+            --marker-width: 22px;
+          }
+        }
+        
+        .carousel-flip-demo.carousel-flip .markers-item {
+          width: var(--marker-width);
+          height: var(--marker-height);
+          border-radius: var(--marker-border-radius);
+          line-height: var(--marker-height);
+        }
+        
+        .carousel-flip-demo.carousel-flip .btn-marker {
+          width: var(--marker-width);
+          height: var(--marker-height);
+          border-radius: var(--marker-border-radius);
+          background-color: light-dark(var(--gray-5, #e5e5e5), var(--gray-7, #666));
+          line-height: 3px;
+          transition: all 0.3s linear;
+          border: 1px solid transparent;
+          outline: 1px solid transparent;
+        }
+        
+        .carousel-flip-demo.carousel-flip .btn-marker.active {
+          background-color: light-dark(var(--gray-12, #000), var(--gray-00, #fff));
+          will-change: background-color;
+        }
+        
+        .carousel-flip-demo.carousel-flip .btn-marker:hover,
+        .carousel-flip-demo.carousel-flip .btn-marker:focus-visible {
+          outline-color: light-dark(#000, #fff);
+          will-change: background-color, outline-color;
+        }
+      `
+      document.head.appendChild(style)
+    }
+
     return { args, filteredCarouselData }
   },
   template: `
@@ -270,6 +389,52 @@ const RichContentTemplate: StoryFn<CarouselFlipStoryArgs> = (args) => ({
       args.carouselData.filter((item) => args.carouselDataIds.includes(item.id))
     )
 
+    // Ensure CSS is injected for proper carousel rendering
+    const styleId = 'carousel-flip-storybook-styles'
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement('style')
+      style.id = styleId
+      style.textContent = `
+        .carousel-flip-demo.carousel-flip {
+          --_carousel-item-track-gap: 12px;
+          --_carousel-container-max-inline-size: 800px;
+          --_carousel-item-edge-preview-width: 12px;
+        }
+        
+        @media (width >= 768px) {
+          .carousel-flip-demo.carousel-flip {
+            --_carousel-item-track-gap: 24px;
+            --_carousel-item-edge-preview-width: 80px;
+          }
+        }
+        
+        .carousel-flip-demo.carousel-flip .item-container {
+          max-inline-size: 800px;
+          margin-inline: auto;
+          outline: 1px solid light-dark(var(--gray-8, #666), var(--gray-1, #f5f5f5));
+          padding-block: 6px;
+          padding-inline: 6px;
+        }
+        
+        @media (width >= 768px) {
+          .carousel-flip-demo.carousel-flip .item-container {
+            padding-block: 12px;
+            padding-inline: 12px;
+          }
+        }
+        
+        .carousel-flip-demo.carousel-flip .item {
+          background-color: light-dark(var(--gray-5, #e5e5e5), var(--gray-6, #999));
+          contain: layout style paint;
+        }
+        
+        .carousel-flip-demo.carousel-flip .item:nth-child(odd) {
+          background-color: light-dark(var(--gray-6, #999), var(--gray-5, #e5e5e5));
+        }
+      `
+      document.head.appendChild(style)
+    }
+
     return { args, filteredCarouselData }
   },
   template: `
@@ -373,6 +538,26 @@ const AnimationShowcaseTemplate: StoryFn<CarouselFlipStoryArgs> = (args) => ({
       args.carouselData.filter((item) => args.carouselDataIds.includes(item.id))
     )
 
+    // Inject gradient animation styles
+    const animationStyleId = 'gradient-animation-styles'
+    if (!document.getElementById(animationStyleId)) {
+      const style = document.createElement('style')
+      style.id = animationStyleId
+      style.textContent = `
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        
+        .animation-demo-item {
+          animation: gradientShift 4s ease infinite !important;
+          background-size: 400% 400% !important;
+        }
+      `
+      document.head.appendChild(style)
+    }
+
     return { args, filteredCarouselData }
   },
   template: `
@@ -412,6 +597,7 @@ const AnimationShowcaseTemplate: StoryFn<CarouselFlipStoryArgs> = (args) => ({
             style="
               aspect-ratio: 3/2;
               background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+              background-size: 400% 400%;
               border-radius: 8px;
               display: flex;
               align-items: center;

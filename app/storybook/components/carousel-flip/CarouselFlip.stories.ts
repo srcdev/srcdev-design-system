@@ -271,13 +271,13 @@ const Template: StoryFn<CarouselFlipStoryArgs> = (args) => ({
           Displaying {{ args.carouselDataIds.length }} carousel items with {{ args.transitionSpeed }}ms transition speed
         </p>
         <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
-          <div style="padding: 4px 8px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+          <div style="padding: 4px 8px; border: 1px solid light-dark(#ccc, #666); border-radius: 4px; font-size: 12px; color: light-dark(#333, #ddd);">
             Overflow: {{ args.allowCarouselOverflow ? 'Enabled' : 'Disabled' }}
           </div>
-          <div style="padding: 4px 8px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+          <div style="padding: 4px 8px; border: 1px solid light-dark(#ccc, #666); border-radius: 4px; font-size: 12px; color: light-dark(#333, #ddd);">
             Flip Animation: {{ args.useFlipAnimation ? 'Enabled' : 'Disabled' }}
           </div>
-          <div style="padding: 4px 8px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+          <div style="padding: 4px 8px; border: 1px solid light-dark(#ccc, #666); border-radius: 4px; font-size: 12px; color: light-dark(#333, #ddd);">
             Spring Effect: {{ args.useSpringEffect ? 'Enabled' : 'Disabled' }}
           </div>
         </div>
@@ -571,16 +571,16 @@ const AnimationShowcaseTemplate: StoryFn<CarouselFlipStoryArgs> = (args) => ({
           Testing different animation combinations and timing
         </p>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin-bottom: 20px;">
-          <div style="padding: 8px; background: args.useFlipAnimation ? '#e7f5e7' : '#f5f5f5'; border-radius: 6px; text-align: center; font-size: 12px; border: 1px solid #ddd;">
+          <div style="padding: 8px; border: 1px solid light-dark(#ccc, #666); border-radius: 6px; text-align: center; font-size: 12px; color: light-dark(#333, #ddd); background: args.useFlipAnimation ? 'light-dark(#e7f5e7, #2d4a2d)' : 'transparent';">
             Flip: {{ args.useFlipAnimation ? '✓' : '✗' }}
           </div>
-          <div style="padding: 8px; background: args.useSpringEffect ? '#e7f5e7' : '#f5f5f5'; border-radius: 6px; text-align: center; font-size: 12px; border: 1px solid #ddd;">
+          <div style="padding: 8px; border: 1px solid light-dark(#ccc, #666); border-radius: 6px; text-align: center; font-size: 12px; color: light-dark(#333, #ddd); background: args.useSpringEffect ? 'light-dark(#e7f5e7, #2d4a2d)' : 'transparent';">
             Spring: {{ args.useSpringEffect ? '✓' : '✗' }}
           </div>
-          <div style="padding: 8px; background: args.allowCarouselOverflow ? '#e7f5e7' : '#f5f5f5'; border-radius: 6px; text-align: center; font-size: 12px; border: 1px solid #ddd;">
+          <div style="padding: 8px; border: 1px solid light-dark(#ccc, #666); border-radius: 6px; text-align: center; font-size: 12px; color: light-dark(#333, #ddd); background: args.allowCarouselOverflow ? 'light-dark(#e7f5e7, #2d4a2d)' : 'transparent';">
             Overflow: {{ args.allowCarouselOverflow ? '✓' : '✗' }}
           </div>
-          <div style="padding: 8px; background: #f0f8ff; border-radius: 6px; text-align: center; font-size: 12px; border: 1px solid #ddd;">
+          <div style="padding: 8px; border: 1px solid light-dark(#ccc, #666); border-radius: 6px; text-align: center; font-size: 12px; color: light-dark(#333, #ddd);">
             Speed: {{ args.transitionSpeed }}ms
           </div>
         </div>

@@ -69,9 +69,20 @@
                 <DisplayAvatar
                   src="https://github.com/srcdev.png"
                   alt="Joe Bloggs"
-                  :chip="{ ...chipConfig, icon: 'material-symbols:star-outline' }"
+                  :chip="{ ...chipConfig, icon: 'material-symbols:star-outline', size: '16px', maskWidth: '6px' }"
                   :style-class-passthrough="['online']"
                 />
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="dl">
+              <div class="dt">Has Avatar Icon</div>
+              <div class="dd">
+                <DisplayAvatar alt="" :style-class-passthrough="['online']">
+                  <template #icon><Icon name="material-symbols:star-outline" class="avatar-icon" /></template>
+                </DisplayAvatar>
               </div>
             </div>
           </section>
@@ -83,7 +94,7 @@
                 <DisplayAvatar
                   src="https://github.com/srcdev.png"
                   alt="Joe Bloggs"
-                  :chip="{ ...chipConfig, label: '3' }"
+                  :chip="{ ...chipConfig, label: '3', size: '16px', maskWidth: '6px' }"
                   :style-class-passthrough="['online']"
                 />
               </div>
@@ -97,7 +108,7 @@
                 <DisplayAvatar
                   src="https://github.com/srcdev.png"
                   alt="Joe Bloggs"
-                  :chip="{ ...chipConfig, label: '+2' }"
+                  :chip="{ ...chipConfig, label: '+2', size: '16px', maskWidth: '6px' }"
                   :style-class-passthrough="['online']"
                 />
               </div>
@@ -132,7 +143,7 @@
 </template>
 
 <script setup lang="ts">
-import { type DisplayChipConfig } from "srcdev-nuxt-components"
+import { type DisplayChipConfig } from "srcdev-nuxt-components/app/types/components"
 definePageMeta({
   layout: false,
 })

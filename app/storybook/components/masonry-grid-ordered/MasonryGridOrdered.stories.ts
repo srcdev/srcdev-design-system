@@ -20,63 +20,64 @@ const sampleQuotes: IQuote[] = [
   {
     id: 1,
     quote: "The only way to do great work is to love what you do.",
-    author: "Steve Jobs"
+    author: "Steve Jobs",
   },
   {
     id: 2,
     quote: "Life is what happens to you while you're busy making other plans.",
-    author: "John Lennon"
+    author: "John Lennon",
   },
   {
     id: 3,
     quote: "The future belongs to those who believe in the beauty of their dreams.",
-    author: "Eleanor Roosevelt"
+    author: "Eleanor Roosevelt",
   },
   {
     id: 4,
     quote: "It is during our darkest moments that we must focus to see the light.",
-    author: "Aristotle"
+    author: "Aristotle",
   },
   {
     id: 5,
     quote: "The way to get started is to quit talking and begin doing.",
-    author: "Walt Disney"
+    author: "Walt Disney",
   },
   {
     id: 6,
     quote: "Don't let yesterday take up too much of today.",
-    author: "Will Rogers"
+    author: "Will Rogers",
   },
   {
     id: 7,
     quote: "You learn more from failure than from success. Don't let it stop you. Failure builds character.",
-    author: "Unknown"
+    author: "Unknown",
   },
   {
     id: 8,
     quote: "It's not whether you get knocked down, it's whether you get up.",
-    author: "Vince Lombardi"
+    author: "Vince Lombardi",
   },
   {
     id: 9,
-    quote: "If you are working on something that you really care about, you don't have to be pushed. The vision pulls you.",
-    author: "Steve Jobs"
+    quote:
+      "If you are working on something that you really care about, you don't have to be pushed. The vision pulls you.",
+    author: "Steve Jobs",
   },
   {
     id: 10,
     quote: "People who are crazy enough to think they can change the world, are the ones who do.",
-    author: "Rob Siltanen"
+    author: "Rob Siltanen",
   },
   {
     id: 11,
     quote: "We don't make mistakes, just happy little accidents.",
-    author: "Bob Ross"
+    author: "Bob Ross",
   },
   {
     id: 12,
     quote: "In the middle of every difficulty lies opportunity.",
-    author: "Albert Einstein"
-  }
+    author: "Albert Einstein",
+  },
 ]
 
 export default {
@@ -163,19 +164,19 @@ const Template: StoryFn<MasonryGridOrderedStoryArgs> = (args) => ({
   setup() {
     const getItemClasses = (variant: string, showBorders: boolean) => {
       const baseClasses = ["p-10"]
-      
+
       if (showBorders) {
         baseClasses.push("border", "border-1", "border-grey-dark")
-        
+
         if (variant === "card") {
           baseClasses.push("border-r-4")
         }
       }
-      
+
       if (variant === "detailed") {
         baseClasses.push("bg-gray-1", "rounded-4")
       }
-      
+
       return baseClasses.join(" ")
     }
 
@@ -189,7 +190,7 @@ const Template: StoryFn<MasonryGridOrderedStoryArgs> = (args) => ({
           Displaying {{ args.gridData.length }} items with {{ args.gap }}px gap and {{ args.minTileWidth }}px minimum width
         </p>
       </div>
-      
+
       <StorybookComponent
         :gridData="args.gridData"
         :gap="args.gap"
@@ -315,7 +316,7 @@ const Template2: StoryFn<MasonryGridOrderedStoryArgs> = (args) => ({
           Showing how different content can be displayed in the masonry grid
         </p>
       </div>
-      
+
       <StorybookComponent
         :gridData="args.gridData"
         :gap="args.gap"
@@ -326,7 +327,7 @@ const Template2: StoryFn<MasonryGridOrderedStoryArgs> = (args) => ({
         <template v-for="(item, index) in args.gridData" v-slot:[item.id]>
           <div class="p-16 bg-gray-1 rounded-8 border border-1 border-gray-6">
             <div style="display: flex; align-items: center; margin-bottom: 12px;">
-              <div 
+              <div
                 style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 12px; font-size: 14px;"
               >
                 {{ index + 1 }}

@@ -598,7 +598,10 @@ const AnimationShowcaseTemplate: StoryFn<CarouselFlipStoryArgs> = (args) => ({
           <div
             class="animation-demo-item"
             style="
-              aspect-ratio: 3/2;
+              width: 100%;
+              height: 100%;
+              max-width: 400px;
+              min-height: 450px;
               background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
               background-size: 400% 400%;
               border-radius: 8px;
@@ -609,6 +612,7 @@ const AnimationShowcaseTemplate: StoryFn<CarouselFlipStoryArgs> = (args) => ({
               font-weight: bold;
               text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
               position: relative;
+              box-sizing: border-box;
             "
           >
             <div style="text-align: center;">
